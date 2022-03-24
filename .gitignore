@@ -17,7 +17,7 @@ target/
 .idea
 *.iws
 *.iml
-*.ipr
+*.ipr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
 
 ### NetBeans ###
 /nbproject/private/
@@ -32,6 +32,8 @@ build/
 ### VS Code ###
 .vscode/
 
+
+*.properties
 #########################################################
 
 # See http://help.github.com/ignore-files/ for more about ignoring files.

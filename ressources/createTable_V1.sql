@@ -1,3 +1,6 @@
+BEGIN; 
+CREATE schema JustRead;
+SET search_path TO JustRead;
 CREATE TABLE jr_author
 (
 	idAuthor BIGINT PRIMARY KEY NOT NULL,
@@ -129,3 +132,5 @@ CREATE TABLE jr_order_item
 	FOREIGN KEY (idEdition) REFERENCES jr_edition(idEdition),
 	FOREIGN KEY (idOrder) REFERENCES jr_order(idOrder)
 );
+
+commit;

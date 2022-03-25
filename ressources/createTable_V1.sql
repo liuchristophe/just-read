@@ -1,4 +1,5 @@
 BEGIN; 
+Drop schema if exists JustRead Cascade;
 CREATE schema JustRead;
 SET search_path TO JustRead;
 CREATE TABLE jr_author
@@ -14,7 +15,6 @@ CREATE TABLE jr_book
     idBook BIGINT PRIMARY KEY NOT NULL,
     strBookName VARCHAR(50),
     strSynopsis VARCHAR(1500),
-    strUrlImage VARCHAR(255),
     idAuthor BIGINT,
 	FOREIGN KEY(idAuthor) REFERENCES jr_author(idAuthor)	
 );
@@ -45,6 +45,7 @@ CREATE TABLE jr_edition
 	idBook BIGINT NOT NULL,
 	idPublisher INT NOT NULL,
 	strYear SMALLINT,
+    	strUrlImageEdition VARCHAR(255),
 	strISBN VARCHAR(25),
 	FOREIGN KEY (idBook) REFERENCES jr_book(idBook),
 	FOREIGN KEY (idPublisher) REFERENCES jr_publisher(idPublisher)	

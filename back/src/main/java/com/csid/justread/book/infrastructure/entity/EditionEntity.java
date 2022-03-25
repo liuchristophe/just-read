@@ -1,7 +1,5 @@
 package com.csid.justread.book.infrastructure.entity;
 
-import com.csid.justread.book.domain.Book;
-
 import javax.persistence.*;
 
 @Entity(name="edition")

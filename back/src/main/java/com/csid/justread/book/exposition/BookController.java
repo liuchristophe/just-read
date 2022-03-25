@@ -22,7 +22,7 @@ public class BookController {
     @PostMapping()
     public ResponseEntity<BookDto> createBook (@RequestBody BookDto bookDto) {
         return ResponseEntity.ok (
-                BookMapper.createDto( this.bookService.create( BookMapper.createBook( bookDto ) ) )
+                BookMapper.bookToDto( this.bookService.create( BookMapper.dtoToBook( bookDto ) ) )
         );
     }
     

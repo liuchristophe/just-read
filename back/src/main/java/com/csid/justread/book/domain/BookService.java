@@ -13,7 +13,7 @@ public class BookService {
 
     public Book create(Book book) {
 
-        return this.bookRepository.save( book );
+        return this.bookRepository.save(book);
 
     }
 }

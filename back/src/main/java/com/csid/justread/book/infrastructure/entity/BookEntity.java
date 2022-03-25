@@ -29,4 +29,51 @@ public class BookEntity {
     private List<EditionEntity> editions;
 
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getSynopsys() {
+        return synopsys;
+    }
+
+    public void setSynopsys(String synopsys) {
+        this.synopsys = synopsys;
+    }
+
+    public AuthorEntity getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(AuthorEntity author) {
+        this.author = author;
+    }
+
+    public List<BookCategoryEntity> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<BookCategoryEntity> categories) {
+        this.categories = categories;
+    }
+
+    public List<EditionEntity> getEditions() {
+        return editions;
+    }
+
+    public void setEditions(List<EditionEntity> editions) {
+        this.editions = editions;
+    }
 }

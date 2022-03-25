@@ -1,0 +1,51 @@
+# Docker Compose file Reference (https://docs.docker.com/compose/compose-file/)
+version: '3'
+
+#Define services
+services:
+
+  #PostgreSQL Database for the application
+  jr-bdd:
+    image: "postgres:9.6-alpine"
+    container_name: jr-bdd
+    #Volume mounted for database for the storage
+    # volumes:
+    #   - jr-data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432 # Forward the exposed port 5432 on the container to port 5432 on the host machine
+
+    #Environment variable for DB name, user and password
+    environment:
+      - POSTGRES_DB=jr-bdd
+      - POSTGRES_USER=jr_adm
+      - POSTGRES_PASSWORD=jr_adm
+
+  #Back-end Spring Boot Application
+  # jr-back:
+  #   #The docker file in scrum-app build the jar and provides the docker image with the following name.
+  #   build: ./back
+  #   container_name: jr-back
+
+  #   #Environment variables for Spring Boot Application.
+  #   environment:
+  #     - DB_SERVER=jr-bdd
+  #     - POSTGRES_DB=jr-bdd
+  #     - POSTGRES_USER=jr_adm
+  #     - POSTGRES_PASSWORD=jr_adm
+  #   ports:
+  #     - 8080:8080 # Forward the exposed port 8080 on the container to port 8080 on the host machine
+  #   links:
+  #     - jr-bdd
+
+  #Fron-end Angular Application
+  jr-front:
+    build: ./front
+    container_name: jr-front
+    ports:
+      - 4200:80
+    # links:
+    #   - jr-back
+
+#Volumes for DB data
+volumes:
+  scrum-data:

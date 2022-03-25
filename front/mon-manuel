@@ -1,0 +1,16 @@
+docker build -t just-read-front .
+
+docker run --rm -d --name -p 80:80 just-read-front just-read-front:0.0.1
+
+docker stop just-read-front
+
+// pour linux
+docker inspect just-read-front | grep IPAddress
+//pour windows
+docker inspect just-read-front | findstr "IPAddress"
+
+docker network create jr-front-network
+
+docker network list
+
+docker run --rm -d -p 80:80 --net jr-front-network --name just-read-front just-read-front:0.0.1

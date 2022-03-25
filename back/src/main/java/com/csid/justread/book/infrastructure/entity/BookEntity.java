@@ -22,10 +22,10 @@ public class BookEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     private AuthorEntity author;
 
-    @OneToMany(targetEntity = BookCategoryEntity.class, fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "book")
     private List<BookCategoryEntity> categories;
 
-    @OneToMany(targetEntity = EditionEntity.class, fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "book")
     private List<EditionEntity> editions;
 
 

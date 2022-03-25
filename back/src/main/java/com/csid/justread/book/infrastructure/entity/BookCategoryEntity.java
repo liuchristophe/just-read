@@ -6,8 +6,15 @@ import javax.persistence.*;
 @Table(name="book_category")
 public class BookCategoryEntity {
 
-    @EmbeddedId
-    private BookCategoryPK id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(nullable=false)
+    private CategoryEntity category;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(nullable=false)
+    private BookEntity book;
 }

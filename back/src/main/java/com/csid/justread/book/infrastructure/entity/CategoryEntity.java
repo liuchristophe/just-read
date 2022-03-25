@@ -8,7 +8,7 @@ public class CategoryEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long Id;
+    private int Id;
 
     @Column(length = 100, nullable = false)
     private String name;

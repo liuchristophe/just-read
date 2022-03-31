@@ -1,0 +1,5 @@
+<mat-toolbar color="primary">
+    <ul *ngFor="let nav of navigations">
+        <li><a routerLink={{nav.link}} routerLinkActive="active">{{nav.title}}</a></li>
+    </ul>
+</mat-toolbar>

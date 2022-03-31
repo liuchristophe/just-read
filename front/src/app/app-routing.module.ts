@@ -4,7 +4,7 @@ import { HomeComponent } from './shared/components/home/home.component';
 import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
 
 const routes: Routes = [
-  {path: '', component: HomeComponent},
+  {path: 'home', component: HomeComponent},
   {path: '**', component: PageNotFoundComponent},
 ];
 

@@ -12,10 +12,11 @@ interface Navigation {
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  navigations: Navigation[] = [
-    {'title': 'Accueil', 'link': '/', 'selected': false},
-    {'title': 'Tableau de bord', 'link': '/dashboard', 'selected': false},
-  ];
+
+  home = {'title': 'Accueil', 'link': '/home', 'selected': false};
+  dashboard = {'title': 'Tableau de bord', 'link': '/dashboard', 'selected': false};
+
+  navigations: Navigation[] = [this.home, this.dashboard];
 
   constructor() { }
 

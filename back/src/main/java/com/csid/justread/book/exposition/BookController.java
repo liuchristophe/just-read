@@ -25,7 +25,6 @@ public class BookController {
                 BookMapper.bookToDto( this.bookService.create( BookMapper.dtoToBook( bookDto ) ) )
         );
     }
-    
 
     //endregion
 

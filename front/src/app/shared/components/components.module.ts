@@ -6,13 +6,17 @@ import {MatIconModule} from '@angular/material/icon';
 
 import { AngularComponent } from './angular/angular.component';
 import { HeaderComponent } from './header/header.component';
+import { HomeComponent } from './home/home.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
 
 @NgModule({
   declarations: [
     AngularComponent,
-    HeaderComponent
+    HeaderComponent,
+    HomeComponent,
+    PageNotFoundComponent
   ],
   imports: [
     CommonModule,
@@ -21,10 +25,12 @@ import { HeaderComponent } from './header/header.component';
     MatIconModule
   ],
   exports: [
-    HeaderComponent,
     MatToolbarModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    HeaderComponent,
+    HomeComponent,
+    PageNotFoundComponent
   ]
 })
 export class ComponentsModule { }

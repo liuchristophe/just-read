@@ -1,0 +1,8 @@
+<mat-toolbar color="primary">
+    <!-- <mat-toolbar-row *ngFor="let nav of navigations"> 
+        <button mat-raised-button color="primary">{{nav.title}}</button>
+    </mat-toolbar-row> -->
+    <ul *ngFor="let nav of navigations">
+        <button mat-raised-button color="primary">{{nav.title}}</button>
+    </ul>
+</mat-toolbar>

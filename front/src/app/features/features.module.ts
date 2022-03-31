@@ -10,6 +10,9 @@ import { FormAjoutLivreComponent } from './form-ajout-livre/form-ajout-livre.com
   ],
   imports: [
     CommonModule
+  ],
+  exports:[
+    FormAjoutLivreComponent
   ]
 })
 export class FeaturesModule { }

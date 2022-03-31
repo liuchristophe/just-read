@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FormAjoutLivreComponent implements OnInit {
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
   ngOnInit(): void {
   }
 
+  onClickTestHttp(){
+    console.log('test');
+    this.httpClient.get('/api/test').subscribe(response=>{
+      console.log('ok',response);
+    }, error=>{
+      console.log('error',error);
+    });
+  }
 }

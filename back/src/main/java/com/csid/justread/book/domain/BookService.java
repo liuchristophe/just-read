@@ -19,7 +19,7 @@ public class BookService {
     private final BookRepository bookRepository;
 
     public BookDto create(Book book) {
-        return BookMapper.bookToDto( this.bookRepository.save(BookMapper.bookToEntity( book ) ) );
+        return BookMapper.bookToDto( this.bookRepository.save( book ) );
     }
 
     public List<BookDto> getBooks() {

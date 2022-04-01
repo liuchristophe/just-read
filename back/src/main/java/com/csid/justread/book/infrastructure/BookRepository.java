@@ -24,8 +24,9 @@ public class BookRepository {
     private AuthorDao authorDao;
     private EditionDao editionDao;
 
-    public BookRepository(BookDao bookDao) {
+    public BookRepository(BookDao bookDao, AuthorDao authorDao) {
         this.bookDao = bookDao;
+        this.authorDao = authorDao;
     }
 
     public Book save(Book book){
@@ -35,7 +36,7 @@ public class BookRepository {
                 author.getFirstname(),
                 author.getPseudo());
         if(!optAuthorEntity.isPresent()){ //Si l'auteur n'existe pas on le créer
-            authorDao.save(optAuthorEntity.get());
+            authorDao.save(AuthorMapper.authorToEntity(book.getAuthor()));
             optAuthorEntity = authorDao.findByLastnameAndFirstnameAndPseudo(author.getLastname(),
                     author.getFirstname(),
                     author.getPseudo());

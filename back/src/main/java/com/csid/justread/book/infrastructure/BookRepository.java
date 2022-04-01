@@ -1,6 +1,7 @@
 package com.csid.justread.book.infrastructure;
 
-import com.csid.justread.book.domain.Book;
+import com.csid.justread.book.BookMapper;
+import com.csid.justread.book.domain.model.Book;
 import com.csid.justread.book.infrastructure.dao.BookDao;
 import org.springframework.stereotype.Component;
 
@@ -12,10 +13,9 @@ public class BookRepository {
         this.bookDao = bookDao;
     }
 
-    public void save(Book book){
-
+    public Book save(Book book){
         //book doit être mapper en bookEntity
-        //bookDao.save(book);
+       return BookMapper.entityToBook(bookDao.save(BookMapper.bookToEntity(book)));
     }
 
 }

@@ -10,8 +10,8 @@ public class EditionMapper {
         Edition result = new Edition();
         result.setId( e.getId() );
         result.setIsbn( e.getIsbn() );
-        result.setPublisher( e.getPublisher() );
         result.setYear( e.getYear() );
+        if ( e.getPublisher() != null ) result.setPublisher( PublisherMapper.dtoToPublisher( e.getPublisher() ) );
         return result;
     }
 
@@ -20,8 +20,8 @@ public class EditionMapper {
         EditionDto result = new EditionDto();
         result.setId( e.getId() );
         result.setIsbn( e.getIsbn() );
-        result.setPublisher( e.getPublisher() );
         result.setYear( e.getYear() );
+        if ( e.getPublisher() != null ) result.setPublisher( PublisherMapper.publisherToDto( e.getPublisher() ) );
         return result;
     }
 
@@ -30,8 +30,8 @@ public class EditionMapper {
         Edition result = new Edition();
         result.setId( e.getId() );
         result.setIsbn( e.getIsbn() );
-        result.setPublisher( e.getPublisher() );
         result.setYear( e.getYear() );
+        if ( e.getPublisher() != null ) result.setPublisher( PublisherMapper.entityToPublisher( e.getPublisher() ) );
         return result;
     }
 
@@ -40,8 +40,8 @@ public class EditionMapper {
         EditionEntity result = new EditionEntity();
         result.setId( e.getId() );
         result.setIsbn( e.getIsbn() );
-        result.setPublisher( e.getPublisher() );
         result.setYear( e.getYear() );
+        if ( e.getPublisher() != null ) result.setPublisher( PublisherMapper.publisherToEntity( e.getPublisher() ) );
         return result;
     }
 }

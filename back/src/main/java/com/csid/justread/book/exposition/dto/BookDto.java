@@ -12,7 +12,7 @@ public class BookDto {
     private String synopsys;
     private AuthorDto author;
     private List<CategoryDto> categories;
-    //private List<EditionDto> editions;
+    private List<EditionDto> editions;
 
     //region * Methods *
 
@@ -54,6 +54,14 @@ public class BookDto {
 
     public void setCategories(List<CategoryDto> categories) {
         this.categories = categories;
+    }
+
+    public List<EditionDto> getEditions() {
+        return editions;
+    }
+
+    public void setEditions(List<EditionDto> editions) {
+        this.editions = editions;
     }
 
     //endregion

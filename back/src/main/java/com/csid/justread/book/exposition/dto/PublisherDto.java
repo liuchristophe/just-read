@@ -1,9 +1,8 @@
-package com.csid.justread.book.domain.model;
+package com.csid.justread.book.exposition.dto;
 
+public class PublisherDto {
 
-public class Publisher {
-
-    public Publisher () {}
+    public PublisherDto () {}
 
     private long id;
     private String name;
@@ -19,6 +18,7 @@ public class Publisher {
     public void setName(String name) {
         this.name = name;
     }
+
     public void setId(long id) {
         this.id = id;
     }

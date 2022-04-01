@@ -1,15 +1,12 @@
 package com.csid.justread.book.exposition.dto;
 
-import com.csid.justread.book.domain.model.Book;
-import com.csid.justread.book.domain.model.Publisher;
-
 public class EditionDto {
 
     private long id;
     private String isbn;
     private int year;
-    private Book book;
-    private Publisher publisher;
+    private PublisherDto publisher;
+    // private Book book;
 
     //region * Methods *
 
@@ -31,16 +28,20 @@ public class EditionDto {
     public void setYear(int year) {
         this.year = year;
     }
+
+    /*
     public Book getBook() {
         return book;
     }
     public void setBook(Book book) {
         this.book = book;
     }
-    public Publisher getPublisher() {
+    */
+
+    public PublisherDto getPublisher() {
         return publisher;
     }
-    public void setPublisher(Publisher publisher) {
+    public void setPublisher(PublisherDto publisher) {
         this.publisher = publisher;
     }
 

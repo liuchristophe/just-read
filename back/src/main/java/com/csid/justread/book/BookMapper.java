@@ -7,52 +7,51 @@ import java.util.stream.Collectors;
 
 public class BookMapper {
     public static BookDto bookToDto(Book b ) {
+
         BookDto result = new BookDto();
         result.setTitle( b.getTitle() );
         result.setSynopsys( b.getSynopsys() );
-        result.setAuthor( AuthorMapper.authorToDto( b.getAuthor() ) );
-        result.setEditions(
-                b.getEditions().stream().map( e -> EditionMapper.editionToDto(e) ).collect(Collectors.toList())
-        );
+        if ( b.getAuthor()   != null ) result.setAuthor( AuthorMapper.authorToDto( b.getAuthor() ) );
+        if ( b.getEditions() != null ) result.setEditions( b.getEditions().stream().map( e -> EditionMapper.editionToDto(e) ).collect(Collectors.toList()) );
         return result;
     }
 
-    public static Book dtoToBook ( BookDto b )
-    {
+    public static Book dtoToBook ( BookDto b ) {
+
         Book result = new Book();
         result.setTitle( b.getTitle() );
         result.setSynopsys( b.getSynopsys() );
-        result.setAuthor( AuthorMapper.dtoToAuthor( b.getAuthor() ) );
-        result.setEditions(
+        if ( b.getAuthor()   != null ) result.setAuthor( AuthorMapper.dtoToAuthor( b.getAuthor() ) );
+        if ( b.getEditions() != null ) result.setEditions(
                 b.getEditions().stream().map(e -> EditionMapper.dtoToEdition(e) ).collect(Collectors.toList())
         );
-        // Todo : prise en charge - categories
+        // Todo : categories
         return result;
     }
 
-    public static Book entityToBook(BookEntity book) {
+    public static Book entityToBook(BookEntity b) {
 
         Book result = new Book();
-        result.setTitle( book.getTitle() );
-        result.setSynopsys( book.getSynopsys() );
-        result.setAuthor( AuthorMapper.entityToAuthor( book.getAuthor() ) );
-        result.setEditions(
-                book.getEditions().stream().map(e -> EditionMapper.entityToEdition(e) ).collect(Collectors.toList())
+        result.setTitle( b.getTitle() );
+        result.setSynopsys( b.getSynopsys() );
+        if ( b.getAuthor()   != null ) result.setAuthor( AuthorMapper.entityToAuthor( b.getAuthor() ) );
+        if ( b.getEditions() != null ) result.setEditions(
+                b.getEditions().stream().map(e -> EditionMapper.entityToEdition(e) ).collect(Collectors.toList())
         );
-        // Todo : prise en charge - categories
+        // Todo : categories
         return result;
     }
 
-    public static BookEntity bookToEntity(Book book) {
+    public static BookEntity bookToEntity(Book b) {
 
         BookEntity result = new BookEntity();
-        result.setTitle( book.getTitle() );
-        result.setSynopsys( book.getSynopsys() );
-        result.setAuthor( AuthorMapper.authorToEntity( book.getAuthor() ) );
-        result.setEditions(
-                book.getEditions().stream().map(e -> EditionMapper.editionToEntity(e) ).collect(Collectors.toList())
+        result.setTitle( b.getTitle() );
+        result.setSynopsys( b.getSynopsys() );
+        if ( b.getAuthor()   != null ) result.setAuthor( AuthorMapper.authorToEntity( b.getAuthor() ) );
+        if ( b.getEditions() != null ) result.setEditions(
+                b.getEditions().stream().map(e -> EditionMapper.editionToEntity(e) ).collect(Collectors.toList())
         );
-        // Todo : prise en charge author - categories
+        // Todo : categories
         return result;
     }
 }

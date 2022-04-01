@@ -11,7 +11,7 @@ public class BookMapper {
         BookDto result = new BookDto();
         result.setTitle( b.getTitle() );
         result.setSynopsys( b.getSynopsys() );
-        result.setAuthor( b.getAuthor().getPseudo().toString() );
+        //result.setAuthor( b.getAuthor().getPseudo().toString() );
         return result;
     }
 
@@ -20,6 +20,7 @@ public class BookMapper {
         Book result = new Book();
         result.setTitle( b.getTitle() );
         result.setSynopsys( b.getSynopsys() );
+        //result.setAuthor(b.getAuthor());
         // Todo : prise en charge author - categories - editions
         return result;
     }

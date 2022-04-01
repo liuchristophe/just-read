@@ -1,10 +1,7 @@
 package com.csid.justread.book;
 import com.csid.justread.book.domain.model.Book;
-import com.csid.justread.book.domain.model.Category;
-import com.csid.justread.book.exposition.BookDto;
+import com.csid.justread.book.exposition.dto.BookDto;
 import com.csid.justread.book.infrastructure.entity.BookEntity;
-
-import java.util.ArrayList;
 
 public class BookMapper {
     public static BookDto bookToDto(Book b ) {

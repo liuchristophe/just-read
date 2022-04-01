@@ -1,4 +1,4 @@
-package com.csid.justread.book.exposition;
+package com.csid.justread.book.exposition.dto;
 import com.csid.justread.book.domain.model.Book;
 
 public class BookDto {

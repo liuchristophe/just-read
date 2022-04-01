@@ -4,7 +4,9 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity(name="author")
-@Table(name="author")
+@Table(name="author",
+        uniqueConstraints = {@UniqueConstraint(columnNames = {"firstname", "lastname", "pseudo"})})
+
 public class AuthorEntity {
 
     @Id

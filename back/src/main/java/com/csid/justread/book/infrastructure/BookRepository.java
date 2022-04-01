@@ -30,20 +30,19 @@ public class BookRepository {
     }
 
     public Book save(Book book){
-        //Vérification existence auteur
+//        //Vérification existence auteur
         Author author = book.getAuthor();
-        Optional<AuthorEntity> optAuthorEntity = authorDao.findByLastnameAndFirstnameAndPseudo(author.getLastname(),
+        Optional<AuthorEntity> optAuthorEntity = authorDao.findAuthorByLastnameAndFirstnameAndPseudo(author.getLastname(),
                 author.getFirstname(),
                 author.getPseudo());
         if(!optAuthorEntity.isPresent()){ //Si l'auteur n'existe pas on le créer
-            authorDao.save(AuthorMapper.authorToEntity(book.getAuthor()));
-            optAuthorEntity = authorDao.findByLastnameAndFirstnameAndPseudo(author.getLastname(),
+            authorDao.saveAndFlush(AuthorMapper.authorToEntity(book.getAuthor()));
+            optAuthorEntity = authorDao.findAuthorByLastnameAndFirstnameAndPseudo(author.getLastname(),
                     author.getFirstname(),
                     author.getPseudo());
         }
-
+        System.out.println(optAuthorEntity.get().getId());
         book.setAuthor(AuthorMapper.entityToAuthor(optAuthorEntity.orElse(null)));
-
         return BookMapper.entityToBook(bookDao.save( BookMapper.bookToEntity(book )));
     }
 

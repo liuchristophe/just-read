@@ -13,6 +13,7 @@ public class AuthorMapper {
         result.setLastname  ( a.getLastname  () );
         result.setPseudo    ( a.getPseudo    () );
         result.setUrlWiki   ( a.getUrlWiki   () );
+        result.setId(a.getId());
         return result;
     }
 
@@ -23,6 +24,7 @@ public class AuthorMapper {
         result.setLastname  ( a.getLastname  () );
         result.setPseudo    ( a.getPseudo    () );
         result.setUrlWiki   ( a.getUrlWiki   () );
+        result.setId(a.getId());
         return result;
     }
 
@@ -33,6 +35,7 @@ public class AuthorMapper {
         result.setLastname  ( a.getLastname  () );
         result.setPseudo    ( a.getPseudo    () );
         result.setUrlWiki   ( a.getUrlWiki   () );
+        result.setId(a.getId());
         return result;
     }
 
@@ -43,6 +46,7 @@ public class AuthorMapper {
         result.setLastname  ( a.getLastname  () );
         result.setPseudo    ( a.getPseudo    () );
         result.setUrlWiki   ( a.getUrlWiki   () );
+        result.setId(a.getId());
         return result;
     }
 }

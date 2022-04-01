@@ -8,14 +8,20 @@ public class BookDto {
     private long id;
     private String title;
     private String synopsys;
-    private String author;
+    private AuthorDTO author;
+
 
     // Todo : add edditions & categories
 
     //region * Methods *
 
+
     public long getId() {
         return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -34,11 +40,11 @@ public class BookDto {
         this.synopsys = synopsys;
     }
 
-    public String getAuthor() {
+    public AuthorDTO getAuthor() {
         return author;
     }
 
-    public void setAuthor(String author) {
+    public void setAuthor(AuthorDTO author) {
         this.author = author;
     }
 

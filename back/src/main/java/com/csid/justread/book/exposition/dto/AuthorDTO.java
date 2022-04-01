@@ -1,4 +1,4 @@
-package com.csid.justread.book.exposition;
+package com.csid.justread.book.exposition.dto;
 
 public class AuthorDTO {
 

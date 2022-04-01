@@ -1,0 +1,10 @@
+spring.datasource.url=jdbc:postgresql://database-etudiants/{nom_base}
+spring.datasource.driverClassName=org.postgresql.Driver
+spring.datasource.username={username}
+spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
+spring.datasource.password={password}
+spring.jpa.properties.hibernate.default_schema=
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+spring.jpa.hibernate.ddl-auto=update
+server.port=8080

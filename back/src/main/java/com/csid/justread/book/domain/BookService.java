@@ -31,4 +31,8 @@ public class BookService {
     public Optional<BookDto> getBookById(long id) {
         return this.bookRepository.getBookById( id ).map( b -> BookMapper.bookToDto( b ) );
     }
+
+//    public List<Book> getBooksByCategoryName(String categoryName) {
+//        return this.bookRepository.getBooksByCategoryName(categoryName);
+//    }
 }

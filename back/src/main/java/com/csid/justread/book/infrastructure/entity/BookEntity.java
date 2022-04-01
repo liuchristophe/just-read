@@ -22,8 +22,11 @@ public class BookEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     private AuthorEntity author;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "book")
-    private List<BookCategoryEntity> categories;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name="book_category",
+        joinColumns = @JoinColumn(name = "book_id"),
+        inverseJoinColumns = @JoinColumn(name = "category_id"))
+    private List<CategoryEntity> categories;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "book")
     private List<EditionEntity> editions;
@@ -59,14 +62,6 @@ public class BookEntity {
 
     public void setAuthor(AuthorEntity author) {
         this.author = author;
-    }
-
-    public List<BookCategoryEntity> getCategories() {
-        return categories;
-    }
-
-    public void setCategories(List<BookCategoryEntity> categories) {
-        this.categories = categories;
     }
 
     public List<EditionEntity> getEditions() {

@@ -3,14 +3,14 @@ package com.csid.justread.book.exposition.dto;
 /* Dto : BookCategory && Category */
 public class CategoryDto {
 
-    private long id;
+    private int id;
     private String name;
 
     //region * Methods *
-    public long getId() {
+    public int getId() {
         return id;
     }
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
     public String getName() {
@@ -20,4 +20,6 @@ public class CategoryDto {
         this.name = name;
     }
     //endregion
+
+
 }

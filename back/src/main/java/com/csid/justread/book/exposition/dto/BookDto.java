@@ -1,6 +1,8 @@
 package com.csid.justread.book.exposition.dto;
 import com.csid.justread.book.domain.model.Book;
 
+import java.util.List;
+
 public class BookDto {
 
     public BookDto() {}
@@ -8,10 +10,9 @@ public class BookDto {
     private long id;
     private String title;
     private String synopsys;
-    private AuthorDTO author;
-
-
-    // Todo : add edditions & categories
+    private AuthorDto author;
+    private List<CategoryDto> categories;
+    //private List<EditionDto> editions;
 
     //region * Methods *
 
@@ -40,12 +41,19 @@ public class BookDto {
         this.synopsys = synopsys;
     }
 
-    public AuthorDTO getAuthor() {
+    public AuthorDto getAuthor() {
         return author;
     }
-
-    public void setAuthor(AuthorDTO author) {
+    public void setAuthor(AuthorDto author) {
         this.author = author;
+    }
+
+    public List<CategoryDto> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<CategoryDto> categories) {
+        this.categories = categories;
     }
 
     //endregion

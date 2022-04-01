@@ -11,6 +11,7 @@ public class Book {
     private String title;
     private String synopsys;
     private Author author;
+
     private List<Edition> editions;
 
     //region * Methods *

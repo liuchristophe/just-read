@@ -1,6 +1,6 @@
 package com.csid.justread.book.exposition.dto;
 
-public class AuthorDTO {
+public class AuthorDto {
 
     private Long id;
     private String firstname;

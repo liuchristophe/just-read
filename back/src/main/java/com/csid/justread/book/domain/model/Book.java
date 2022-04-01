@@ -11,7 +11,6 @@ public class Book {
     private String title;
     private String synopsys;
     private Author author;
-    private List<BookCategory> categories;
     private List<Edition> editions;
 
     //region * Methods *
@@ -42,14 +41,6 @@ public class Book {
 
     public void setAuthor(Author author) {
         this.author = author;
-    }
-
-    public List<BookCategory> getCategories() {
-        return categories;
-    }
-
-    public void setCategories(List<BookCategory> categories) {
-        this.categories = categories;
     }
 
     public List<Edition> getEditions() {

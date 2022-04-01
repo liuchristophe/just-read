@@ -31,8 +31,8 @@ public class BookController {
         return this.bookService.getBooks();
     }
 
-    @GetMapping("/{uuid}")
-    public ResponseEntity<BookDto> getBookById (@PathVariable("uuid") long id ) {
+    @GetMapping("/{long}")
+    public ResponseEntity<BookDto> getBookById (@PathVariable("long") long id ) {
         return this.bookService.getBookById( id )
                 .map( ResponseEntity::ok )
                 .orElse( ResponseEntity.notFound().build() );

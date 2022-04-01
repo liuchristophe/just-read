@@ -1,5 +1,4 @@
 package com.csid.justread.book.domain.model;
-import com.csid.justread.book.infrastructure.entity.AuthorEntity;
 
 import java.util.List;
 

@@ -24,4 +24,5 @@ public class EditionEntity {
     private PublisherEntity publisher;
 
 
+
 }

@@ -37,10 +37,10 @@ public class BookController {
                 .orElse( ResponseEntity.notFound().build() );
     }
 
-//    @GetMapping("/category/{categoryName}")
-//    public ResponseEntity<BookDto> getBooksByCategoryName (@PathVariable("categoryName") String categoryName){
-//        return bookService.getBooksByCategoryName(categoryName);
-//    }
+    @GetMapping("/category/{categoryName}")
+    public List<BookDto> getBooksByCategoryName (@PathVariable("categoryName") String categoryName){
+        return bookService.getBooksByCategoryName(categoryName.trim());
+    }
 
     @PostMapping()
     public ResponseEntity<BookDto> createBook (@RequestBody BookDto bookDto) {

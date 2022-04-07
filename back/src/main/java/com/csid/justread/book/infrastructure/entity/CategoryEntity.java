@@ -1,6 +1,7 @@
 package com.csid.justread.book.infrastructure.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity(name="category")
 @Table(name="category")
@@ -12,6 +13,7 @@ public class CategoryEntity {
 
     @Column(length = 100, nullable = false)
     private String name;
+
 
     public int getId() {
         return Id;

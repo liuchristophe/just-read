@@ -4,10 +4,8 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity(name="book")
-@Table(name="book")
+@Table (name="book")
 public class BookEntity {
-
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,8 +20,8 @@ public class BookEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     private AuthorEntity author;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name="book_category",
+    @ManyToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+    @JoinTable(name = "book_category",
         joinColumns = @JoinColumn(name = "book_id"),
         inverseJoinColumns = @JoinColumn(name = "category_id"))
     private List<CategoryEntity> categories;

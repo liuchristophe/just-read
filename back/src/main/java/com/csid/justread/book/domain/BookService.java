@@ -20,18 +20,18 @@ public class BookService {
     public BookDto create(Book book) {
         return BookMapper.bookToDto( this.bookRepository.save( book ) );
     }
-
     public List<BookDto> getBooks() {
         return this.bookRepository.getBooks().stream()
                 .map( b -> BookMapper.bookToDto(b) )
                 .collect(Collectors.toList());
     }
-
     public Optional<BookDto> getBookById(long id) {
         return this.bookRepository.getBookById( id ).map( b -> BookMapper.bookToDto( b ) );
     }
+    public List<BookDto> getBooksByCategoryName(String categoryName) {
+        return this.bookRepository.getBooksByCategoryName(categoryName).stream().map(
+                b -> BookMapper.bookToDto( b )
+        ).collect(Collectors.toList());
+    }
 
-//    public List<Book> getBooksByCategoryName(String categoryName) {
-//        return this.bookRepository.getBooksByCategoryName(categoryName);
-//    }
 }

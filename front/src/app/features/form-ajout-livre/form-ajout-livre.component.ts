@@ -15,7 +15,7 @@ export class FormAjoutLivreComponent implements OnInit {
 
   onClickTestHttp(){
     console.log('test');
-    this.httpClient.get('/api/test').subscribe(response=>{
+    this.httpClient.get('localhost:8080/books').subscribe(response=>{
       console.log('ok',response);
     }, error=>{
       console.log('error',error);

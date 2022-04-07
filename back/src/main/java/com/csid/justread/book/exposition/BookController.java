@@ -6,7 +6,6 @@ import com.csid.justread.book.exposition.dto.BookDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController()
@@ -42,6 +41,7 @@ public class BookController {
 //    public ResponseEntity<BookDto> getBooksByCategoryName (@PathVariable("categoryName") String categoryName){
 //        return bookService.getBooksByCategoryName(categoryName);
 //    }
+
     @PostMapping()
     public ResponseEntity<BookDto> createBook (@RequestBody BookDto bookDto) {
         return ResponseEntity.ok ( this.bookService.create( BookMapper.dtoToBook( bookDto ) ) );

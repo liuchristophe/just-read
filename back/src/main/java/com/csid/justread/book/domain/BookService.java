@@ -1,12 +1,11 @@
 package com.csid.justread.book.domain;
+
 import com.csid.justread.book.BookMapper;
 import com.csid.justread.book.domain.model.Book;
 import com.csid.justread.book.exposition.dto.BookDto;
 import com.csid.justread.book.infrastructure.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;

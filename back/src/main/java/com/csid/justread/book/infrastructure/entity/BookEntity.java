@@ -71,4 +71,12 @@ public class BookEntity {
     public void setEditions(List<EditionEntity> editions) {
         this.editions = editions;
     }
+
+    public List<CategoryEntity> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<CategoryEntity> categories) {
+        this.categories = categories;
+    }
 }

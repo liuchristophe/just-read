@@ -1,16 +1,18 @@
 package com.csid.justread.book.domain.model;
 
 
+import java.util.UUID;
+
 public class Publisher {
 
     public Publisher () {}
 
-    private long id;
+    private UUID id;
     private String name;
 
     //region * Methods *
 
-    public long getId() {
+    public UUID getId() {
         return id;
     }
     public String getName() {
@@ -19,7 +21,7 @@ public class Publisher {
     public void setName(String name) {
         this.name = name;
     }
-    public void setId(long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

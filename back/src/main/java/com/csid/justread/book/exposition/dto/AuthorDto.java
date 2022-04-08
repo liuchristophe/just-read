@@ -1,8 +1,10 @@
 package com.csid.justread.book.exposition.dto;
 
+import java.util.UUID;
+
 public class AuthorDto {
 
-    private Long id;
+    private UUID id;
     private String firstname;
     private String lastname;
     private String pseudo;
@@ -10,10 +12,10 @@ public class AuthorDto {
 
     //region * Methods *
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
-    public void setId(Long id) { this.id= id;}
+    public void setId(UUID id) { this.id= id;}
     public String getFirstname() {
         return firstname;
     }

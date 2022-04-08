@@ -1,13 +1,13 @@
 package com.csid.justread.book.exposition.dto;
-import com.csid.justread.book.domain.model.Book;
 
 import java.util.List;
+import java.util.UUID;
 
 public class BookDto {
 
     public BookDto() {}
 
-    private long id;
+    private UUID id;
     private String title;
     private String synopsys;
     private AuthorDto author;
@@ -16,12 +16,11 @@ public class BookDto {
 
     //region * Methods *
 
-
-    public long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -44,6 +43,7 @@ public class BookDto {
     public AuthorDto getAuthor() {
         return author;
     }
+
     public void setAuthor(AuthorDto author) {
         this.author = author;
     }

@@ -1,26 +1,30 @@
 package com.csid.justread.book.infrastructure.entity;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
-import java.util.List;
+import java.util.UUID;
 
 @Entity(name="category")
 @Table(name="category")
 public class CategoryEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int Id;
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
+    private UUID id;
 
     @Column(length = 100, nullable = false)
     private String name;
 
+    //region * Methods *
 
-    public int getId() {
-        return Id;
+    public UUID getId() {
+        return id;
     }
 
-    public void setId(int id) {
-        Id = id;
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -30,4 +34,6 @@ public class CategoryEntity {
     public void setName(String name) {
         this.name = name;
     }
+
+    //endregion
 }

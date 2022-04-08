@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Component
@@ -53,7 +54,7 @@ public class BookRepository {
                 b -> BookMapper.entityToBook(b)
         ).collect(Collectors.toList());
     }
-    public Optional<Book> getBookById(long id) {
+    public Optional<Book> getBookById(UUID id) {
         return this.bookDao.findById( id ).map( b -> BookMapper.entityToBook( b ) );
     }
     public List<Book> getBooksByCategoryName(String categoryName) {

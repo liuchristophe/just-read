@@ -1,15 +1,17 @@
 package com.csid.justread.book.exposition.dto;
 
+import java.util.UUID;
+
 public class PublisherDto {
 
     public PublisherDto () {}
 
-    private long id;
+    private UUID id;
     private String name;
 
     //region * Methods *
 
-    public long getId() {
+    public UUID getId() {
         return id;
     }
     public String getName() {
@@ -18,8 +20,7 @@ public class PublisherDto {
     public void setName(String name) {
         this.name = name;
     }
-
-    public void setId(long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

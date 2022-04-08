@@ -1,15 +1,18 @@
 package com.csid.justread.book.infrastructure.entity;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
+import java.util.UUID;
 
 @Entity(name="edition")
 @Table(name="edition")
 public class EditionEntity {
 
-
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
+    private UUID id;
 
     @Column(length = 200, nullable = false)
     private String isbn;
@@ -23,11 +26,13 @@ public class EditionEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     private PublisherEntity publisher;
 
-    public long getId() {
+    //region * Methods *
+
+    public UUID getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -62,4 +67,6 @@ public class EditionEntity {
     public void setPublisher(PublisherEntity publisher) {
         this.publisher = publisher;
     }
+
+    //endregion
 }

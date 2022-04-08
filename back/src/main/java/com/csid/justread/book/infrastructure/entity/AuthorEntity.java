@@ -1,17 +1,18 @@
 package com.csid.justread.book.infrastructure.entity;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
-import java.util.List;
+import java.util.UUID;
 
 @Entity(name="author")
-@Table(name="author",
-        uniqueConstraints = {@UniqueConstraint(columnNames = {"firstname", "lastname", "pseudo"})})
-
+@Table(name="author", uniqueConstraints = {@UniqueConstraint(columnNames = {"firstname", "lastname", "pseudo"})})
 public class AuthorEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
+    private UUID id;
 
     @Column(length = 100)
     private String firstname;
@@ -25,11 +26,13 @@ public class AuthorEntity {
     @Column(nullable = true, length = 2000)
     private String urlWiki;
 
-    public Long getId() {
+    //region * Methods *
+
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -64,4 +67,6 @@ public class AuthorEntity {
     public void setUrlWiki(String urlWiki) {
         this.urlWiki = urlWiki;
     }
+
+    //endregion
 }

@@ -6,8 +6,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Repository
-public interface CategoryDao extends JpaRepository<CategoryEntity, Integer> {
+public interface CategoryDao extends JpaRepository<CategoryEntity, UUID> {
     Optional<CategoryEntity> findByName(String categoryName);
 }

@@ -1,18 +1,20 @@
 package com.csid.justread.book.domain.model;
 
+import java.util.UUID;
+
 public class Edition {
 
     public Edition() {}
 
-    private long id;
+    private UUID id;
     private String isbn;
     private int year;
-    // private Book book;
     private Publisher publisher;
+    // private Book book;
 
     //region * Methods *
 
-    public long getId() {
+    public UUID getId() {
         return id;
     }
 
@@ -40,7 +42,7 @@ public class Edition {
     public void setBook(Book book) {
         this.book = book;
     }
-*/
+    */
 
     public Publisher getPublisher() {
         return publisher;
@@ -50,7 +52,7 @@ public class Edition {
         this.publisher = publisher;
     }
 
-    public void setId(long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

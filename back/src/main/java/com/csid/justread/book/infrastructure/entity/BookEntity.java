@@ -30,8 +30,14 @@ public class BookEntity {
         inverseJoinColumns = @JoinColumn(name = "category_id"))
     private List<CategoryEntity> categories;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "book")
-    private List<EditionEntity> editions;
+    @Column(length = 200, nullable = false)
+    private String isbn;
+
+    @Column(nullable = false)
+    private int year;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private PublisherEntity publisher;
 
     //region * Methods *
 
@@ -67,20 +73,36 @@ public class BookEntity {
         this.author = author;
     }
 
-    public List<EditionEntity> getEditions() {
-        return editions;
-    }
-
-    public void setEditions(List<EditionEntity> editions) {
-        this.editions = editions;
-    }
-
     public List<CategoryEntity> getCategories() {
         return categories;
     }
 
     public void setCategories(List<CategoryEntity> categories) {
         this.categories = categories;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    public PublisherEntity getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(PublisherEntity publisher) {
+        this.publisher = publisher;
     }
 
     //endregion

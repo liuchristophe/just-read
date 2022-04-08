@@ -1,5 +1,10 @@
 package com.csid.justread.book.exposition.dto;
 
+import com.csid.justread.book.infrastructure.entity.PublisherEntity;
+
+import javax.persistence.Column;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
 import java.util.List;
 import java.util.UUID;
 
@@ -12,7 +17,9 @@ public class BookDto {
     private String synopsys;
     private AuthorDto author;
     private List<CategoryDto> categories;
-    private List<EditionDto> editions;
+    private String isbn;
+    private int year;
+    private PublisherEntity publisher;
 
     //region * Methods *
 
@@ -56,14 +63,30 @@ public class BookDto {
         this.categories = categories;
     }
 
-    public List<EditionDto> getEditions() {
-        return editions;
+    public String getIsbn() {
+        return isbn;
     }
 
-    public void setEditions(List<EditionDto> editions) {
-        this.editions = editions;
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
     }
 
-    //endregion
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    public PublisherEntity getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(PublisherEntity publisher) {
+        this.publisher = publisher;
+    }
+
+//endregion
 
 }

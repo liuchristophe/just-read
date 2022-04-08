@@ -1,4 +1,4 @@
-<form class="form-example">
+<!-- <form class="form-example">
   <div class="form-example">
     <label for="bookName">Nom du livre: </label>
     <input type="text" name="bookName" id="name" required>
@@ -11,4 +11,10 @@
     <button (click)="onClickTestHttp()">Test HTTP POST</button>
   </div>
 </form>
-<button ><a routerLink="">retourner à l'accueil</a></button>
+<button ><a routerLink="">retourner à l'accueil</a></button> -->
+
+<form #createBook="ngForm" (ngSubmit)="creationLivre(createBook.value)">
+  <input type="text" name="title" ngModel placeholder="titre du livre" required><br><br>
+  <input type="text" name="synopsys" ngModel placeholder="synopsys du livre" required><br><br>
+  <button type="submit">Valider la création</button>
+</form>

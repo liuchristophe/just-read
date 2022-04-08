@@ -1,20 +1,22 @@
 package com.csid.justread.book.domain.model;
 
+import java.util.UUID;
+
 public class Category {
 
     public Category() {}
 
-    private int Id;
+    private UUID id;
     private String name;
 
     //region * Methods *
 
-    public int getId() {
-        return Id;
+    public UUID getId() {
+        return id;
     }
 
-    public void setId(int id) {
-        Id = id;
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public String getName() {

@@ -1,10 +1,12 @@
 package com.csid.justread.book.domain.model;
 
+import java.util.UUID;
+
 public class Author {
 
     public Author() {}
 
-    private Long id;
+    private UUID id;
     private String firstname;
     private String lastname;
     private String pseudo;
@@ -12,11 +14,11 @@ public class Author {
 
     //region * Methods *
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

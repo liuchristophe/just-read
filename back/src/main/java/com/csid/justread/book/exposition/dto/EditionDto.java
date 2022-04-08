@@ -1,8 +1,10 @@
 package com.csid.justread.book.exposition.dto;
 
+import java.util.UUID;
+
 public class EditionDto {
 
-    private long id;
+    private UUID id;
     private String isbn;
     private int year;
     private PublisherDto publisher;
@@ -10,10 +12,10 @@ public class EditionDto {
 
     //region * Methods *
 
-    public long getId() {
+    public UUID getId() {
         return id;
     }
-    public void setId(long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
     public String getIsbn() {

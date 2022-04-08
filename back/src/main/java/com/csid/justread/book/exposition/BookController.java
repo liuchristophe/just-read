@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.UUID;
 
 @RestController()
 @RequestMapping("/books")
@@ -18,20 +19,13 @@ public class BookController {
 
     //region * Book Management *
 
-    /*
-    @GetMapping("")
-    public String getTest () {
-        return "Get Method Works";
-    }
-    */
-
     @GetMapping("")
     public List<BookDto> getBooks() {
         return this.bookService.getBooks();
     }
 
-    @GetMapping("/{long}")
-    public ResponseEntity<BookDto> getBookById (@PathVariable("long") long id ) {
+    @GetMapping("/{uuid}")
+    public ResponseEntity<BookDto> getBookById (@PathVariable("uuid") UUID id ) {
         return this.bookService.getBookById( id )
                 .map( ResponseEntity::ok )
                 .orElse( ResponseEntity.notFound().build() );

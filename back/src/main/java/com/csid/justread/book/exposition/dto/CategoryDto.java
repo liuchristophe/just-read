@@ -1,16 +1,17 @@
 package com.csid.justread.book.exposition.dto;
 
-/* Dto : BookCategory && Category */
+import java.util.UUID;
+
 public class CategoryDto {
 
-    private int id;
+    private UUID id;
     private String name;
 
     //region * Methods *
-    public int getId() {
+    public UUID getId() {
         return id;
     }
-    public void setId(int id) {
+    public void setId(UUID id) {
         this.id = id;
     }
     public String getName() {
@@ -20,6 +21,5 @@ public class CategoryDto {
         this.name = name;
     }
     //endregion
-
 
 }

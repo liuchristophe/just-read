@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController()
-@RequestMapping("/books")
+@RequestMapping("/api/books")
 public class BookController {
 
     @Autowired
@@ -18,12 +18,12 @@ public class BookController {
 
     //region * Book Management *
 
-    /*
-    @GetMapping("")
-    public String getTest () {
-        return "Get Method Works";
-    }
-    */
+
+    // @GetMapping("/test")
+    // public String getTest () {
+    //     return "Get Method Works";
+    // }
+
 
     @GetMapping("")
     public List<BookDto> getBooks() {

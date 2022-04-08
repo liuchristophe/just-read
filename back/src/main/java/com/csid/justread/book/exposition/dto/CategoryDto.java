@@ -1,17 +1,17 @@
-package com.csid.justread.book.domain.model;
+package com.csid.justread.book.exposition.dto;
 
+/* Dto : BookCategory && Category */
+public class CategoryDto {
 
-public class Publisher {
-
-    public Publisher () {}
-
-    private long id;
+    private int id;
     private String name;
 
     //region * Methods *
-
-    public long getId() {
+    public int getId() {
         return id;
+    }
+    public void setId(int id) {
+        this.id = id;
     }
     public String getName() {
         return name;
@@ -19,10 +19,7 @@ public class Publisher {
     public void setName(String name) {
         this.name = name;
     }
-    public void setId(long id) {
-        this.id = id;
-    }
-
     //endregion
+
 
 }

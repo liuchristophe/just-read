@@ -11,7 +11,7 @@ public class PublisherMapper {
         result.setName( p.getName() );
         return result;
     }
-    public static PublisherEntity entityToDto ( PublisherDto p ) {
+    public static PublisherEntity dtoToEntity ( PublisherDto p ) {
         PublisherEntity result = new PublisherEntity ();
         result.setId( p.getId() );
         result.setName( p.getName() );

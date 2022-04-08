@@ -13,7 +13,7 @@ public class BookMapper {
         result.setId(b.getId());
         result.setIsbn( b.getIsbn() );
         result.setYear( b.getYear() );
-        if ( b.getPublisher() != null ) result.setPublisher( PublisherMapper.entityToDto( b.getPublisher() ) );
+        if ( b.getPublisher() != null ) result.setPublisher(PublisherMapper.entityToDto( b.getPublisher()));
         if ( b.getAuthor()   != null ) result.setAuthor( AuthorMapper.entityToDto( b.getAuthor() ) );
         /* if ( b.getEditions() != null ) result.setEditions( b.getEditions().stream().map(e -> EditionMapper.entityToEdition(e) ).collect(Collectors.toList()) ); */
         if ( b.getCategories() != null ) result.setCategories( b.getCategories().stream().map( c -> CategoryMapper.entityToDto(c) ).collect( Collectors.toList() ) );

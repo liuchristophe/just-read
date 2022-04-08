@@ -19,7 +19,7 @@ public class BookDto {
     private List<CategoryDto> categories;
     private String isbn;
     private int year;
-    private PublisherEntity publisher;
+    private PublisherDto publisher;
 
     //region * Methods *
 
@@ -79,14 +79,14 @@ public class BookDto {
         this.year = year;
     }
 
-    public PublisherEntity getPublisher() {
+    public PublisherDto getPublisher() {
         return publisher;
     }
 
-    public void setPublisher(PublisherEntity publisher) {
+    public void setPublisher(PublisherDto publisher) {
         this.publisher = publisher;
     }
 
-//endregion
+    //endregion
 
 }

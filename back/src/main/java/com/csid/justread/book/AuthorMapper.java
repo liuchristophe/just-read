@@ -14,7 +14,7 @@ public class AuthorMapper {
         result.setId(a.getId());
         return result;
     }
-    public static AuthorDto entityToDto ( AuthorDto a ) {
+    public static AuthorDto entityToDto ( AuthorEntity a ) {
         AuthorDto result = new AuthorDto();
         result.setFirstname ( a.getFirstname () );
         result.setLastname  ( a.getLastname  () );

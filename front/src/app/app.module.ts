@@ -9,7 +9,6 @@ import { AppComponent } from './app.component';
 
 import { FeaturesModule } from './features/features.module';
 import { SharedModule } from './shared/shared.module';
-import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [

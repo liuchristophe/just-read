@@ -5,9 +5,11 @@ import com.csid.justread.book.exposition.dto.BookDto;
 import com.csid.justread.book.infrastructure.dao.AuthorDao;
 import com.csid.justread.book.infrastructure.dao.BookDao;
 import com.csid.justread.book.infrastructure.dao.CategoryDao;
+import com.csid.justread.book.infrastructure.dao.PublisherDao;
 import com.csid.justread.book.infrastructure.entity.AuthorEntity;
 import com.csid.justread.book.infrastructure.entity.BookEntity;
 import com.csid.justread.book.infrastructure.entity.CategoryEntity;
+import com.csid.justread.book.infrastructure.entity.PublisherEntity;
 import org.springframework.stereotype.Component;
 
 
@@ -23,10 +25,12 @@ public class BookRepository {
     private BookDao bookDao;
     private AuthorDao authorDao;
     private CategoryDao categoryDao;
-    public BookRepository(BookDao bookDao, AuthorDao authorDao, CategoryDao categoryDao) {
+    private PublisherDao publisherDao;
+    public BookRepository(BookDao bookDao, AuthorDao authorDao, CategoryDao categoryDao, PublisherDao publisherDao) {
         this.bookDao = bookDao;
         this.authorDao = authorDao;
         this.categoryDao = categoryDao;
+        this.publisherDao = publisherDao;
     }
 
     public BookDto create(BookEntity book){
@@ -34,6 +38,8 @@ public class BookRepository {
         /** updated : on s'assure que book.author n'est pas null pour éviter les erreurs 500 **/
         //Vérification existence auteur
         AuthorEntity author = book.getAuthor();
+
+        PublisherEntity publisher = book.getPublisher();
 
         //Si l'auteur n'existe pas on le créer
         if (author != null) {
@@ -43,6 +49,16 @@ public class BookRepository {
                 authorDao.save(author);
             }
             book.setAuthor(optAuthorEntity.orElse(null));
+        }
+
+        //Si l'auteur n'existe pas on le créer
+        if (publisher != null) {
+
+            Optional<PublisherEntity> optPublisherEntity = publisherDao.findPublisherByName(publisher.getName());
+            if (!optPublisherEntity.isPresent()) {
+                publisherDao.save(publisher);
+            }
+            book.setPublisher(optPublisherEntity.orElse(null));
         }
 
         BookDto result = BookMapper.entityToDto(bookDao.save(book));

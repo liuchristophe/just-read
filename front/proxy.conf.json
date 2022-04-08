@@ -1,9 +1,8 @@
 {
     "/api": {
-      "target": "http://localhost:3000",
+      "target": "http://localhost:8080",
       "secure": false,
       "router": {
-        "localhost:4200" : "http://localhost:3000/exampledomain",
         "staging.exampledomain.com" : "http://api.staging.exampledomain.com"
       }
     }

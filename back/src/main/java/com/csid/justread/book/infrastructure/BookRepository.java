@@ -76,5 +76,13 @@ public class BookRepository {
         Optional<CategoryEntity> optCategoryEntity = this.categoryDao.findByName( categoryName );
         return ( ( optCategoryEntity.isPresent() ) ? this.bookDao.getAllBookByCategories(optCategoryEntity.get()).stream().map(b -> BookMapper.entityToDto(b)).collect(Collectors.toList()) : new ArrayList<BookDto>() ); /* Todo: lever une exception si la condition n'est pas vérifiée */
     }
+    public List<BookDto> getBooksByPublisherName(String publisherName) {
+
+        return this.bookDao.getAllBookByPublisherName(publisherName)
+                .stream()
+                .map(b -> BookMapper.entityToDto(b))
+                .collect(Collectors.toList());
+    }
+
 
 }

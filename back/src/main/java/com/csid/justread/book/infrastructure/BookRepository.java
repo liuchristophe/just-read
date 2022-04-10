@@ -51,7 +51,7 @@ public class BookRepository {
             book.setAuthor(optAuthorEntity.orElse(null));
         }
 
-        //Si l'auteur n'existe pas on le créer
+        //Si le publisher n'existe pas on le créer
         if (publisher != null) {
 
             Optional<PublisherEntity> optPublisherEntity = publisherDao.findPublisherByName(publisher.getName());
@@ -59,6 +59,19 @@ public class BookRepository {
                 publisherDao.save(publisher);
             }
             book.setPublisher(optPublisherEntity.orElse(null));
+        }
+
+        //Si la catégorie n'existe pas on la crée
+        if (book.getCategories() != null) {
+            book.setCategories(book.getCategories().stream().map(category -> {
+                Optional<CategoryEntity> optCategoryEntity = categoryDao.findByName(category.getName());
+                if (!optCategoryEntity.isPresent()) {
+                    category=categoryDao.save(category);
+                }else{
+                    category=optCategoryEntity.get();
+                }
+                return category;
+            }).collect(Collectors.toList()));
         }
 
         BookDto result = BookMapper.entityToDto(bookDao.save(book));

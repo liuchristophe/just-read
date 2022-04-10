@@ -24,7 +24,7 @@ public class BookEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     private AuthorEntity author;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "book_category",
         joinColumns = @JoinColumn(name = "book_id"),
         inverseJoinColumns = @JoinColumn(name = "category_id"))

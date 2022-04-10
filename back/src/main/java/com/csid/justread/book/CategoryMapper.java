@@ -9,12 +9,14 @@ public class CategoryMapper {
         CategoryDto result = new CategoryDto();
         result.setName(c.getName());
         result.setId(c.getId());
+        result.setBookCount(c.getBookCount());
         return result;
     }
     public static CategoryEntity dtoToEntity ( CategoryDto c ) {
         CategoryEntity result = new CategoryEntity();
         result.setName(c.getName());
         result.setId(c.getId());
+        result.setBookCount(c.getBookCount());
         return result;
     }
 }

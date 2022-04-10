@@ -43,10 +43,14 @@ public class BookController {
 
 
     @PostMapping()
-    public ResponseEntity<BookDto> createBook (@RequestBody BookDto book) {
+    public ResponseEntity<BookDto> create (@RequestBody BookDto book) {
         return ResponseEntity.ok ( this.bookRepository.create(BookMapper.dtoToEntity(book)));
     }
 
+    @PatchMapping("/{id}")
+    public ResponseEntity<BookDto> update (@PathVariable() UUID id,@RequestBody BookDto book){
+        return ResponseEntity.ok(this.bookRepository.update(id, BookMapper.dtoToEntity(book)));
+    }
     //endregion
 
 }

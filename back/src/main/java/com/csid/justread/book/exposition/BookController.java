@@ -44,7 +44,7 @@ public class BookController {
 
     @PostMapping()
     public ResponseEntity<BookDto> createBook (@RequestBody BookDto book) {
-        return ResponseEntity.ok ( this.bookRepository.create(BookMapper.dtoToEntity(book) ));
+        return ResponseEntity.ok ( this.bookRepository.create(BookMapper.dtoToEntity(book)));
     }
 
     //endregion

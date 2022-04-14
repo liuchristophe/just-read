@@ -65,9 +65,7 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "just-read-front:build",
-            "proxyConfig": "proxy.conf.json",
-            "disableHostCheck": true
+            "proxyConfig": "proxy.conf.json"
           },
           "configurations": {
             "production": {

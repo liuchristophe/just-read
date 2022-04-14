@@ -20,6 +20,13 @@ public class BookController {
 
     //region * Book Management *
 
+
+    // @GetMapping("/test")
+    // public String getTest () {
+    //     return "Get Method Works";
+    // }
+
+
     @GetMapping("")
     public List<BookDto> getBooks() {
         return new Converter().mapAsList(this.bookRepository.getBooks(), BookDto.class);

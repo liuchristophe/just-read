@@ -12,9 +12,20 @@
   </div>
 </form>
 <button ><a routerLink="">retourner à l'accueil</a></button> -->
-
+<h1>Formulaire de création de livre (v1)</h1>
 <form #createBook="ngForm" (ngSubmit)="creationLivre(createBook.value)">
-  <input type="text" name="title" ngModel placeholder="titre du livre" required><br><br>
-  <input type="text" name="synopsys" ngModel placeholder="synopsys du livre" required><br><br>
-  <button type="submit">Valider la création</button>
+  <!-- <input type="text" name="title" ngModel required placeholder="titre du livre" ><br><br>
+  <input type="text" name="synopsys" ngModel required placeholder="synopsys du livre" ><br><br>
+  <button [disabled]="createBook.invalid" type="submit">Valider la création</button> -->
+  <div class="form-group">
+    <label for="title">Titre du livre:</label>
+    <br>
+    <input type="text" name="title" ngModel required placeholder="Entrez le titre du livre" ><br><br>
+  </div>
+  <div class="form-group">
+    <label for="syn">Synopsys du livre:</label>
+    <br>
+    <input type="text" name="synopsys" ngModel required placeholder="Entrez le synopsys du livre" ><br><br>
+  </div>
+  <button [disabled]="createBook.invalid" type="submit">Valider la création</button>
 </form>

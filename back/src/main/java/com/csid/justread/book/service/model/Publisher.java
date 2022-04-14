@@ -8,6 +8,7 @@ public class Publisher {
 
     private UUID id;
     private String name;
+    private Long bookCount;
 
     //region * Methods *
 
@@ -24,6 +25,13 @@ public class Publisher {
         this.id = id;
     }
 
-    //endregion
+    public Long getBookCount() {
+        return bookCount;
+    }
+
+    public void setBookCount(Long bookCount) {
+        this.bookCount = bookCount;
+    }
+//endregion
 
 }

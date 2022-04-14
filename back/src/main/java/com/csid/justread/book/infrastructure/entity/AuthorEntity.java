@@ -27,8 +27,8 @@ public class AuthorEntity {
     @Column(nullable = true, length = 2000)
     private String urlWiki;
 
-//    @Formula("(SELECT COUNT(*) FROM justread.book b WHERE b.author_id = id)")
-//    private Long bookCount;
+    @Formula("(SELECT COUNT(*) FROM justread.book b WHERE b.author_id = id)")
+    private Long bookCount;
     //region * Methods *
 
     public UUID getId() {
@@ -71,13 +71,13 @@ public class AuthorEntity {
         this.urlWiki = urlWiki;
     }
 
-//    public Long getBookCount() {
-//        return bookCount;
-//    }
-//
-//    public void setBookCount(Long bookCount) {
-//        this.bookCount = bookCount;
-//    }
+    public Long getBookCount() {
+        return bookCount;
+    }
+
+    public void setBookCount(Long bookCount) {
+        this.bookCount = bookCount;
+    }
 
     //endregion
 }

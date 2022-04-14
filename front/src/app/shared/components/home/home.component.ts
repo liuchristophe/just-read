@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
   }
 
   appelleAPI() {
-    this.httpClient.get<Test>(`/api/books/test`).subscribe(res => {
+    this.httpClient.get<Test>(`/api/books`).subscribe(res => {
       console.log(`resultat : ${JSON.stringify(res)}`);
     }, error => {
       console.error(`erreur : ${JSON.stringify(error)}`);

@@ -2,8 +2,8 @@ package com.csid.justread.book.api;
 
 import com.csid.justread.book.Converter;
 import com.csid.justread.book.api.dto.BookDto;
-import com.csid.justread.book.infrastructure.entity.BookEntity;
-import com.csid.justread.book.service.BookRepository;
+import com.csid.justread.book.service.BookTransactionnalService;
+import com.csid.justread.book.service.model.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,8 +15,8 @@ import java.util.UUID;
 public class BookController {
 
     @Autowired
-    public BookController(BookRepository br) { this.bookRepository = br; }
-    private final BookRepository bookRepository;
+    public BookController(BookTransactionnalService br) { this.bookRepository = br; }
+    private final BookTransactionnalService bookRepository;
 
     //region * Book Management *
 
@@ -57,12 +57,12 @@ public class BookController {
 
     @PostMapping()
     public ResponseEntity<BookDto> create (@RequestBody BookDto book) {
-        return ResponseEntity.ok ( new Converter().map(this.bookRepository.create(new Converter().map(book, BookEntity.class)), BookDto.class));
+        return ResponseEntity.ok ( new Converter().map(this.bookRepository.create(new Converter().map(book, Book.class)), BookDto.class));
     }
 
     @PatchMapping("/{id}")
     public ResponseEntity<BookDto> update (@PathVariable() UUID id,@RequestBody BookDto book){
-        return ResponseEntity.ok(new Converter().map(this.bookRepository.update(id, new Converter().map(book, BookEntity.class)), BookDto.class));
+        return ResponseEntity.ok(new Converter().map(this.bookRepository.update(id, new Converter().map(book, Book.class)), BookDto.class));
     }
 
     @DeleteMapping("/{id}")

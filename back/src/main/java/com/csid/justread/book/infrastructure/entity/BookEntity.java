@@ -1,15 +1,19 @@
 package com.csid.justread.book.infrastructure.entity;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.util.List;
+import java.util.UUID;
 
 @Entity(name="book")
 @Table (name="book")
 public class BookEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
+    private UUID id;
 
     @Column(length = 100, nullable = false)
     private String title;
@@ -17,24 +21,31 @@ public class BookEntity {
     @Column(length = 4000, nullable = false)
     private String synopsys;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private AuthorEntity author;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "book_category",
         joinColumns = @JoinColumn(name = "book_id"),
         inverseJoinColumns = @JoinColumn(name = "category_id"))
     private List<CategoryEntity> categories;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "book")
-    private List<EditionEntity> editions;
+    @Column(length = 200, nullable = false)
+    private String isbn;
 
+    @Column(nullable = false)
+    private Integer year;
 
-    public long getId() {
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private PublisherEntity publisher;
+
+    //region * Methods *
+
+    public UUID getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -62,14 +73,6 @@ public class BookEntity {
         this.author = author;
     }
 
-    public List<EditionEntity> getEditions() {
-        return editions;
-    }
-
-    public void setEditions(List<EditionEntity> editions) {
-        this.editions = editions;
-    }
-
     public List<CategoryEntity> getCategories() {
         return categories;
     }
@@ -77,4 +80,30 @@ public class BookEntity {
     public void setCategories(List<CategoryEntity> categories) {
         this.categories = categories;
     }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
+
+    public Integer getYear() {
+        return year;
+    }
+
+    public void setYear(Integer year) {
+        this.year = year;
+    }
+
+    public PublisherEntity getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(PublisherEntity publisher) {
+        this.publisher = publisher;
+    }
+
+    //endregion
 }

@@ -1,52 +1,56 @@
 package com.csid.justread.book.exposition;
 
 import com.csid.justread.book.BookMapper;
-import com.csid.justread.book.domain.BookService;
 import com.csid.justread.book.exposition.dto.BookDto;
+import com.csid.justread.book.infrastructure.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.UUID;
 
 @RestController()
-@RequestMapping("/books")
+@RequestMapping("/api/books")
 public class BookController {
 
     @Autowired
-    public BookController(BookService bs) { this.bookService = bs; }
-    private final BookService bookService;
+    public BookController(BookRepository br) { this.bookRepository = br; }
+    private final BookRepository bookRepository;
 
     //region * Book Management *
 
-    /*
-    @GetMapping("")
-    public String getTest () {
-        return "Get Method Works";
-    }
-    */
-
     @GetMapping("")
     public List<BookDto> getBooks() {
-        return this.bookService.getBooks();
+        return this.bookRepository.getBooks();
     }
 
-    @GetMapping("/{long}")
-    public ResponseEntity<BookDto> getBookById (@PathVariable("long") long id ) {
-        return this.bookService.getBookById( id )
+    @GetMapping("/{uuid}")
+    public ResponseEntity<BookDto> getBookById (@PathVariable("uuid") UUID id ) {
+        return this.bookRepository.getBookById( id )
                 .map( ResponseEntity::ok )
                 .orElse( ResponseEntity.notFound().build() );
     }
 
     @GetMapping("/category/{categoryName}")
     public List<BookDto> getBooksByCategoryName (@PathVariable("categoryName") String categoryName){
-        return bookService.getBooksByCategoryName(categoryName.trim());
+        return bookRepository.getBooksByCategoryName(categoryName.trim());
     }
+
+    @GetMapping("/publisher/{publisherName}")
+    public List<BookDto> getBooksByPublisherName (@PathVariable("publisherName") String publisherName){
+        return bookRepository.getBooksByPublisherName(publisherName.trim());
+    }
+
 
     @PostMapping()
-    public ResponseEntity<BookDto> createBook (@RequestBody BookDto bookDto) {
-        return ResponseEntity.ok ( this.bookService.create( BookMapper.dtoToBook( bookDto ) ) );
+    public ResponseEntity<BookDto> create (@RequestBody BookDto book) {
+        return ResponseEntity.ok ( this.bookRepository.create(BookMapper.dtoToEntity(book)));
     }
 
+    @PatchMapping("/{id}")
+    public ResponseEntity<BookDto> update (@PathVariable() UUID id,@RequestBody BookDto book){
+        return ResponseEntity.ok(this.bookRepository.update(id, BookMapper.dtoToEntity(book)));
+    }
     //endregion
 
 }

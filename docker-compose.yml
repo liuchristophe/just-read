@@ -56,8 +56,10 @@ services:
     container_name: jr-front
     ports:
       - 4200:80
-    # links:
-    #   - jr-back
+    links:
+      - jr-back
+
+
 
 #Volumes for DB data
 volumes:

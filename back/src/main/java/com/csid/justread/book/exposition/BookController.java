@@ -43,11 +43,21 @@ public class BookController {
         return bookRepository.getBooksByCategoryName(categoryName.trim());
     }
 
-    @PostMapping()
-    public ResponseEntity<BookDto> createBook (@RequestBody BookDto book) {
-        return ResponseEntity.ok ( this.bookRepository.create(BookMapper.dtoToEntity(book) ));
+    @GetMapping("/publisher/{publisherName}")
+    public List<BookDto> getBooksByPublisherName (@PathVariable("publisherName") String publisherName){
+        return bookRepository.getBooksByPublisherName(publisherName.trim());
     }
 
+
+    @PostMapping()
+    public ResponseEntity<BookDto> create (@RequestBody BookDto book) {
+        return ResponseEntity.ok ( this.bookRepository.create(BookMapper.dtoToEntity(book)));
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<BookDto> update (@PathVariable() UUID id,@RequestBody BookDto book){
+        return ResponseEntity.ok(this.bookRepository.update(id, BookMapper.dtoToEntity(book)));
+    }
     //endregion
 
 }

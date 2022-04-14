@@ -6,6 +6,7 @@ public class CategoryDto {
 
     private UUID id;
     private String name;
+    private Long bookCount;
 
     //region * Methods *
     public UUID getId() {
@@ -19,6 +20,13 @@ public class CategoryDto {
     }
     public void setName(String name) {
         this.name = name;
+    }
+    public Long getBookCount() {
+        return bookCount;
+    }
+
+    public void setBookCount(Long bookCount) {
+        this.bookCount = bookCount;
     }
     //endregion
 

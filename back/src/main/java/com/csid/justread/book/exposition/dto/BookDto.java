@@ -18,7 +18,7 @@ public class BookDto {
     private AuthorDto author;
     private List<CategoryDto> categories;
     private String isbn;
-    private int year;
+    private Integer year;
     private PublisherDto publisher;
 
     //region * Methods *
@@ -71,11 +71,11 @@ public class BookDto {
         this.isbn = isbn;
     }
 
-    public int getYear() {
+    public Integer getYear() {
         return year;
     }
 
-    public void setYear(int year) {
+    public void setYear(Integer year) {
         this.year = year;
     }
 

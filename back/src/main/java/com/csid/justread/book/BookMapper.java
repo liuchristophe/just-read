@@ -16,7 +16,7 @@ public class BookMapper {
         if ( b.getPublisher() != null ) result.setPublisher(PublisherMapper.entityToDto( b.getPublisher()));
         if ( b.getAuthor()   != null ) result.setAuthor( AuthorMapper.entityToDto( b.getAuthor() ) );
         /* if ( b.getEditions() != null ) result.setEditions( b.getEditions().stream().map(e -> EditionMapper.entityToEdition(e) ).collect(Collectors.toList()) ); */
-        if ( b.getCategories() != null ) result.setCategories( b.getCategories().stream().map( c -> CategoryMapper.entityToDto(c) ).collect( Collectors.toList() ) );
+        if ( b.getCategories() != null ) result.setCategories( b.getCategories().stream().map(CategoryMapper::entityToDto).collect( Collectors.toList() ) );
         return result;
     }
     public static BookEntity dtoToEntity ( BookDto b ) {
@@ -29,7 +29,7 @@ public class BookMapper {
         if ( b.getPublisher() != null ) result.setPublisher( PublisherMapper.dtoToEntity( b.getPublisher() ) );
         if ( b.getAuthor()   != null ) result.setAuthor( AuthorMapper.dtoToEntity( b.getAuthor() ) );
         /* if ( b.getEditions() != null ) result.setEditions( b.getEditions().stream().map(e -> EditionMapper.entityToEdition(e) ).collect(Collectors.toList()) ); */
-        if ( b.getCategories() != null ) result.setCategories( b.getCategories().stream().map( c -> CategoryMapper.dtoToEntity(c) ).collect( Collectors.toList() ) );
+        if ( b.getCategories() != null ) result.setCategories( b.getCategories().stream().map(CategoryMapper::dtoToEntity).collect( Collectors.toList() ) );
         return result;
     }
 }

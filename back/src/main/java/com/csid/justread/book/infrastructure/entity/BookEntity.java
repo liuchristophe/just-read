@@ -21,10 +21,10 @@ public class BookEntity {
     @Column(length = 4000, nullable = false)
     private String synopsys;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private AuthorEntity author;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "book_category",
         joinColumns = @JoinColumn(name = "book_id"),
         inverseJoinColumns = @JoinColumn(name = "category_id"))
@@ -34,9 +34,9 @@ public class BookEntity {
     private String isbn;
 
     @Column(nullable = false)
-    private int year;
+    private Integer year;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private PublisherEntity publisher;
 
     //region * Methods *
@@ -89,11 +89,11 @@ public class BookEntity {
         this.isbn = isbn;
     }
 
-    public int getYear() {
+    public Integer getYear() {
         return year;
     }
 
-    public void setYear(int year) {
+    public void setYear(Integer year) {
         this.year = year;
     }
 

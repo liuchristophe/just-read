@@ -1,5 +1,6 @@
 package com.csid.justread.book.infrastructure.entity;
 
+import org.hibernate.annotations.Formula;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -26,6 +27,8 @@ public class AuthorEntity {
     @Column(nullable = true, length = 2000)
     private String urlWiki;
 
+    @Formula("(SELECT COUNT(*) FROM justread.book b WHERE b.author_id = id)")
+    private Long bookCount;
     //region * Methods *
 
     public UUID getId() {
@@ -66,6 +69,14 @@ public class AuthorEntity {
 
     public void setUrlWiki(String urlWiki) {
         this.urlWiki = urlWiki;
+    }
+
+    public Long getBookCount() {
+        return bookCount;
+    }
+
+    public void setBookCount(Long bookCount) {
+        this.bookCount = bookCount;
     }
 
     //endregion

@@ -1,4 +1,4 @@
-package com.csid.justread.book.exposition.dto;
+package com.csid.justread.book.api.dto;
 
 import java.util.UUID;
 

@@ -21,7 +21,7 @@ public class BookEntity {
     @Column(length = 4000, nullable = false)
     private String synopsys;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     private AuthorEntity author;
 
     @ManyToMany(fetch = FetchType.LAZY)
@@ -36,7 +36,7 @@ public class BookEntity {
     @Column(nullable = false)
     private Integer year;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     private PublisherEntity publisher;
 
     //region * Methods *

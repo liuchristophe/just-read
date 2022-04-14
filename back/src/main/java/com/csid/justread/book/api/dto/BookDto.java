@@ -1,10 +1,5 @@
-package com.csid.justread.book.exposition.dto;
+package com.csid.justread.book.api.dto;
 
-import com.csid.justread.book.infrastructure.entity.PublisherEntity;
-
-import javax.persistence.Column;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
 import java.util.List;
 import java.util.UUID;
 

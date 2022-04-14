@@ -1,7 +1,7 @@
-package com.csid.justread.book.infrastructure;
+package com.csid.justread.book.service;
 
-import com.csid.justread.book.CategoryMapper;
-import com.csid.justread.book.exposition.dto.CategoryDto;
+import com.csid.justread.book.Converter;
+import com.csid.justread.book.api.dto.CategoryDto;
 import com.csid.justread.book.infrastructure.dao.CategoryDao;
 import com.csid.justread.book.infrastructure.entity.CategoryEntity;
 import org.springframework.stereotype.Component;
@@ -18,9 +18,7 @@ public class CategoryRepository {
         this.categoryDao = categoryDao;
     }
 
-    public List<CategoryDto> getCategories() {
-        return categoryDao.findAll()
-                .stream()
-                .map(CategoryMapper::entityToDto).collect(Collectors.toList());
+    public List<CategoryEntity> getCategories() {
+        return categoryDao.findAll();
     }
 }

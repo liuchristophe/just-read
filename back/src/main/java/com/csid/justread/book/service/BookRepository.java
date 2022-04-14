@@ -1,7 +1,6 @@
-package com.csid.justread.book.infrastructure;
+package com.csid.justread.book.service;
 
-import com.csid.justread.book.BookMapper;
-import com.csid.justread.book.exposition.dto.BookDto;
+import com.csid.justread.book.api.dto.BookDto;
 import com.csid.justread.book.infrastructure.dao.AuthorDao;
 import com.csid.justread.book.infrastructure.dao.BookDao;
 import com.csid.justread.book.infrastructure.dao.CategoryDao;
@@ -13,7 +12,6 @@ import com.csid.justread.book.infrastructure.entity.PublisherEntity;
 import org.springframework.stereotype.Component;
 
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -33,53 +31,48 @@ public class BookRepository {
         this.publisherDao = publisherDao;
     }
 
-    public BookDto create(BookEntity book){
+    public BookEntity create(BookEntity book){
 
         //Si l'auteur n'existe pas on le créer
-        System.out.println(book.getAuthor().getId());
         if (book.getAuthor() != null) book.setAuthor(getOrCreateAuthor(book.getAuthor()));
-        System.out.println(book.getAuthor().getId());
         //Si le publisher n'existe pas on le créer
         if (book.getPublisher() != null) book.setPublisher(getOrCreatePublisher(book.getPublisher()));
 
         //Si la catégorie n'existe pas on la crée
         if (book.getCategories() != null) book.setCategories(getOrCreateCategories(book.getCategories()));
 
-        return BookMapper.entityToDto(bookDao.save(book));
+        return bookDao.save(book);
     }
 
 
-    public List<BookDto> getBooks() {
-        return this.bookDao.findAll().stream().map(
-                b -> BookMapper.entityToDto(b)
-        ).collect(Collectors.toList());
+    public List<BookEntity> getBooks() {
+        return this.bookDao.findAll();
     }
 
 
-    public Optional<BookDto> getBookById(UUID id) {
-        return this.bookDao.findById( id ).map( b -> BookMapper.entityToDto( b ) );
+    public List<BookEntity> getBooksByAuthorID(UUID authorID){
+        return this.bookDao.getAllBookByAuthorId(authorID);
     }
 
 
-    public List<BookDto> getBooksByCategoryName(String categoryName) {
-
-        return this.bookDao.getAllBookByCategoriesName(categoryName)
-                .stream()
-                .map(b -> BookMapper.entityToDto(b))
-                .collect(Collectors.toList());
+    public Optional<BookEntity> getBookById(UUID id) {
+        return this.bookDao.findById( id );
     }
 
 
-    public List<BookDto> getBooksByPublisherName(String publisherName) {
+    public List<BookEntity> getBooksByCategoryName(String categoryName) {
 
-        return this.bookDao.getAllBookByPublisherName(publisherName)
-                .stream()
-                .map(b -> BookMapper.entityToDto(b))
-                .collect(Collectors.toList());
+        return this.bookDao.getAllBookByCategoriesName(categoryName);
     }
 
 
-    public BookDto update(UUID id, BookEntity bookEntity) {
+    public List<BookEntity> getBooksByPublisherName(String publisherName) {
+
+        return this.bookDao.getAllBookByPublisherName(publisherName);
+    }
+
+
+    public BookEntity update(UUID id, BookEntity bookEntity) {
         Optional<BookEntity> optBookEntity = bookDao.findById(id);
         if(!optBookEntity.isPresent()) return null;
 
@@ -93,9 +86,12 @@ public class BookRepository {
         if(bookEntity.getTitle()!=null) result.setTitle(bookEntity.getTitle());
         if(bookEntity.getYear()!=null) result.setYear(bookEntity.getYear());
 
-        System.out.println(bookEntity.getAuthor());
+        return bookDao.save(result);
+    }
 
-        return BookMapper.entityToDto(bookDao.save(result));
+    public void delete(UUID id){
+        Optional<BookEntity> optBookEntity = bookDao.findById(id);
+        if(optBookEntity.isPresent()) bookDao.delete(optBookEntity.get());
     }
 
     private AuthorEntity getOrCreateAuthor(AuthorEntity author){
@@ -106,7 +102,8 @@ public class BookRepository {
     }
 
     private PublisherEntity getOrCreatePublisher(PublisherEntity publisher){
-        return publisherDao.findPublisherByName(publisher.getName()).orElseGet(() -> publisherDao.save(publisher));
+        return publisherDao.findPublisherByName(publisher.getName())
+                .orElseGet(() -> publisherDao.save(publisher));
     }
 
     private List<CategoryEntity> getOrCreateCategories(List<CategoryEntity> categories){
@@ -115,4 +112,6 @@ public class BookRepository {
                                 .orElseGet(() -> categoryDao.save(category)))
                 .collect(Collectors.toList());
     }
+
+
 }

@@ -1,8 +1,9 @@
-package com.csid.justread.book.exposition;
+package com.csid.justread.book.api;
 
-import com.csid.justread.book.BookMapper;
-import com.csid.justread.book.exposition.dto.BookDto;
-import com.csid.justread.book.infrastructure.BookRepository;
+import com.csid.justread.book.Converter;
+import com.csid.justread.book.api.dto.BookDto;
+import com.csid.justread.book.infrastructure.entity.BookEntity;
+import com.csid.justread.book.service.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,35 +22,45 @@ public class BookController {
 
     @GetMapping("")
     public List<BookDto> getBooks() {
-        return this.bookRepository.getBooks();
+        return new Converter().mapAsList(this.bookRepository.getBooks(), BookDto.class);
     }
 
     @GetMapping("/{uuid}")
     public ResponseEntity<BookDto> getBookById (@PathVariable("uuid") UUID id ) {
         return this.bookRepository.getBookById( id )
-                .map( ResponseEntity::ok )
+                .map(book -> ResponseEntity.ok(new Converter().map(book, BookDto.class)))
                 .orElse( ResponseEntity.notFound().build() );
     }
 
     @GetMapping("/category/{categoryName}")
     public List<BookDto> getBooksByCategoryName (@PathVariable("categoryName") String categoryName){
-        return bookRepository.getBooksByCategoryName(categoryName.trim());
+        return new Converter().mapAsList(bookRepository.getBooksByCategoryName(categoryName.trim()), BookDto.class);
     }
 
     @GetMapping("/publisher/{publisherName}")
     public List<BookDto> getBooksByPublisherName (@PathVariable("publisherName") String publisherName){
-        return bookRepository.getBooksByPublisherName(publisherName.trim());
+        return new Converter().mapAsList(bookRepository.getBooksByPublisherName(publisherName.trim()), BookDto.class);
+    }
+
+    @GetMapping("/author/{authorID}")
+    public List<BookDto> getBooksByAuthorID (@PathVariable("authorID") UUID id){
+        return new Converter().mapAsList(bookRepository.getBooksByAuthorID(id), BookDto.class);
     }
 
 
     @PostMapping()
     public ResponseEntity<BookDto> create (@RequestBody BookDto book) {
-        return ResponseEntity.ok ( this.bookRepository.create(BookMapper.dtoToEntity(book)));
+        return ResponseEntity.ok ( new Converter().map(this.bookRepository.create(new Converter().map(book, BookEntity.class)), BookDto.class));
     }
 
     @PatchMapping("/{id}")
     public ResponseEntity<BookDto> update (@PathVariable() UUID id,@RequestBody BookDto book){
-        return ResponseEntity.ok(this.bookRepository.update(id, BookMapper.dtoToEntity(book)));
+        return ResponseEntity.ok(new Converter().map(this.bookRepository.update(id, new Converter().map(book, BookEntity.class)), BookDto.class));
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable() UUID id){
+        this.bookRepository.delete(id);
     }
     //endregion
 

@@ -1,7 +1,7 @@
 FROM maven:3.5.2-jdk-8-alpine as maven
 WORKDIR /app
 COPY . .
-RUN mvn package -DskipTests
+RUN mvn clean package -DskipTests
 
 FROM openjdk:8-jdk-alpine
 WORKDIR /app

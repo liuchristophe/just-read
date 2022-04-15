@@ -1,5 +1,7 @@
 package com.csid.justread.library.service.model;
 
+import com.csid.justread.address.service.model.Address;
+
 import java.util.UUID;
 
 public class Library {
@@ -7,6 +9,9 @@ public class Library {
     private UUID id;
 
     private String name;
+
+    private Address address;
+
 
     public UUID getId() {
         return id;
@@ -22,5 +27,13 @@ public class Library {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 }

@@ -1,5 +1,6 @@
 package com.csid.justread.library.infrastructure.entity;
 
+import com.csid.justread.address.infrastructure.entity.AddressEntity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;

@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 import java.util.UUID;
 
 @Repository
-public interface AddressDao extends JpaRepository<UUID, AddressEntity> {
+public interface AddressDao extends JpaRepository<AddressEntity, UUID> {
 }

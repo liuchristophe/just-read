@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.UUID;
 
 @Entity(name="address")
-@Table (name="address")
+@Table(name="address")
 public class AddressEntity {
 
     @Id

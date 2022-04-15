@@ -9,3 +9,4 @@ COPY --from=maven /app/target/just-read-*.jar /app/target/app.jar
 # RUN java -jar target/app.jar
 # ENTRYPOINT [ "java", "-jar", "/app/target/just-read-0.0.1-SNAPSHOT.jar" ]
 ENTRYPOINT [ "java", "-jar", "/app/target/app.jar" ]
+EXPOSE 8080

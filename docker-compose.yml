@@ -36,6 +36,15 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://jr-bdd:5432/jr-bdd
       - SPRING_DATASOURCE_USERNAME=jr_adm
       - SPRING_DATASOURCE_PASSWORD=jr_adm
+      - SPRING_DATASOURCE_DRIVERCLASSNAME=org.postgresql.Driver
+      # JPA
+      - SPRING_JPA_DATABASE-PLATFORM=org.hibernate.dialect.PostgreSQLDialect
+      - SPRING_JPA_PROPERTIES_HIBERNATE_DEFAULT_SCHEMA=justread
+      - SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL=true
+      - SPRING_JPA_SHOW-SQL=true
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      # MVC
+      - SPRING_MVC_PATHMATCH_MATCHING-STRATEGY="ANT_PATH_MATCHER"
     ports:
       - 8080:8080 # Forward the exposed port 8080 on the container to port 8080 on the host machine
     links:
@@ -46,7 +55,7 @@ services:
     build: ./front
     container_name: jr-front
     ports:
-      - 80:4200
+      - 4200:80
     links:
       - jr-back
 

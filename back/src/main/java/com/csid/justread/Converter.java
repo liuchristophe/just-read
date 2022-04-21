@@ -1,4 +1,4 @@
-package com.csid.justread.book;
+package com.csid.justread;
 
 import ma.glasnost.orika.MapperFacade;
 import ma.glasnost.orika.MapperFactory;

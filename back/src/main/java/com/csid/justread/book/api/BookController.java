@@ -1,6 +1,6 @@
 package com.csid.justread.book.api;
 
-import com.csid.justread.book.Converter;
+import com.csid.justread.Converter;
 import com.csid.justread.book.api.dto.BookDto;
 import com.csid.justread.book.service.BookTransactionnalService;
 import com.csid.justread.book.service.model.Book;

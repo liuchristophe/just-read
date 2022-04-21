@@ -1,6 +1,6 @@
 package com.csid.justread.book.service;
 
-import com.csid.justread.book.Converter;
+import com.csid.justread.Converter;
 import com.csid.justread.book.infrastructure.dao.AuthorDao;
 import com.csid.justread.book.infrastructure.dao.BookDao;
 import com.csid.justread.book.infrastructure.dao.CategoryDao;

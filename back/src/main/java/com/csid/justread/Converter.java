@@ -8,9 +8,9 @@ import java.util.List;
 
 public class Converter {
 
-    public MapperFacade mapper = createMapper();
+    private MapperFacade mapper = createMapper();
 
-    public MapperFacade createMapper(){
+    private MapperFacade createMapper(){
         MapperFactory mapperFactory = new DefaultMapperFactory.Builder().build();
         return  mapperFactory.getMapperFacade();
     }

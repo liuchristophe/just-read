@@ -3,10 +3,8 @@ WORKDIR /app
 COPY . .
 RUN mvn clean package -DskipTests
 
-FROM openjdk:8-jdk-alpine
+FROM openjdk:8-jdk-alpine as spring
 WORKDIR /app
 COPY --from=maven /app/target/just-read-*.jar /app/target/app.jar
-# RUN java -jar target/app.jar
-# ENTRYPOINT [ "java", "-jar", "/app/target/just-read-0.0.1-SNAPSHOT.jar" ]
-ENTRYPOINT [ "java", "-jar", "/app/target/app.jar" ]
 EXPOSE 8080
+ENTRYPOINT [ "java", "-jar", "/app/target/app.jar" ]

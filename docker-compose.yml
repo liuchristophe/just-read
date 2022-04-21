@@ -28,10 +28,6 @@ services:
 
     #Environment variables for Spring Boot Application.
     environment:
-#      - DB_SERVER=jr-bdd
-#      - POSTGRES_DB=jr-bdd
-#      - POSTGRES_USER=jr_adm
-#      - POSTGRES_PASSWORD=jr_adm
       # Datasource
       - SPRING_DATASOURCE_URL=jdbc:postgresql://jr-bdd:5432/jr-bdd
       - SPRING_DATASOURCE_USERNAME=jr_adm

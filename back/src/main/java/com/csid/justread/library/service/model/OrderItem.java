@@ -1,24 +1,17 @@
-package com.csid.justread.library.infrastructure.entity;
+package com.csid.justread.library.service.model;
 
-import com.csid.justread.book.infrastructure.entity.BookEntity;
-
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Id;
 import java.util.UUID;
 
-@Entity(name="orderItem")
-@Table(name = "order_item")
-@IdClass(OrderItemId.class)
-public class OrderItemEntity {
+public class OrderItem {
 
-    @Id
     private UUID bookId;
-    @Id
+
     private UUID orderId;
 
-    @Column
     private int quantity;
 
-    @Column
     private float price;
 
     public UUID getBookId() {

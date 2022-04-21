@@ -1,24 +1,14 @@
-package com.csid.justread.library.infrastructure.entity;
+package com.csid.justread.library.api.dto;
 
-import com.csid.justread.book.infrastructure.entity.BookEntity;
-
-import javax.persistence.*;
 import java.util.UUID;
 
-@Entity(name="orderItem")
-@Table(name = "order_item")
-@IdClass(OrderItemId.class)
-public class OrderItemEntity {
-
-    @Id
+public class OrderItemDto {
     private UUID bookId;
-    @Id
+
     private UUID orderId;
 
-    @Column
     private int quantity;
 
-    @Column
     private float price;
 
     public UUID getBookId() {

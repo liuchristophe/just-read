@@ -17,6 +17,22 @@ public class OrderItemId implements Serializable {
         this.orderId = orderId;
     }
 
+    public UUID getBookId() {
+        return bookId;
+    }
+
+    public void setBookId(UUID bookId) {
+        this.bookId = bookId;
+    }
+
+    public UUID getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(UUID orderId) {
+        this.orderId = orderId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

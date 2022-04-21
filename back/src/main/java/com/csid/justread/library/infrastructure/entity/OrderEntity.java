@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity(name="order")
+@Table(name="order")
 public class OrderEntity {
     @Id
     @GeneratedValue(generator = "uuid2")
@@ -19,6 +20,9 @@ public class OrderEntity {
 
     @Column
     private Integer tva;
+
+    @Column
+    private String utilisateur; //A changer par la suite en véritable user
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name="orderId")
@@ -56,5 +60,13 @@ public class OrderEntity {
 
     public void setOrderItem(List<OrderItemEntity> orderItem) {
         this.orderItem = orderItem;
+    }
+
+    public String getUser() {
+        return utilisateur;
+    }
+
+    public void setUser(String user) {
+        this.utilisateur = user;
     }
 }

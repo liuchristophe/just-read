@@ -4,6 +4,7 @@ import com.csid.justread.address.infrastructure.entity.AddressEntity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.UUID;
 
 @Entity(name="library")
@@ -17,9 +18,12 @@ public class LibraryEntity {
     @Column(length = 100, nullable = false)
     private String name;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private AddressEntity address;
 
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "library_id")
+    private List<OrderEntity> orders;
 
     public void setId(UUID id) {
         this.id = id;
@@ -35,5 +39,21 @@ public class LibraryEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public AddressEntity getAddress() {
+        return address;
+    }
+
+    public void setAddress(AddressEntity address) {
+        this.address = address;
+    }
+
+    public List<OrderEntity> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<OrderEntity> orders) {
+        this.orders = orders;
     }
 }

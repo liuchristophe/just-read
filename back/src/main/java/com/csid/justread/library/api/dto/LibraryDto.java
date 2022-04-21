@@ -1,8 +1,9 @@
 package com.csid.justread.library.api.dto;
 
 import com.csid.justread.address.api.dto.AddressDto;
-import com.csid.justread.address.service.model.Address;
 
+
+import java.util.List;
 import java.util.UUID;
 
 public class LibraryDto {
@@ -12,6 +13,8 @@ public class LibraryDto {
     private String name;
 
     private AddressDto address;
+
+    private List<OrderDto> orders;
 
     public UUID getId() {
         return id;
@@ -35,5 +38,13 @@ public class LibraryDto {
 
     public void setAddress(AddressDto address) {
         this.address = address;
+    }
+
+    public List<OrderDto> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<OrderDto> orders) {
+        this.orders = orders;
     }
 }

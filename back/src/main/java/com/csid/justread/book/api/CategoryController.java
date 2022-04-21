@@ -1,6 +1,6 @@
 package com.csid.justread.book.api;
 
-import com.csid.justread.book.Converter;
+import com.csid.justread.Converter;
 import com.csid.justread.book.api.dto.CategoryDto;
 import com.csid.justread.book.service.CategoryRepository;
 import org.springframework.web.bind.annotation.GetMapping;

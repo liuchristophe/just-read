@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-form-ajout-livre',
@@ -28,5 +28,6 @@ export class FormAjoutLivreComponent implements OnInit {
       console.log("livre créé",result)
     })
     console.log(data);
+    
   }
 }

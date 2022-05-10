@@ -1,5 +1,6 @@
 package com.csid.justread.book.infrastructure.entity;
 
+import org.hibernate.annotations.Formula;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -17,6 +18,8 @@ public class PublisherEntity {
     @Column(length = 100, nullable = false)
     private String name;
 
+    @Formula("(SELECT COUNT(*) FROM justread.book b WHERE b.publisher_id = id)")
+    private Long bookCount;
     //region * Methods *
 
     public UUID getId() {
@@ -35,5 +38,15 @@ public class PublisherEntity {
         this.name = name;
     }
 
-    //endregion
+    public Long getBookCount() {
+        return bookCount;
+    }
+
+    public void setBookCount(Long bookCount) {
+        this.bookCount = bookCount;
+    }
+
+    public PublisherEntity() {
+    }
+//endregion
 }

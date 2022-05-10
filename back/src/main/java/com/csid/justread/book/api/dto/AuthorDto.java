@@ -1,4 +1,4 @@
-package com.csid.justread.book.exposition.dto;
+package com.csid.justread.book.api.dto;
 
 import java.util.UUID;
 
@@ -9,6 +9,7 @@ public class AuthorDto {
     private String lastname;
     private String pseudo;
     private String urlWiki;
+    private Long bookCount;
 
     //region * Methods *
 
@@ -41,6 +42,13 @@ public class AuthorDto {
         this.urlWiki = urlWiki;
     }
 
-    //endregion
+    public Long getBookCount() {
+        return bookCount;
+    }
+
+    public void setBookCount(Long bookCount) {
+        this.bookCount = bookCount;
+    }
+//endregion
 
 }

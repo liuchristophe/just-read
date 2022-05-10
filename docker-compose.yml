@@ -1,5 +1,5 @@
 # Docker Compose file Reference (https://docs.docker.com/compose/compose-file/)
-version: '3'
+version: '0.0.1-SNAPSHOT'
 
 #Define services
 services:
@@ -21,21 +21,34 @@ services:
       - POSTGRES_PASSWORD=jr_adm
 
   #Back-end Spring Boot Application
-  # jr-back:
-  #   #The docker file in scrum-app build the jar and provides the docker image with the following name.
-  #   build: ./back
-  #   container_name: jr-back
+  jr-back:
+    #The docker file in scrum-app build the jar and provides the docker image with the following name.
+    build: ./back
+    container_name: jr-back
 
-  #   #Environment variables for Spring Boot Application.
-  #   environment:
-  #     - DB_SERVER=jr-bdd
-  #     - POSTGRES_DB=jr-bdd
-  #     - POSTGRES_USER=jr_adm
-  #     - POSTGRES_PASSWORD=jr_adm
-  #   ports:
-  #     - 8080:8080 # Forward the exposed port 8080 on the container to port 8080 on the host machine
-  #   links:
-  #     - jr-bdd
+    #Environment variables for Spring Boot Application.
+    environment:
+#      - DB_SERVER=jr-bdd
+#      - POSTGRES_DB=jr-bdd
+#      - POSTGRES_USER=jr_adm
+#      - POSTGRES_PASSWORD=jr_adm
+      # Datasource
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://jr-bdd:5432/jr-bdd
+      - SPRING_DATASOURCE_USERNAME=jr_adm
+      - SPRING_DATASOURCE_PASSWORD=jr_adm
+      - SPRING_DATASOURCE_DRIVERCLASSNAME=org.postgresql.Driver
+      # JPA
+      - SPRING_JPA_DATABASE-PLATFORM=org.hibernate.dialect.PostgreSQLDialect
+      - SPRING_JPA_PROPERTIES_HIBERNATE_DEFAULT_SCHEMA=justread
+      - SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL=true
+      - SPRING_JPA_SHOW-SQL=true
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      # MVC
+      - SPRING_MVC_PATHMATCH_MATCHING-STRATEGY="ANT_PATH_MATCHER"
+    ports:
+      - 8080:8080 # Forward the exposed port 8080 on the container to port 8080 on the host machine
+    links:
+      - jr-bdd
 
   #Fron-end Angular Application
   jr-front:
@@ -43,8 +56,10 @@ services:
     container_name: jr-front
     ports:
       - 4200:80
-    # links:
-    #   - jr-back
+    links:
+      - jr-back
+
+
 
 #Volumes for DB data
 volumes:

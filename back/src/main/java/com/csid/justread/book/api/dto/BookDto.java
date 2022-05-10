@@ -1,10 +1,5 @@
-package com.csid.justread.book.exposition.dto;
+package com.csid.justread.book.api.dto;
 
-import com.csid.justread.book.infrastructure.entity.PublisherEntity;
-
-import javax.persistence.Column;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
 import java.util.List;
 import java.util.UUID;
 
@@ -18,7 +13,7 @@ public class BookDto {
     private AuthorDto author;
     private List<CategoryDto> categories;
     private String isbn;
-    private int year;
+    private Integer year;
     private PublisherDto publisher;
 
     //region * Methods *
@@ -71,11 +66,11 @@ public class BookDto {
         this.isbn = isbn;
     }
 
-    public int getYear() {
+    public Integer getYear() {
         return year;
     }
 
-    public void setYear(int year) {
+    public void setYear(Integer year) {
         this.year = year;
     }
 

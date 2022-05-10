@@ -9,5 +9,9 @@ import java.util.UUID;
 
 @Repository
 public interface BookDao extends JpaRepository<BookEntity, UUID> {
-    List<BookEntity> getAllBookByCategories(CategoryEntity categoryEntity);
+    List<BookEntity> getAllBookByCategoriesName(String categoryName);
+
+    List<BookEntity> getAllBookByPublisherName(String publisherName);
+
+    List<BookEntity> getAllBookByAuthorId(UUID authorID);
 }

@@ -2,6 +2,7 @@ package com.csid.justread.library.infrastructure.entity;
 
 import com.csid.justread.book.infrastructure.entity.BookEntity;
 import com.csid.justread.library.service.model.Library;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.util.List;
@@ -28,9 +29,11 @@ public class StockEntity {
     private int unitPrice;
 
     @ManyToOne( targetEntity = BookEntity.class )
+    @JsonIgnore
     private List<BookEntity> books;
 
     @OneToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     private LibraryEntity library;
 
     //region * Methods *

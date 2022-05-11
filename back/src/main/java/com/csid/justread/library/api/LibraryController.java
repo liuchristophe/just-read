@@ -1,6 +1,7 @@
 package com.csid.justread.library.api;
 
 import com.csid.justread.Converter;
+import com.csid.justread.library.api.dto.StockCreationDto;
 import com.csid.justread.library.api.dto.StockDto;
 import com.csid.justread.library.api.dto.LibraryDto;
 import com.csid.justread.library.service.LibraryService;
@@ -58,11 +59,13 @@ public class LibraryController {
         );
     }
 
+    /** Todo : placer l'id library automatiquement pour la librairie en cours ... **/
     /*
     @PostMapping("/stock/{uuid}")
-    public ResponseEntity<StockDto> createStock(@PathVariable("uuid") UUID idLibrary, @RequestBody StockDto stock) {
-        this.libraryService.createStock(idLibrary, new Converter().map( stock, Stock.class ));
-        return null;
+    public ResponseEntity<StockDto> createStock(@PathVariable("uuid") UUID idLibrary, @RequestBody StockCreationDto stock) {
+        return ResponseEntity.ok(
+                new Converter().map( this.libraryService.createStock(idLibrary, stock.getIdBooks()), StockDto.class )
+        );
     }
     */
 

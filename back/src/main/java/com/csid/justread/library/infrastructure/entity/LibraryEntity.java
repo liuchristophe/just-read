@@ -22,7 +22,7 @@ public class LibraryEntity {
     private AddressEntity address;
 
     @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "library_id")
+    @JoinColumn(name = "libraryId")
     private List<OrderEntity> orders;
 
     public void setId(UUID id) {

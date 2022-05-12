@@ -29,7 +29,7 @@ public class StockEntity {
     private int unitPrice;
 
     @JsonIgnore
-    @OneToMany( targetEntity = BookEntity.class )
+    @OneToMany( targetEntity = BookEntity.class, fetch = FetchType.LAZY )
     private List<BookEntity> books;
 
     @JsonIgnore

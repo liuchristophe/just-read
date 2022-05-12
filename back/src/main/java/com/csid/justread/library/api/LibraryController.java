@@ -11,6 +11,7 @@ import com.csid.justread.library.service.model.Stock;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -65,17 +66,10 @@ public class LibraryController {
 
     /** Todo : placer l'id library automatiquement pour la librairie en cours ... **/
     @PostMapping("/stock/{uuid}")
-    /*
     public ResponseEntity<StockDto> createStock(@PathVariable("uuid") UUID idLibrary, @RequestBody StockCreationDto stock) {
-        return ResponseEntity.ok(
-                new Converter().map( this.libraryService.createStock(idLibrary, stock.getIdBooks()), StockDto.class )
-        );
+        Optional<StockDto> result = this.libraryService.createStock(idLibrary, stock.getIdBooks()).map( s -> new Converter().map( s, StockDto.class ) );
+        return result.map(ResponseEntity::ok).orElse(ResponseEntity.badRequest().build());
     }
-    /**/
-    public Stock createStockTest(@PathVariable("uuid") UUID idLibrary, @RequestBody StockCreationDto stock) {
-        return this.libraryService.createStockTest(idLibrary, stock.getIdBooks());
-    }
-    /**/
 
     //endregion
 }

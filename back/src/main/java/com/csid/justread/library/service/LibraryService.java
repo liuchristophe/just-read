@@ -62,40 +62,13 @@ public class LibraryService {
         return Optional.of(s);
     }
 
-    public Stock createStock( UUID idLibrary, List<UUID> idBooks ) {
-
-        /** Créer le stock **/
-        Stock stock = new Stock();
-        Optional<Library> library = this.libraryDao.findById( idLibrary ).map( l -> new Converter().map( l, Library.class ) );
-        List<Book> bookList = new ArrayList<Book>();
-
-        if (library.isPresent()) {
-            Optional<BookEntity> book;
-            stock.setLibrary( library.get() );
-
-            for ( UUID id : idBooks ) {
-
-                /** Vérifier que le livre existe **/
-                book = this.bookDao.findById(id);
-                book.ifPresent(bookEntity -> bookList.add(new Converter().map(bookEntity, Book.class)));
-            }
-
-            /** Ajouter les livres au stock et save **/
-            stock.setBooks( bookList );
-            StockEntity stockEntity = this.stockDao.save( new Converter().map( stock, StockEntity.class ) );
-            stock = new Converter().map(
-                    stockEntity, Stock.class
-            );
-        }
-        return stock;
-    }
-
-    public Stock createStockTest(UUID idLibrary, List<UUID> idBooks) {
+    public Optional<Stock> createStock(UUID idLibrary, List<UUID> idBooks) {
 
         List<Book> bookList = new ArrayList<Book>();
         Optional<Library> library = this.libraryDao.findById( idLibrary ).map( l -> new Converter().map( l, Library.class ) );
         Optional<BookEntity> book;
-        Stock s = new Stock();
+        Stock stock = null;
+        Optional<Stock> result;
 
         if (library.isPresent()) {
 
@@ -104,16 +77,18 @@ public class LibraryService {
                 book.ifPresent(bookEntity -> bookList.add(new Converter().map(bookEntity, Book.class)));
             }
 
-            s.setBooks(bookList);
-            if (library.isPresent()) s.setLibrary(library.get());
+            stock = new Stock();
+            stock.setBooks(bookList);
+            if (library.isPresent()) stock.setLibrary(library.get());
 
-            StockEntity stockToSave = new Converter().map( s ,  StockEntity.class );
+            StockEntity stockToSave = new Converter().map( stock ,  StockEntity.class );
             stockToSave = this.stockDao.save(stockToSave);
-            s = new Converter().map(stockToSave , Stock.class );
+            stock = new Converter().map(stockToSave , Stock.class );
 
         }
 
-        return s;
+        result = Optional.of( stock );
+        return result;
     }
 
     //endregion

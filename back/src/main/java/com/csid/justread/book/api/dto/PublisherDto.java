@@ -1,4 +1,4 @@
-package com.csid.justread.book.exposition.dto;
+package com.csid.justread.book.api.dto;
 
 import java.util.UUID;
 
@@ -8,6 +8,7 @@ public class PublisherDto {
 
     private UUID id;
     private String name;
+    private Long bookCount;
 
     //region * Methods *
 
@@ -24,6 +25,13 @@ public class PublisherDto {
         this.id = id;
     }
 
-    //endregion
+    public Long getBookCount() {
+        return bookCount;
+    }
+
+    public void setBookCount(Long bookCount) {
+        this.bookCount = bookCount;
+    }
+//endregion
 
 }

@@ -1,11 +1,14 @@
-package com.csid.justread.book.infrastructure;
+package com.csid.justread.book.service;
 
-import com.csid.justread.book.CategoryMapper;
 import com.csid.justread.book.infrastructure.dao.CategoryDao;
 import com.csid.justread.book.infrastructure.entity.CategoryEntity;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+import javax.transaction.Transactional;
+import java.util.List;
+
+@Service
+@Transactional
 public class CategoryRepository {
 
     private CategoryDao categoryDao;
@@ -14,7 +17,7 @@ public class CategoryRepository {
         this.categoryDao = categoryDao;
     }
 
-//    public void save(Category category){
-//        categoryDao.save(CategoryMapper.categoryToEntity(category));
-//    }
+    public List<CategoryEntity> getCategories() {
+        return categoryDao.findAll();
+    }
 }

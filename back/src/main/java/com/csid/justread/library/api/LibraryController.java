@@ -64,13 +64,14 @@ public class LibraryController {
     }
 
     /** Todo : placer l'id library automatiquement pour la librairie en cours ... **/
-    /*
     @PostMapping("/stock/{uuid}")
+    /*
     public ResponseEntity<StockDto> createStock(@PathVariable("uuid") UUID idLibrary, @RequestBody StockCreationDto stock) {
         return ResponseEntity.ok(
                 new Converter().map( this.libraryService.createStock(idLibrary, stock.getIdBooks()), StockDto.class )
         );
     }
+    /**/
     public Stock createStockTest(@PathVariable("uuid") UUID idLibrary, @RequestBody StockCreationDto stock) {
         return this.libraryService.createStockTest(idLibrary, stock.getIdBooks());
     }

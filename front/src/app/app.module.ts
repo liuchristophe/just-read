@@ -26,7 +26,9 @@ import { RouterModule } from '@angular/router';
     RouterModule
   ],
   providers: [],
-  exports: [RouterModule],
+  exports: [
+    RouterModule
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

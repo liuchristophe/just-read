@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
+import { ApiService } from '../../../core/services/api.service';
+import { BookModel } from '../../../core/models/books.model';
 
 @Component({
   selector: 'app-book-list',
@@ -9,9 +11,17 @@ import { Observable } from 'rxjs/internal/Observable';
 })
 export class BookListComponent implements OnInit {
 
-  books : any;
+  allBooks: Array<BookModel> = [];
 
-  constructor(private http: HttpClient) {
+  books: Array<BookModel> = [];
+
+  author: string = '';
+
+  title: string = '';
+
+
+  constructor(private http: HttpClient,
+    private apiService: ApiService) {
     this.init();
     
    }
@@ -23,37 +33,32 @@ export class BookListComponent implements OnInit {
   }
 
   ngOnInit() {
-    let resp = this.getAllBooks$();
-    resp.subscribe((data)=>this.books=data);
-  }
-  public bookList = Array<{ id: string, name: string, syn: string}>();
-  
-  // async getBookList(start : number, end : number){
-  //   let bookList = Array<{ id: string, name: string, syn: string}>();
-  //   for(let i=start;i<end;i++){
-  //     this.getBookById$(i).subscribe(
-  //       response => {
-  //         bookList.push(
-  //           {id: response['data']['idBook'], name: response['data']['bookName'], syn: response['data']['synopsys'] }
-  //         );
-  //       },
-  //       async error =>{
-  //         console.log("erreur : la fonction ne s'est pas déclenchée comme prévu")
-  //       }
-  //     )
-  //   }
-  //   console.log(bookList);
-  //   return bookList;
-  // }
+    this.apiService.getAllBooks$().subscribe((data) => {
+      this.allBooks = data;
+      this.onFilterChange();
+    }, error => {
+      alert(`N'arrive pas à récupérer le getAllBooks ...`);
+    });
+}
 
-  getBookById$(id: number): Observable<any> {
-    let url = `localhost:8080/books/${id}`;
-    return this.http.get(url);
-  }
-  
-  getAllBooks$(): Observable<any>{
-    let url = `/api/books`;
-    return this.http.get(url);
+  onFilterChange(){
+    console.log('onFilterChange ' + this.title);
+    this.books= this.allBooks.filter(x=>this.match(x));
   }
 
+  match(x : BookModel): boolean{
+    if(this.author){
+      let found = x.author.indexOf(this.author);
+      if(found ===-1){
+        return false;
+      }
+    }
+    if(this.title){
+      let found = x.title.indexOf(this.title);
+      if(found ===-1){
+        return false;
+      }
+    }
+    return true;
+  }
 }

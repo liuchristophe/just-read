@@ -14,7 +14,7 @@ public interface BookDao extends JpaRepository<BookEntity, UUID> {
     List<BookEntity> getAllBookByPublisherName(String publisherName);
     List<BookEntity> getAllBookByAuthorId(UUID authorID);
 
-    @Query("select b from book b where lower(b.title) like lower(?1)")
+    @Query("select b from book b where lower(b.title) like ?1")
     List<BookEntity> findByTitle( String title );
 
 }

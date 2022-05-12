@@ -37,5 +37,9 @@
     <br>
     <input type="text" name="year" ngModel required placeholder="Entrez la date de sortie du livre" ><br><br>
   </div>
-  <button [disabled]="createBook.invalid" type="submit">Valider la création</button>
+  <button [disabled]="createBook.invalid || pending" type="submit">Valider la création</button>
 </form>
+
+<span *ngIf="displayMessage">
+{{displayMessage}}
+</span>

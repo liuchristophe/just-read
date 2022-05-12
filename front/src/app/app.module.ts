@@ -9,13 +9,11 @@ import { AppComponent } from './app.component';
 
 import { FeaturesModule } from './features/features.module';
 import { SharedModule } from './shared/shared.module';
-import { BookDetailsComponent } from './features/book-details/book-details.component';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    BookDetailsComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,

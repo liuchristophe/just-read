@@ -3,8 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormAjoutLivreComponent } from './features/form-ajout-livre/form-ajout-livre.component';
 import { HomeComponent } from './shared/components/home/home.component';
 import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
-import { BookListComponent } from './features/book-list/book-list.component';
-import { BookDetailsComponent } from './features/book-details/book-details.component';
+import { BookListComponent } from './features/book/book-list/book-list.component';
+import { BookDetailsComponent } from './features/book/book-details/book-details.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'home', pathMatch:'full'},

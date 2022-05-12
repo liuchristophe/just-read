@@ -1,20 +1,24 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormAjoutLivreComponent } from './form-ajout-livre/form-ajout-livre.component';
-import { BookListComponent } from './book-list/book-list.component';
 import { FormsModule } from '@angular/forms';
+
+import { FormAjoutLivreComponent } from './form-ajout-livre/form-ajout-livre.component';
+//import { BookComponent } from './book/book.component';
+import { BookModule } from './book/book.module';
 
 @NgModule({
   declarations: [
     FormAjoutLivreComponent,
-    BookListComponent,
+    //BookComponent,
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    BookModule
   ],
   exports:[
-    FormAjoutLivreComponent
+    FormAjoutLivreComponent,
+    BookModule
   ]
 })
 export class FeaturesModule { }

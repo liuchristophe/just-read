@@ -28,12 +28,12 @@ public class StockEntity {
     @Column()
     private int unitPrice;
 
-    @ManyToOne( targetEntity = BookEntity.class )
     @JsonIgnore
+    @OneToMany( targetEntity = BookEntity.class )
     private List<BookEntity> books;
 
-    @OneToOne(fetch = FetchType.LAZY)
     @JsonIgnore
+    @OneToOne(fetch = FetchType.LAZY)
     private LibraryEntity library;
 
     //region * Methods *

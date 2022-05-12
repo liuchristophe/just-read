@@ -107,11 +107,11 @@ public class LibraryService {
             s.setBooks(bookList);
             if (library.isPresent()) s.setLibrary(library.get());
 
-        }
+            StockEntity stockToSave = new Converter().map( s ,  StockEntity.class );
+            stockToSave = this.stockDao.save(stockToSave);
+            s = new Converter().map(stockToSave , Stock.class );
 
-        StockEntity stockToBeSaved = new Converter().map( s ,  StockEntity.class );
-        stockToBeSaved = this.stockDao.save(stockToBeSaved);
-        s = new Converter().map(stockToBeSaved , Stock.class );
+        }
 
         return s;
     }

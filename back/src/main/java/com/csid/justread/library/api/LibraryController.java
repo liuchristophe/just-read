@@ -1,6 +1,8 @@
 package com.csid.justread.library.api;
 
 import com.csid.justread.Converter;
+import com.csid.justread.book.api.dto.BookDto;
+import com.csid.justread.book.service.model.Book;
 import com.csid.justread.library.api.dto.StockCreationDto;
 import com.csid.justread.library.api.dto.StockDto;
 import com.csid.justread.library.api.dto.LibraryDto;
@@ -10,6 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
+
 import com.csid.justread.library.service.model.Library;
 
 @RestController()
@@ -67,7 +71,10 @@ public class LibraryController {
                 new Converter().map( this.libraryService.createStock(idLibrary, stock.getIdBooks()), StockDto.class )
         );
     }
-    */
+    public Stock createStockTest(@PathVariable("uuid") UUID idLibrary, @RequestBody StockCreationDto stock) {
+        return this.libraryService.createStockTest(idLibrary, stock.getIdBooks());
+    }
+    /**/
 
     //endregion
 }

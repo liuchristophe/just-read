@@ -14,4 +14,6 @@ public interface BookDao extends JpaRepository<BookEntity, UUID> {
     List<BookEntity> getAllBookByPublisherName(String publisherName);
 
     List<BookEntity> getAllBookByAuthorId(UUID authorID);
+
+    List<BookEntity> findByTitle( String title );
 }

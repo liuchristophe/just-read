@@ -65,8 +65,8 @@ public class LibraryService {
     public Stock createStock( UUID idLibrary, List<UUID> idBooks ) {
 
         /** Créer le stock **/
-        Stock stock = new Stock();;
-        Optional<Library> library = this.getLibraryById( idLibrary );
+        Stock stock = new Stock();
+        Optional<Library> library = this.libraryDao.findById( idLibrary ).map( l -> new Converter().map( l, Library.class ) );
         List<Book> bookList = new ArrayList<Book>();
 
         if (library.isPresent()) {
@@ -82,12 +82,38 @@ public class LibraryService {
 
             /** Ajouter les livres au stock et save **/
             stock.setBooks( bookList );
+            StockEntity stockEntity = this.stockDao.save( new Converter().map( stock, StockEntity.class ) );
             stock = new Converter().map(
-                    this.stockDao.save( new Converter().map( stock, StockEntity.class ) ),
-                    Stock.class
+                    stockEntity, Stock.class
             );
         }
         return stock;
+    }
+
+    public Stock createStockTest(UUID idLibrary, List<UUID> idBooks) {
+
+        List<Book> bookList = new ArrayList<Book>();
+        Optional<Library> library = this.libraryDao.findById( idLibrary ).map( l -> new Converter().map( l, Library.class ) );
+        Optional<BookEntity> book;
+        Stock s = new Stock();
+
+        if (library.isPresent()) {
+
+            for (UUID id : idBooks) {
+                book = this.bookDao.findById(id);
+                book.ifPresent(bookEntity -> bookList.add(new Converter().map(bookEntity, Book.class)));
+            }
+
+            s.setBooks(bookList);
+            if (library.isPresent()) s.setLibrary(library.get());
+
+        }
+
+        StockEntity stockToBeSaved = new Converter().map( s ,  StockEntity.class );
+        stockToBeSaved = this.stockDao.save(stockToBeSaved);
+        s = new Converter().map(stockToBeSaved , Stock.class );
+
+        return s;
     }
 
     //endregion

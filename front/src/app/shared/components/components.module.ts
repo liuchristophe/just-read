@@ -9,6 +9,7 @@ import { AngularComponent } from './angular/angular.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { BannerComponent } from './banner/banner.component';
 
 
 
@@ -17,7 +18,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     AngularComponent,
     HeaderComponent,
     HomeComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    BannerComponent
   ],
   imports: [
     CommonModule,
@@ -32,7 +34,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     MatIconModule,
     HeaderComponent,
     HomeComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    BannerComponent
   ]
 })
 export class ComponentsModule { }

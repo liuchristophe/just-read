@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -113,7 +114,8 @@ public class BookTransactionnalService {
     }
 
     public List<Book> getBooksByTitle(String title) {
-        List<BookEntity> bookEntities = this.bookDao.findByTitle( title );
+        String titleParam = "%"+title.toLowerCase()+"%";
+        List<BookEntity> bookEntities = this.bookDao.findByTitle( titleParam );
         return bookEntities.stream()
                 .map( b -> new Converter().map(b, Book.class) )
                 .collect(Collectors.toList());

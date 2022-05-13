@@ -9,10 +9,11 @@ import { AppComponent } from './app.component';
 
 import { FeaturesModule } from './features/features.module';
 import { SharedModule } from './shared/shared.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -21,10 +22,13 @@ import { SharedModule } from './shared/shared.module';
     BrowserAnimationsModule,
     FeaturesModule,
     SharedModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule
   ],
   providers: [],
-  exports: [],
+  exports: [
+    RouterModule
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

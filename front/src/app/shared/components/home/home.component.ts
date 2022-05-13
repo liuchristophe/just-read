@@ -13,16 +13,4 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  appelleAPI() {
-    this.httpClient.get<Test>(`/api/books`).subscribe(res => {
-      console.log(`resultat : ${JSON.stringify(res)}`);
-    }, error => {
-      console.error(`erreur : ${JSON.stringify(error)}`);
-    })
-  }
-
-}
-
-interface Test {
-  message: string;
 }

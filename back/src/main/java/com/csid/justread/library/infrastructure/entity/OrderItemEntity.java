@@ -1,19 +1,22 @@
 package com.csid.justread.library.infrastructure.entity;
 
 import com.csid.justread.book.infrastructure.entity.BookEntity;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.UUID;
 
 @Entity(name="orderItem")
 @Table(name = "order_item")
-@IdClass(OrderItemId.class)
 public class OrderItemEntity {
 
     @Id
-    private UUID bookId;
-    @Id
-    private UUID orderId;
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
+    private UUID id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private BookEntity book;
 
     @Column
     private int quantity;
@@ -21,20 +24,12 @@ public class OrderItemEntity {
     @Column
     private float price;
 
-    public UUID getBookId() {
-        return bookId;
+    public BookEntity getBook() {
+        return book;
     }
 
-    public void setBookId(UUID bookId) {
-        this.bookId = bookId;
-    }
-
-    public UUID getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(UUID orderId) {
-        this.orderId = orderId;
+    public void setBook(BookEntity book) {
+        this.book = book;
     }
 
     public int getQuantity() {

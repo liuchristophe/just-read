@@ -1,7 +1,34 @@
-<body>
+<!-- <body>
     <h1>{{book.title}}</h1>
     <h2>Synopsys:</h2>
     <p>{{book.synopsys}}</p>
     <h3>Année de parution du livre : {{book.year}}</h3>
     <h4>ISBN : {{book.isbn}}</h4>
+</body> -->
+
+
+<body>
+
+    <div class="container">
+        <div class="imgBx">
+            <img src="https://images-na.ssl-images-amazon.com/images/I/517MH9KJ38L.jpg" alt="courverture Harry Potter 1">
+        </div>
+        <div class="details">
+            <div class="content">
+                <h2>{{book.title}}<br>
+                    <span>J. K. Rowling</span><br>
+                    <span>ISBN : {{book.isbn}}</span><br>
+                    <span>Année de parution : {{book.year}}</span>
+                </h2>
+                
+                <p>
+                    {{book.synopsys}}
+                </p>
+                <h3>10€</h3>
+
+                <button>Acheter</button>
+            </div>
+        </div>
+    </div>
+
 </body>

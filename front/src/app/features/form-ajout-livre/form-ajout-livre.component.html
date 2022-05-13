@@ -1,45 +1,48 @@
-<!-- <form class="form-example">
-  <div class="form-example">
-    <label for="bookName">Nom du livre: </label>
-    <input type="text" name="bookName" id="name" required>
-  </div>
-  <div class="form-example">
-    <label for="synopsys">synopsys du livre: </label>
-    <input type="text" name="synopsys" id="synopsys" required>
-  </div>
-  <div class="form-example">
-    <button (click)="onClickTestHttp()">Test HTTP POST</button>
-  </div>
-</form>
-<button ><a routerLink="">retourner à l'accueil</a></button> -->
-<h1>Formulaire de création de livre (v1)</h1>
-<form #createBook="ngForm" (ngSubmit)="creationLivre(createBook.value)">
-  <!-- <input type="text" name="title" ngModel required placeholder="titre du livre" ><br><br>
-  <input type="text" name="synopsys" ngModel required placeholder="synopsys du livre" ><br><br>
-  <button [disabled]="createBook.invalid" type="submit">Valider la création</button> -->
-  <div class="form-group">
-    <label for="title">Titre du livre:</label>
-    <br>
-    <input type="text" name="title" ngModel required placeholder="Entrez le titre du livre" ><br><br>
-  </div>
-  <div class="form-group">
-    <label for="syn">Synopsys du livre:</label>
-    <br>
-    <input type="text" name="synopsys" ngModel required placeholder="Entrez le synopsys du livre" ><br><br>
-  </div>
-  <div class="form-group">
-    <label for="isbn">ISBN du livre:</label>
-    <br>
-    <input type="text" name="isbn" ngModel required placeholder="Entrez l'ISBN du livre" ><br><br>
-  </div>
-  <div class="form-group">
-    <label for="year">Date de sortie du livre:</label>
-    <br>
-    <input type="text" name="year" ngModel required placeholder="Entrez la date de sortie du livre" ><br><br>
-  </div>
-  <button [disabled]="createBook.invalid || pending" type="submit">Valider la création</button>
-</form>
+<!-- <body>
+  <div class="container">
+  <h1>Formulaire de création de livre (v1)</h1>
+    <form #createBook="ngForm" (ngSubmit)="creationLivre(createBook.value)">
+      <div class="form-group">
+        <label for="title">Titre du livre:</label>
+        <br>
+        <input type="text" name="title" ngModel required placeholder="Entrez le titre du livre" ><br><br>
+      </div>
+      <div class="form-group">
+        <label for="syn">Synopsys du livre:</label>
+        <br>
+        <input type="text" name="synopsys" ngModel required placeholder="Entrez le synopsys du livre" ><br><br>
+      </div>
+      <div class="form-group">
+        <label for="isbn">ISBN du livre:</label>
+        <br>
+        <input type="text" name="isbn" ngModel required placeholder="Entrez l'ISBN du livre" ><br><br>
+      </div>
+      <div class="form-group">
+        <label for="year">Date de sortie du livre:</label>
+        <br>
+        <input type="text" name="year" ngModel required placeholder="Entrez la date de sortie du livre" ><br><br>
+      </div>q
+      <button [disabled]="createBook.invalid || pending" type="submit">Valider la création</button>
+    </form>
 
-<span *ngIf="displayMessage">
-{{displayMessage}}
-</span>
+    <span *ngIf="displayMessage">
+    {{displayMessage}}
+    </span>
+</div>
+</body> -->
+<div class='bold-line'></div>
+<div class='container'>
+  <div class='window'>
+    <div class='overlay'></div>
+    <div class='content'>
+      <div class='welcome'>Ajout de livre</div>
+      <div class='input-fields'>
+        <input type='text' required placeholder='Titre du livre' class='input-line full-width'>
+        <input type='text' required placeholder='Synopsis' class='input-line full-width'>
+        <input type='text' required placeholder='ISBN' class='input-line full-width'>
+        <input type='text' required placeholder='Date de sortie' class='input-line full-width'>
+      </div>
+      <div><button class='ghost-round full-width'>Valider</button></div>
+    </div>
+  </div>
+</div>

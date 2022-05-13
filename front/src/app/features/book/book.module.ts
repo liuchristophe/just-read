@@ -6,8 +6,6 @@ import { BookListComponent } from './book-list/book-list.component';
 import { BookDetailsComponent } from './book-details/book-details.component';
 import { BookSliderComponent } from './book-slider/book-slider.component';
 import { BookItemComponent } from './book-item/book-item.component';
-import { BookCardComponent } from './book-card/book-card.component';
-
 
 @NgModule({
   declarations: [
@@ -16,7 +14,6 @@ import { BookCardComponent } from './book-card/book-card.component';
     BookDetailsComponent,
     BookSliderComponent,
     BookItemComponent,
-    BookCardComponent
   ],
   imports: [
     CommonModule,

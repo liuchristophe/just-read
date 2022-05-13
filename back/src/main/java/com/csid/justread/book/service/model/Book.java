@@ -14,6 +14,7 @@ public class Book {
     private List<Category> categories;
     private String isbn;
     private Integer year;
+    private String urlImage;
     private Publisher publisher;
 
     //region * Methods *
@@ -80,6 +81,14 @@ public class Book {
 
     public void setPublisher(Publisher publisher) {
         this.publisher = publisher;
+    }
+
+    public String getUrlImage() {
+        return urlImage;
+    }
+
+    public void setUrlImage(String urlImage) {
+        this.urlImage = urlImage;
     }
 
     //endregion

@@ -27,5 +27,19 @@
     <br>
     <input type="text" name="synopsys" ngModel required placeholder="Entrez le synopsys du livre" ><br><br>
   </div>
-  <button [disabled]="createBook.invalid" type="submit">Valider la création</button>
+  <div class="form-group">
+    <label for="isbn">ISBN du livre:</label>
+    <br>
+    <input type="text" name="isbn" ngModel required placeholder="Entrez l'ISBN du livre" ><br><br>
+  </div>
+  <div class="form-group">
+    <label for="year">Date de sortie du livre:</label>
+    <br>
+    <input type="text" name="year" ngModel required placeholder="Entrez la date de sortie du livre" ><br><br>
+  </div>
+  <button [disabled]="createBook.invalid || pending" type="submit">Valider la création</button>
 </form>
+
+<span *ngIf="displayMessage">
+{{displayMessage}}
+</span>

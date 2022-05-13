@@ -1,13 +1,3 @@
-<!-- <div class ="bookList">
-    <p>test liste de livre</p>
-    <div *ngfor="let e of bookList">
-        <div class = "item">
-            <input type ="text" src="{{e.id}}">
-            <input type ="text" src="{{e.bookName}}">
-            <input type ="text" src="{{e.syn}}">
-        </div>
-    </div>
-</div> -->
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,6 +8,18 @@
   </head>
 <div class="container">
   <h2>Liste des livres</h2>
+  <!-- <form #searchBook="ngForm" (ngSubmit)="searchBook(searchBook.value)">
+    <div class="form-group">
+      <input type="text" name="title" ngModel required placeholder="Rechercher un livre" ><br><br>
+    </div>
+    <button type="submit">Rechercher</button>
+  </form>  -->
+  <div class="row">
+    <label for="author">Author</label>
+    <input type="text" [(ngModel)]="author" (ngModelChange)="onFilterChange()">
+    <label for="title">Title</label>
+    <input type="text" [(ngModel)]="title" (ngModelChange)="onFilterChange()">
+  </div>
   <table class="table">
     <thead>
       <tr>
@@ -36,7 +38,7 @@
         <td>{{book.isbn}}</td>
         <td>{{book.year}}</td>
       </tr>
-    </tbody>
+    </tbody> 
   </table>
 </div>
 

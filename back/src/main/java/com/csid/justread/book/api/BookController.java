@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @RestController()
 @RequestMapping("/api/books")
@@ -50,6 +51,13 @@ public class BookController {
         return new Converter().mapAsList(bookRepository.getBooksByAuthorID(id), BookDto.class);
     }
 
+    @GetMapping("/search/{title}")
+    public List<BookDto> getBooksByTitle (@RequestParam("title") String title) {
+        List<Book> books = this.bookRepository.getBooksByTitle( title.trim() );
+        return books.stream()
+                .map( b -> new Converter().map(b, BookDto.class) )
+                .collect(Collectors.toList());
+    }
 
     @PostMapping()
     public ResponseEntity<BookDto> create (@RequestBody BookDto book) {

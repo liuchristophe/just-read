@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -44,40 +45,33 @@ public class BookTransactionnalService {
         if (book.getAuthor() != null) bookEntity.setAuthor(getOrCreateAuthor(book.getAuthor()));
         //Si le publisher n'existe pas on le créer
         if (book.getPublisher() != null) bookEntity.setPublisher(getOrCreatePublisher(book.getPublisher()));
-
         //Si la catégorie n'existe pas on la crée
         if (book.getCategories() != null) bookEntity.setCategories(getOrCreateCategories(book.getCategories()));
 
         return new Converter().map(this.bookDao.save(bookEntity), Book.class);
     }
 
-
     public List<Book> getBooks() {
         return new Converter().mapAsList(this.bookDao.findAll(), Book.class);
     }
-
 
     public List<Book> getBooksByAuthorID(UUID authorID){
         return new Converter().mapAsList(this.bookDao.getAllBookByAuthorId(authorID), Book.class);
     }
 
-
     public Optional<Book> getBookById(UUID id) {
         return this.bookDao.findById( id ).map(book -> new Converter().map(book, Book.class));
     }
-
 
     public List<Book> getBooksByCategoryName(String categoryName) {
 
         return new Converter().mapAsList(this.bookDao.getAllBookByCategoriesName(categoryName), Book.class);
     }
 
-
     public List<Book> getBooksByPublisherName(String publisherName) {
 
         return new Converter().mapAsList(this.bookDao.getAllBookByPublisherName(publisherName), Book.class);
     }
-
 
     public Book update(UUID id, Book book) {
         Optional<BookEntity> optBookEntity = bookDao.findById(id);
@@ -119,5 +113,11 @@ public class BookTransactionnalService {
                 .collect(Collectors.toList());
     }
 
-
+    public List<Book> getBooksByTitle(String title) {
+        String titleParam = "%"+title.toLowerCase()+"%";
+        List<BookEntity> bookEntities = this.bookDao.findByTitle( titleParam );
+        return bookEntities.stream()
+                .map( b -> new Converter().map(b, Book.class) )
+                .collect(Collectors.toList());
+    }
 }

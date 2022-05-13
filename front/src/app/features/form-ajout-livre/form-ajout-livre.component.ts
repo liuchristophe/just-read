@@ -1,5 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { ApiService } from '../../core/services/api.service';
 
 @Component({
   selector: 'app-form-ajout-livre',
@@ -8,26 +11,36 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 })
 export class FormAjoutLivreComponent implements OnInit {
 
-  constructor(private httpClient: HttpClient) { }
+  pending: boolean = false;
+  displayMessage: string|null = null;
+  constructor(private httpClient: HttpClient, 
+    private router: Router,
+    private apiService: ApiService) { }
 
   ngOnInit(): void {
   }
 
-  onClickTestHttp(){
-    console.log('test');
-    this.httpClient.get('/api/books').subscribe(response=>{
-      console.log('ok',response);
-    }, error=>{
-      console.log('error',error);
+  creationLivre2(data: any) {
+    this.pending = true;
+    this.apiService.createBook(data).subscribe((result) => {
+      console.log("livre créé",result);
+      this.router.navigate(['bookList']);
+    },error => {
+      this.displayMessage='failed : error'+error.message;
+      this.pending=false;
     });
   }
 
   creationLivre(data: any){
+    this.pending = true;
     this.httpClient.post('/api/books',data)
     .subscribe((result)=>{
-      console.log("livre créé",result)
-    })
+      console.log("livre créé",result);
+      this.router.navigate(['bookList']);
+    },error=>{
+      this.displayMessage='failed : error'+error.message;
+      this.pending=false;
+    });
     console.log(data);
-    
   }
 }

@@ -39,7 +39,7 @@ public class OrderController {
         );
     }
 
-    @PatchMapping("/add")
+    @PostMapping("/add")
     public ResponseEntity<OrderDto> addOrder(@RequestBody OrderDto orderDto, @RequestParam UUID libraryID, @RequestParam String user){
         OrderDto result = new Converter().map( this.orderService.addOrder(
                 new Converter().map(orderDto, Order.class), libraryID, user), OrderDto.class);

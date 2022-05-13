@@ -1,18 +1,14 @@
 package com.csid.justread.library.api;
 
 import com.csid.justread.Converter;
-import com.csid.justread.book.api.dto.BookDto;
-import com.csid.justread.book.service.model.Book;
-import com.csid.justread.library.api.dto.StockCreationDto;
-import com.csid.justread.library.api.dto.StockDto;
 import com.csid.justread.library.api.dto.LibraryDto;
+import com.csid.justread.library.api.dto.StockItemDto;
 import com.csid.justread.library.service.LibraryService;
-import com.csid.justread.library.service.model.Stock;
+import com.csid.justread.library.service.model.StockItem;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 import com.csid.justread.library.service.model.Library;
 
@@ -41,41 +37,43 @@ public class LibraryController {
     }
 
     @GetMapping("/{uuid}")
-    public ResponseEntity<StockDto> getLibraryById( @PathVariable("uuid") UUID id ) {
+    public ResponseEntity<LibraryDto> getLibraryById( @PathVariable("uuid") UUID id ) {
         return ResponseEntity.ok(
-                new Converter().map( this.libraryService.getLibraryById( id ).get(), StockDto.class)
+                new Converter().map( this.libraryService.getLibraryById( id ), LibraryDto.class)
         );
     }
 
-    //endregion
-
-    //region * Stock Management *
-
-    @GetMapping("/stock")
-    public List<StockDto> getStock () {
-        return new Converter().mapAsList( this.libraryService.getStock(), StockDto.class);
+    @GetMapping("/{libraryId}/stock")
+    public ResponseEntity<List<StockItemDto>> getStock(@PathVariable("libraryId") UUID libraryId){
+        return ResponseEntity.ok(new Converter().mapAsList(libraryService.getStock(libraryId), StockItemDto.class));
     }
 
-    @GetMapping("/stock/{uuid}")
-    public ResponseEntity<StockDto> getStockById(@PathVariable("uuid") UUID id ) {
-        return ResponseEntity.ok(
-                new Converter().map( this.libraryService.getStockById( id ), StockDto.class )
-        );
+    @PostMapping("/{libraryId}/stock/add")
+    public ResponseEntity<StockItemDto> addStockItem(@PathVariable("libraryId") UUID libraryId,@RequestBody StockItemDto stockItemDto){
+        StockItemDto result = new Converter()
+                .map(libraryService.addStockItem(libraryId,
+                        new Converter().map(stockItemDto, StockItem.class)
+                ), StockItemDto.class);
+        if(result == null) return ResponseEntity.badRequest().build();
+        return ResponseEntity.ok(result);
     }
 
-    /** Todo : placer l'id library automatiquement pour la librairie en cours ... **/
-    @PostMapping("/stock/{uuid}")
-    /*
-    public ResponseEntity<StockDto> createStock(@PathVariable("uuid") UUID idLibrary, @RequestBody StockCreationDto stock) {
-        return ResponseEntity.ok(
-                new Converter().map( this.libraryService.createStock(idLibrary, stock.getIdBooks()), StockDto.class )
-        );
+    @DeleteMapping("{libraryId}/stock/remove/{stockItemId}")
+    public void deleteStockItem(@PathVariable("libraryId") UUID libraryId,@PathVariable("stockItemId") UUID stockItemId){
+        libraryService.deleteStockItem(libraryId, stockItemId);
     }
-    /**/
-    public Stock createStockTest(@PathVariable("uuid") UUID idLibrary, @RequestBody StockCreationDto stock) {
-        return this.libraryService.createStockTest(idLibrary, stock.getIdBooks());
-    }
-    /**/
 
-    //endregion
+    @PatchMapping("{libraryId}/stock/remove/{stockItemId}")
+    public ResponseEntity<StockItemDto> deleteStockItem(@PathVariable("libraryId") UUID libraryId,
+                                @PathVariable("stockItemId") UUID stockItemId,
+                                @RequestParam StockItemDto stockItemDto){
+        StockItemDto result = new Converter()
+                .map(libraryService.updateStockItem(libraryId, stockItemId,
+                        new Converter().map(stockItemDto, StockItem.class)
+                ), StockItemDto.class);
+
+        if(result == null) return ResponseEntity.badRequest().build();
+
+        return ResponseEntity.ok(result);
+    }
 }

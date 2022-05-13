@@ -1,6 +1,7 @@
 package com.csid.justread.library.api.dto;
 
 import com.csid.justread.address.api.dto.AddressDto;
+import com.csid.justread.library.infrastructure.entity.StockItemEntity;
 
 
 import java.util.List;
@@ -15,6 +16,8 @@ public class LibraryDto {
     private AddressDto address;
 
     private List<OrderDto> orders;
+
+    private List<StockItemEntity> stocks;
 
     public UUID getId() {
         return id;
@@ -46,5 +49,13 @@ public class LibraryDto {
 
     public void setOrders(List<OrderDto> orders) {
         this.orders = orders;
+    }
+
+    public List<StockItemEntity> getStocks() {
+        return stocks;
+    }
+
+    public void setStocks(List<StockItemEntity> stocks) {
+        this.stocks = stocks;
     }
 }

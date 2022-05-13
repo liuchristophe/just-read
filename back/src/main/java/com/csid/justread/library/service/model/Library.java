@@ -2,6 +2,7 @@ package com.csid.justread.library.service.model;
 
 import com.csid.justread.address.service.model.Address;
 import com.csid.justread.library.infrastructure.entity.OrderEntity;
+import com.csid.justread.library.infrastructure.entity.StockItemEntity;
 
 import java.util.List;
 import java.util.UUID;
@@ -15,6 +16,8 @@ public class Library {
     private Address address;
 
     private List<Order> orders;
+
+    private List<StockItemEntity> stocks;
 
     public UUID getId() {
         return id;
@@ -46,5 +49,13 @@ public class Library {
 
     public void setOrders(List<Order> orders) {
         this.orders = orders;
+    }
+
+    public List<StockItemEntity> getStocks() {
+        return stocks;
+    }
+
+    public void setStocks(List<StockItemEntity> stocks) {
+        this.stocks = stocks;
     }
 }

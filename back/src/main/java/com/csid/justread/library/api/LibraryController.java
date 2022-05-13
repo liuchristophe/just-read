@@ -1,6 +1,7 @@
 package com.csid.justread.library.api;
 
 import com.csid.justread.Converter;
+import com.csid.justread.exception.ServiceException;
 import com.csid.justread.library.api.dto.LibraryDto;
 import com.csid.justread.library.api.dto.StockItemDto;
 import com.csid.justread.library.service.LibraryService;
@@ -49,31 +50,27 @@ public class LibraryController {
     }
 
     @PostMapping("/{libraryId}/stock/add")
-    public ResponseEntity<StockItemDto> addStockItem(@PathVariable("libraryId") UUID libraryId,@RequestBody StockItemDto stockItemDto){
-        StockItemDto result = new Converter()
+    public ResponseEntity<StockItemDto> addStockItem(@PathVariable("libraryId") UUID libraryId,@RequestBody StockItemDto stockItemDto)
+    throws ServiceException {
+        return ResponseEntity.ok(new Converter()
                 .map(libraryService.addStockItem(libraryId,
                         new Converter().map(stockItemDto, StockItem.class)
-                ), StockItemDto.class);
-        if(result == null) return ResponseEntity.badRequest().build();
-        return ResponseEntity.ok(result);
+                ), StockItemDto.class));
     }
 
     @DeleteMapping("{libraryId}/stock/remove/{stockItemId}")
-    public void deleteStockItem(@PathVariable("libraryId") UUID libraryId,@PathVariable("stockItemId") UUID stockItemId){
+    public ResponseEntity<Void> deleteStockItem(@PathVariable("libraryId") UUID libraryId,@PathVariable("stockItemId") UUID stockItemId){
         libraryService.deleteStockItem(libraryId, stockItemId);
+        return ResponseEntity.ok().build();
     }
 
-    @PatchMapping("{libraryId}/stock/remove/{stockItemId}")
-    public ResponseEntity<StockItemDto> deleteStockItem(@PathVariable("libraryId") UUID libraryId,
+    @PatchMapping("{libraryId}/stock/update/{stockItemId}")
+    public ResponseEntity<StockItemDto> updateStockItem(@PathVariable("libraryId") UUID libraryId,
                                 @PathVariable("stockItemId") UUID stockItemId,
                                 @RequestParam StockItemDto stockItemDto){
-        StockItemDto result = new Converter()
+        return ResponseEntity.ok(new Converter()
                 .map(libraryService.updateStockItem(libraryId, stockItemId,
                         new Converter().map(stockItemDto, StockItem.class)
-                ), StockItemDto.class);
-
-        if(result == null) return ResponseEntity.badRequest().build();
-
-        return ResponseEntity.ok(result);
+                ), StockItemDto.class));
     }
 }

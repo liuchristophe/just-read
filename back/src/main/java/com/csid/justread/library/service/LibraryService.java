@@ -2,12 +2,14 @@ package com.csid.justread.library.service;
 
 import com.csid.justread.Converter;
 import com.csid.justread.book.infrastructure.dao.BookDao;
+import com.csid.justread.exception.ServiceException;
 import com.csid.justread.library.infrastructure.dao.LibraryDao;
 import com.csid.justread.library.infrastructure.dao.StockItemDao;
 import com.csid.justread.library.infrastructure.entity.StockItemEntity;
 import com.csid.justread.library.infrastructure.entity.LibraryEntity;
 import com.csid.justread.library.service.model.Library;
 import com.csid.justread.library.service.model.StockItem;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
@@ -51,43 +53,45 @@ public class LibraryService {
         return new Converter().mapAsList(libraryEntity.getStocks(), StockItem.class);
     }
 
-    public StockItem addStockItem(UUID libraryId, StockItem stockItem){
+    public StockItem addStockItem(UUID libraryId, StockItem stockItem) throws ServiceException{
         StockItemEntity stockItemEntity;
-        if(stockItem==null) return null;
-        if(stockItem.getBook() == null) return null;
+        if(stockItem==null) throw new ServiceException("BadRequest", "StockItem null", HttpStatus.BAD_REQUEST);
+        if(stockItem.getBook() == null) throw new ServiceException("BadRequest", "StockItem without book", HttpStatus.BAD_REQUEST);
         stockItemEntity=  new Converter().map(stockItem , StockItemEntity.class);
         stockItemEntity.setLibrary(libraryDao.findById(libraryId).orElse(null));
         stockItemEntity.setBook(bookDao.findById(stockItem.getBook().getId()).orElse(null));
-        if(stockItemEntity.getLibrary()==null) return null;
-        if(stockItemEntity.getBook()==null) return null;
+        if(stockItemEntity.getLibrary()==null) throw new ServiceException("NotFound", "Library id: "+libraryId+" unknow", HttpStatus.NOT_FOUND);
+        if(stockItemEntity.getBook()==null) throw new ServiceException("NotFound", "Book id: "+stockItem.getBook().getId()+" unknow", HttpStatus.NOT_FOUND);
         return new Converter().map( this.stockItemDao.save(stockItemEntity), StockItem.class);
     }
 
-    public void deleteStockItem(UUID libraryId, UUID stockItemId){
+    public void deleteStockItem(UUID libraryId, UUID stockItemId) throws ServiceException{
         LibraryEntity library = libraryDao.findById(libraryId).orElse(null);
         StockItemEntity stockItemEntity;
-        if(library == null) return;
+        if(library == null) throw new ServiceException("NotFound", "Library id: "+libraryId+" unknow", HttpStatus.NOT_FOUND);
 
         stockItemEntity=library.getStocks().stream()
                 .filter(item -> item.getId().equals(stockItemId))
                 .findFirst()
                 .orElse(null);
 
-        if(stockItemEntity==null) return;
+        if(stockItemEntity==null) throw new ServiceException("UNAUTHORIZED",
+                "stockItem id: "+stockItemId+" unknow in library", HttpStatus.UNAUTHORIZED);
         this.stockItemDao.delete(stockItemEntity);
     }
 
     public StockItem updateStockItem(UUID libraryId, UUID stockItemId, StockItem stockItem){
         LibraryEntity library = libraryDao.findById(libraryId).orElse(null);
         StockItemEntity stockItemEntity;
-        if(library == null) return null;
+        if(library == null) throw new ServiceException("NotFound", "Library id: "+libraryId+" unknow", HttpStatus.NOT_FOUND);
 
         stockItemEntity=library.getStocks().stream()
                 .filter(item -> item.getId().equals(stockItemId))
                 .findFirst()
                 .orElse(null);
 
-        if(stockItemEntity==null) return null;
+        if(stockItemEntity==null) throw new ServiceException("UNAUTHORIZED",
+                "stockItem id: "+stockItemId+" unknow in library", HttpStatus.UNAUTHORIZED);
 
         stockItemEntity.setQuantity(stockItem.getQuantity());
         stockItemEntity.setUnitPrice(stockItem.getUnitPrice());

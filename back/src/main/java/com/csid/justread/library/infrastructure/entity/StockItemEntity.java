@@ -1,21 +1,15 @@
 package com.csid.justread.library.infrastructure.entity;
 
 import com.csid.justread.book.infrastructure.entity.BookEntity;
-import com.csid.justread.library.service.model.Library;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
-import java.util.List;
 import java.util.UUID;
 
-@Entity( name="stock" )
-@Table ( name="stock" )
-public class StockEntity {
-
-    /*
-    @EmbeddedId()
-    private StockId id;
-    */
+@Entity(name="stockItem")
+@Table(name = "stock_item",uniqueConstraints = {@UniqueConstraint(columnNames = {"book_id", "libraryId", "unitPrice"})})
+public class StockItemEntity {
 
     @Id
     @GeneratedValue(generator = "uuid2")
@@ -28,15 +22,13 @@ public class StockEntity {
     @Column()
     private int unitPrice;
 
-    @ManyToOne( targetEntity = BookEntity.class )
-    @JsonIgnore
-    private List<BookEntity> books;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private BookEntity book;
 
-    @OneToOne(fetch = FetchType.LAZY)
     @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="libraryId")
     private LibraryEntity library;
-
-    //region * Methods *
 
     public UUID getId() {
         return id;
@@ -62,12 +54,12 @@ public class StockEntity {
         this.unitPrice = unitPrice;
     }
 
-    public List<BookEntity> getBooks() {
-        return books;
+    public BookEntity getBook() {
+        return book;
     }
 
-    public void setBooks(List<BookEntity> books) {
-        this.books = books;
+    public void setBook(BookEntity book) {
+        this.book = book;
     }
 
     public LibraryEntity getLibrary() {
@@ -77,7 +69,4 @@ public class StockEntity {
     public void setLibrary(LibraryEntity library) {
         this.library = library;
     }
-
-    //endregion
-
 }

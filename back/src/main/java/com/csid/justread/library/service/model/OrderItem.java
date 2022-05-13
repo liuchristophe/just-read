@@ -1,33 +1,26 @@
 package com.csid.justread.library.service.model;
 
+import com.csid.justread.book.infrastructure.entity.BookEntity;
+import com.csid.justread.book.service.model.Book;
+
 import javax.persistence.Column;
 import javax.persistence.Id;
 import java.util.UUID;
 
 public class OrderItem {
 
-    private UUID bookId;
-
-    private UUID orderId;
+    private Book book;
 
     private int quantity;
 
     private float price;
 
-    public UUID getBookId() {
-        return bookId;
+    public Book getBook() {
+        return book;
     }
 
-    public void setBookId(UUID bookId) {
-        this.bookId = bookId;
-    }
-
-    public UUID getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(UUID orderId) {
-        this.orderId = orderId;
+    public void setBook(Book book) {
+        this.book = book;
     }
 
     public int getQuantity() {

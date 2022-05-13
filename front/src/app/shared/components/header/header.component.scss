@@ -1,17 +1,81 @@
-li {
-    display: inline-block;
-    list-style-type: none;
+/**| FONTS |**/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap');
+
+/**| VARIABLES |**/
+.mat-toolbar {
+    /** colors **/
+    --color-header-1: white;
+    --color-header-decoration: #cd6f6f;
+    --font-color-1: #3d4f66;
+    /** values **/
+    --height-navbar: 55px;
+    --trantision-duration: 0.4s;
+    --font-size-all : 12pt;
+    --font-size-logo: calc( var( --font-size-all ) + 1pt );
+    /** fonts **/
+    --font-1: "Montserrat";
+    --font-2: "Yeseva One";
 }
 
-.active{
-    color: red;
-    
-}
-
+/**| DESIGN |**/
+* { font-size: var(--font-size-all); }
 .mat-toolbar{
-    background-color: rgb(54, 83, 79);
+    background-color: var(--color-header-1);
+    height: var(--height-navbar) !important;
+    box-shadow: 0 -25px 50px #000;
+    * {
+        font-family: var(--font-1);
+        color: var( --font-color-1 );
+    }
+    .title {
+        width: fit-content !important;
+        padding-left : 10px;
+        padding-right: 10px;
+        margin-left  : 10px;
+        margin-right : 10px;
+        font-size: var(--font-size-logo);
+        font-weight: 600;
+        cursor : pointer;
+    }
+    .content {
+        margin-left: 15px;
+        width : calc( 100% - 15px );
+        height: 100%;
+        .item {
+            --m: 2px;
+            --p: 5px;
+            display: inline-block !important;
+            height: 100%;
+            padding: 0 !important;
+            margin-left  : var(--m);
+            margin-right : var(--m);
+            a {
+                overflow : hidden;
+                padding-left : var(--p);
+                padding-right: var(--p);
+                height: 100%;
+                width: calc( 100% - calc(2 * var(--p) ) );
+                display: flex;
+                align-items: center;
+                position: relative;
+                &.active { color: var( --color-header-decoration ) }
+                &:after {
+                    content: "";
+                    position: absolute;
+                    background: var(--color-header-decoration);
+                    height: 3px; width: 100%;
+                    border-radius: 1px;
+                    bottom: 1px !important; left  : 0   !important;
+                    transform-origin: center;
+                    transform: scaleX(0);
+                    transition: transform  var(--trantision-duration) ease-out;
+                }
+                &.active::after, &:hover::after { transform: scaleX(1); }
+            }
+        }
+    }
 }
-
-a{
-    color: grey;
-}
+a { text-decoration: none !important; }
+a:not(.active) { color: #ffffff80; }
+a.active{ color: red; }

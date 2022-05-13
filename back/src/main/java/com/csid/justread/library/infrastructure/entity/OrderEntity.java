@@ -28,7 +28,9 @@ public class OrderEntity {
     @JoinColumn(name="orderId")
     private List<OrderItemEntity> orderItem;
 
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="libraryId")
+    private LibraryEntity library;
 
     public void setId(UUID id) {
         this.id = id;
@@ -68,5 +70,13 @@ public class OrderEntity {
 
     public void setUser(String user) {
         this.utilisateur = user;
+    }
+
+    public LibraryEntity getLibrary() {
+        return library;
+    }
+
+    public void setLibrary(LibraryEntity library) {
+        this.library = library;
     }
 }

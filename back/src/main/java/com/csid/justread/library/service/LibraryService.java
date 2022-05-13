@@ -2,17 +2,14 @@ package com.csid.justread.library.service;
 
 import com.csid.justread.Converter;
 import com.csid.justread.book.infrastructure.dao.BookDao;
-import com.csid.justread.book.infrastructure.entity.BookEntity;
-import com.csid.justread.book.service.model.Book;
 import com.csid.justread.library.infrastructure.dao.LibraryDao;
-import com.csid.justread.library.infrastructure.dao.StockDao;
-import com.csid.justread.library.infrastructure.entity.StockEntity;
-import com.csid.justread.library.service.model.Stock;
+import com.csid.justread.library.infrastructure.dao.StockItemDao;
+import com.csid.justread.library.infrastructure.entity.StockItemEntity;
 import com.csid.justread.library.infrastructure.entity.LibraryEntity;
 import com.csid.justread.library.service.model.Library;
+import com.csid.justread.library.service.model.StockItem;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -22,12 +19,12 @@ import java.util.UUID;
 public class LibraryService {
 
     private final LibraryDao libraryDao;
-    private final StockDao   stockDao;
+    private final StockItemDao stockItemDao;
     private final BookDao bookDao;
 
-    public LibraryService(LibraryDao libraryDao, StockDao stockDao, BookDao bookDao) {
+    public LibraryService(LibraryDao libraryDao, StockItemDao stockItemDao, BookDao bookDao) {
         this.libraryDao = libraryDao;
-        this.stockDao = stockDao;
+        this.stockItemDao = stockItemDao;
         this.bookDao  = bookDao ;
     }
 
@@ -44,78 +41,56 @@ public class LibraryService {
         return new Converter().mapAsList(libraryDao.findAll() , Library.class);
     }
 
-    public Optional<Library> getLibraryById( UUID id ) {
-        Library l = new Converter().map( this.libraryDao.findById( id ), Library.class );
-        return Optional.of(l);
+    public Library getLibraryById( UUID id ) {
+       return new Converter().map( this.libraryDao.getById( id ), Library.class );
     }
 
-    //endregion
-
-    //region * Stock Management *
-
-    public List<Stock> getStock() {
-        return new Converter().mapAsList( this.stockDao.findAll(), Stock.class );
+    public List<StockItem> getStock(UUID libraryId) {
+        LibraryEntity libraryEntity = this.libraryDao.getById(libraryId);
+        if(libraryEntity==null) return null;
+        return new Converter().mapAsList(libraryEntity.getStocks(), StockItem.class);
     }
 
-    public Optional<Stock> getStockById( UUID id ) {
-        Stock s  = new Converter().map( this.stockDao.findById( id ), Stock.class );
-        return Optional.of(s);
+    public StockItem addStockItem(UUID libraryId, StockItem stockItem){
+        StockItemEntity stockItemEntity;
+        if(stockItem==null) return null;
+        if(stockItem.getBook() == null) return null;
+        stockItemEntity=  new Converter().map(stockItem , StockItemEntity.class);
+        stockItemEntity.setLibrary(libraryDao.findById(libraryId).orElse(null));
+        stockItemEntity.setBook(bookDao.findById(stockItem.getBook().getId()).orElse(null));
+        if(stockItemEntity.getLibrary()==null) return null;
+        if(stockItemEntity.getBook()==null) return null;
+        return new Converter().map( this.stockItemDao.save(stockItemEntity), StockItem.class);
     }
 
-    public Stock createStock( UUID idLibrary, List<UUID> idBooks ) {
+    public void deleteStockItem(UUID libraryId, UUID stockItemId){
+        LibraryEntity library = libraryDao.findById(libraryId).orElse(null);
+        StockItemEntity stockItemEntity;
+        if(library == null) return;
 
-        /** Créer le stock **/
-        Stock stock = new Stock();
-        Optional<Library> library = this.libraryDao.findById( idLibrary ).map( l -> new Converter().map( l, Library.class ) );
-        List<Book> bookList = new ArrayList<Book>();
+        stockItemEntity=library.getStocks().stream()
+                .filter(item -> item.getId().equals(stockItemId))
+                .findFirst()
+                .orElse(null);
 
-        if (library.isPresent()) {
-            Optional<BookEntity> book;
-            stock.setLibrary( library.get() );
-
-            for ( UUID id : idBooks ) {
-
-                /** Vérifier que le livre existe **/
-                book = this.bookDao.findById(id);
-                book.ifPresent(bookEntity -> bookList.add(new Converter().map(bookEntity, Book.class)));
-            }
-
-            /** Ajouter les livres au stock et save **/
-            stock.setBooks( bookList );
-            StockEntity stockEntity = this.stockDao.save( new Converter().map( stock, StockEntity.class ) );
-            stock = new Converter().map(
-                    stockEntity, Stock.class
-            );
-        }
-        return stock;
+        if(stockItemEntity==null) return;
+        this.stockItemDao.delete(stockItemEntity);
     }
 
-    public Stock createStockTest(UUID idLibrary, List<UUID> idBooks) {
+    public StockItem updateStockItem(UUID libraryId, UUID stockItemId, StockItem stockItem){
+        LibraryEntity library = libraryDao.findById(libraryId).orElse(null);
+        StockItemEntity stockItemEntity;
+        if(library == null) return null;
 
-        List<Book> bookList = new ArrayList<Book>();
-        Optional<Library> library = this.libraryDao.findById( idLibrary ).map( l -> new Converter().map( l, Library.class ) );
-        Optional<BookEntity> book;
-        Stock s = new Stock();
+        stockItemEntity=library.getStocks().stream()
+                .filter(item -> item.getId().equals(stockItemId))
+                .findFirst()
+                .orElse(null);
 
-        if (library.isPresent()) {
+        if(stockItemEntity==null) return null;
 
-            for (UUID id : idBooks) {
-                book = this.bookDao.findById(id);
-                book.ifPresent(bookEntity -> bookList.add(new Converter().map(bookEntity, Book.class)));
-            }
-
-            s.setBooks(bookList);
-            if (library.isPresent()) s.setLibrary(library.get());
-
-        }
-
-        StockEntity stockToBeSaved = new Converter().map( s ,  StockEntity.class );
-        stockToBeSaved = this.stockDao.save(stockToBeSaved);
-        s = new Converter().map(stockToBeSaved , Stock.class );
-
-        return s;
+        stockItemEntity.setQuantity(stockItem.getQuantity());
+        stockItemEntity.setUnitPrice(stockItem.getUnitPrice());
+        return new Converter().map(this.stockItemDao.save(stockItemEntity), StockItem.class);
     }
-
-    //endregion
-
 }

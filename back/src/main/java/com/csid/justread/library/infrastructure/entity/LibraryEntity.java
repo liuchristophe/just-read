@@ -22,8 +22,12 @@ public class LibraryEntity {
     private AddressEntity address;
 
     @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "library_id")
+    @JoinColumn(name = "libraryId")
     private List<OrderEntity> orders;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "libraryId")
+    private List<StockItemEntity> stocks;
 
     public void setId(UUID id) {
         this.id = id;
@@ -55,5 +59,13 @@ public class LibraryEntity {
 
     public void setOrders(List<OrderEntity> orders) {
         this.orders = orders;
+    }
+
+    public List<StockItemEntity> getStocks() {
+        return stocks;
+    }
+
+    public void setStocks(List<StockItemEntity> stocks) {
+        this.stocks = stocks;
     }
 }

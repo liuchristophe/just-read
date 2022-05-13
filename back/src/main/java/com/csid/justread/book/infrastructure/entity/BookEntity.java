@@ -36,6 +36,9 @@ public class BookEntity {
     @Column(nullable = false)
     private Integer year;
 
+    @Column
+    private String urlImage;
+
     @ManyToOne(fetch = FetchType.LAZY)
     private PublisherEntity publisher;
 
@@ -103,6 +106,14 @@ public class BookEntity {
 
     public void setPublisher(PublisherEntity publisher) {
         this.publisher = publisher;
+    }
+
+    public String getUrlImage() {
+        return urlImage;
+    }
+
+    public void setUrlImage(String urlImage) {
+        this.urlImage = urlImage;
     }
 
     //endregion

@@ -14,7 +14,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     BookListComponent,
     BookDetailsComponent,
     BookSliderComponent,
-    BookItemComponent
+    BookItemComponent,
   ],
   imports: [
     CommonModule,

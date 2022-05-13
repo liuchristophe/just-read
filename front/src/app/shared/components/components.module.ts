@@ -10,6 +10,7 @@ import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { BannerComponent } from './banner/banner.component';
+import { FeaturesModule } from 'src/app/features/features.module';
 
 
 
@@ -26,7 +27,8 @@ import { BannerComponent } from './banner/banner.component';
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
-    RouterModule
+    RouterModule,
+    FeaturesModule
   ],
   exports: [
     MatToolbarModule,

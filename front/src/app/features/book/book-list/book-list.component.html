@@ -25,16 +25,19 @@
           <th>Synopsys</th>
           <th>ISBN</th>
           <th>Year</th>
+          <th>Category</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let book of books">
-          <td><img src="https://images-na.ssl-images-amazon.com/images/I/517MH9KJ38L.jpg"></td>
+          <td><img src="{{book.urlImage}}"></td>
           <!-- <td>{{book.id}}</td> -->
           <td><a href="book/{{book.id}}">{{book.title}}</a></td>
           <td>{{book.synopsys}}</td>
           <td>{{book.isbn}}</td>
           <td>{{book.year}}</td>
+          <td *ngIf="book.categories[0]!=null" >{{book.categories[0].name}}</td>
+          <td *ngIf="book.categories[0]==null" ></td>
         </tr>
       </tbody> 
     </table>

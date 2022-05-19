@@ -21,7 +21,17 @@
         <label for="year">Date de sortie du livre:</label>
         <br>
         <input type="text" name="year" ngModel required placeholder="Entrez la date de sortie du livre" ><br><br>
-      </div>q
+      </div>
+      <div class="form-group">
+        <label for="img">Image du livre:</label>
+        <br>
+        <input type="text" name="urlImage" ngModel required placeholder="Entrez l'url de l'image du livre" ><br><br>
+      </div>
+      <div class="form-group">
+        <label for="cat">Catégorie du livre:</label>
+        <br>
+        <input type="text" name="categories" ngModel required placeholder="Entrez la catégorie du livre" ><br><br>
+      </div>
       <button [disabled]="createBook.invalid || pending" type="submit">Valider la création</button>
     </form>
 
@@ -29,20 +39,25 @@
     {{displayMessage}}
     </span>
 </div>
+
 </body> -->
-<div class='bold-line'></div>
-<div class='container'>
-  <div class='window'>
-    <div class='overlay'></div>
-    <div class='content'>
-      <div class='welcome'>Ajout de livre</div>
-      <div class='input-fields'>
-        <input type='text' required placeholder='Titre du livre' class='input-line full-width'>
-        <input type='text' required placeholder='Synopsis' class='input-line full-width'>
-        <input type='text' required placeholder='ISBN' class='input-line full-width'>
-        <input type='text' required placeholder='Date de sortie' class='input-line full-width'>
+<form #createBook="ngForm" (ngSubmit)="creationLivre(createBook.value)">
+  <div class='bold-line'></div>
+  <div class='container'>
+    <div class='window'>
+      <div class='overlay'></div>
+      <div class='content'>
+        <div class='welcome'>Ajout de livre</div>
+        <div class='input-fields'>
+          <input type='text' name="title" ngModel required placeholder='Titre du livre' class='input-line full-width'>
+          <input type='text' name="synopsys" ngModel required placeholder='Synopsis' class='input-line full-width'>
+          <input type='text' name="isbn" ngModel required placeholder='ISBN' class='input-line full-width'>
+          <input type='text' name="year" ngModel required placeholder='Date de sortie' class='input-line full-width'>
+          <input type='text' name="urlImage" ngModel required placeholder='Couverture' class='input-line full-width'>
+          <input type='text' name="categories" ngModel required placeholder='Catégorie' class='input-line full-width'>
+        </div>
+        <div><button class='ghost-round full-width' [disabled]="createBook.invalid || pending" type="submit">Valider</button></div>
       </div>
-      <div><button class='ghost-round full-width'>Valider</button></div>
     </div>
   </div>
-</div>
+</form>

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { BookModel } from 'src/app/core/models/books.model';
 
 import { ApiService } from '../../core/services/api.service';
 
@@ -32,8 +33,12 @@ export class FormAjoutLivreComponent implements OnInit {
   }
 
   creationLivre(data: any){
+    let formBook: BookModel = data;
+    formBook.title = data.title;
+    formBook.categories = [{name : data.categories}];
+
     this.pending = true;
-    this.httpClient.post('/api/books',data)
+    this.httpClient.post('/api/books',formBook)
     .subscribe((result)=>{
       console.log("livre créé",result);
       this.router.navigate(['bookList']);

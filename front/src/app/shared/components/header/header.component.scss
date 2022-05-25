@@ -20,6 +20,7 @@
     box-shadow: 0 -25px 50px #000;
     position: sticky;
     top : 0;
+    z-index: 999 !important;
 
     * {
         font-family: var(--font-3);

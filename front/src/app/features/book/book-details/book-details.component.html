@@ -6,29 +6,35 @@
     <h4>ISBN : {{book.isbn}}</h4>
 </body> -->
 
+<div class="overlay">
+    
+    <div class="overlay-background" (click)="close()"></div>
 
-<body>
+    <!-- contenu -->
+    <div class="cdk-overlay-container">
+        <div id="cdk-overlay-0" class="cdk-overlay-pane" dir="ltr" *ngIf="book != undefined">
+            <div class="container">
+                <div class="imgBx">
+                    <img src="{{book.urlImage}}" alt="courverture">
+                </div>
+                <div class="details">
+                    <div class="content">
+                        <h2>{{book.title}}<br>
+                            <span>J. K. Rowling</span><br>
+                            <span>ISBN : {{book.isbn}}</span><br>
+                            <span>Année de parution : {{book.year}}</span>
+                        </h2>
 
-    <div class="container">
-        <div class="imgBx">
-            <img src="https://images-na.ssl-images-amazon.com/images/I/517MH9KJ38L.jpg" alt="courverture Harry Potter 1">
-        </div>
-        <div class="details">
-            <div class="content">
-                <h2>{{book.title}}<br>
-                    <span>J. K. Rowling</span><br>
-                    <span>ISBN : {{book.isbn}}</span><br>
-                    <span>Année de parution : {{book.year}}</span>
-                </h2>
-                
-                <p>
-                    {{book.synopsys}}
-                </p>
-                <h3>10€</h3>
+                        <p>
+                            {{book.synopsys}}
+                        </p>
+                        <h3>10€</h3>
 
-                <button>Acheter</button>
+                        <button>Acheter</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-</body>
+</div>

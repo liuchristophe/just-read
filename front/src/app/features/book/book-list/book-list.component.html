@@ -29,10 +29,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let book of books">
+        <tr *ngFor="let book of books" (click)="bookIsSelected(book)">
           <td><img src="{{book.urlImage}}"></td>
           <!-- <td>{{book.id}}</td> -->
-          <td><a href="book/{{book.id}}">{{book.title}}</a></td>
+          <!-- <td><a routerLink="book/{{book.id}}">{{book.title}}</a></td> -->
+          <td>{{book.title}}</td>
           <td>{{book.synopsys}}</td>
           <td>{{book.isbn}}</td>
           <td>{{book.year}}</td>
@@ -42,4 +43,8 @@
       </tbody> 
     </table>
   </div>
+
+  <!-- <div class="" *ngIf="detailClicked">
+    <app-book-details></app-book-details>
+  </div> -->
 </body>

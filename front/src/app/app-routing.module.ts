@@ -8,13 +8,13 @@ import { BookDetailsComponent } from './features/book/book-details/book-details.
 import { DashboardComponent } from './features/dashboard/dashboard.component';
 
 const routes: Routes = [
-  {path:'',redirectTo:'home', pathMatch:'full'},
-  {path: 'home', component: HomeComponent},
-  {path: 'ajoutLivre', component: FormAjoutLivreComponent},
+  {path : '',redirectTo:'home', pathMatch:'full'},
+  {path : 'home', component: HomeComponent},
+  {path : 'ajoutLivre', component: FormAjoutLivreComponent},
   {path : 'bookList',component: BookListComponent}, 
   {path : 'book/:id', component: BookDetailsComponent},
-  {path: 'dashboard', component: DashboardComponent},
-  {path: '**', component: PageNotFoundComponent}
+  {path : 'dashboard/:id', component: DashboardComponent},
+  {path : '**', component: PageNotFoundComponent}
 ];
 
 @NgModule({

@@ -5,6 +5,7 @@ import { HomeComponent } from './shared/components/home/home.component';
 import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
 import { BookListComponent } from './features/book/book-list/book-list.component';
 import { BookDetailsComponent } from './features/book/book-details/book-details.component';
+import { DashboardComponent } from './features/dashboard/dashboard.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'home', pathMatch:'full'},
@@ -12,6 +13,7 @@ const routes: Routes = [
   {path: 'ajoutLivre', component: FormAjoutLivreComponent},
   {path : 'bookList',component: BookListComponent}, 
   {path : 'book/:id', component: BookDetailsComponent},
+  {path: 'dashboard', component: DashboardComponent},
   {path: '**', component: PageNotFoundComponent}
 ];
 

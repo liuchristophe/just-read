@@ -1,18 +1,21 @@
-package com.csid.justread.library.service.model;
+package com.csid.justread.library.api.dto;
 
-import com.csid.justread.book.service.model.Book;
-import java.util.List;
+import com.csid.justread.book.infrastructure.entity.BookEntity;
+import com.csid.justread.library.infrastructure.entity.LibraryEntity;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 import java.util.UUID;
 
-public class Stock {
+public class StockItemDto {
 
     private UUID id;
-    private int quantity;
-    private int unitPrice;
-    private List<Book> books;
-    private Library library;
 
-    //region * Methods *
+    private int quantity;
+
+    private int unitPrice;
+
+    private BookEntity book;
 
     public UUID getId() {
         return id;
@@ -38,22 +41,12 @@ public class Stock {
         this.unitPrice = unitPrice;
     }
 
-    public List<Book> getBooks() {
-        return books;
+    public BookEntity getBook() {
+        return book;
     }
 
-    public void setBooks(List<Book> books) {
-        this.books = books;
+    public void setBook(BookEntity book) {
+        this.book = book;
     }
-
-    public Library getLibrary() {
-        return library;
-    }
-
-    public void setLibrary(Library library) {
-        this.library = library;
-    }
-
-    //endregion
 
 }

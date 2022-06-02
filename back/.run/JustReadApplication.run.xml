@@ -5,7 +5,7 @@
     <option name="VM_PARAMETERS" value="--add-opens java.base/java.lang=ALL-UNNAMED" />
     <extension name="coverage">
       <pattern>
-        <option name="PATTERN" value="com.csid.justread.*" />
+        <option name="PATTERN" value="com.csid.justread.exception.*" />
         <option name="ENABLED" value="true" />
       </pattern>
     </extension>

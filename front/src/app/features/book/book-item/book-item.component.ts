@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { BookItemModel } from 'src/app/core/models/book-item.model';
+import { BookModel } from 'src/app/core/models/books.model';
 
 
 
@@ -9,7 +10,7 @@ import { BookItemModel } from 'src/app/core/models/book-item.model';
   styleUrls: ['./book-item.component.scss']
 })
 export class BookItemComponent implements OnInit {
-  @Input() book!: BookItemModel;
+  @Input() book!: BookModel;
 
   constructor() { }
 

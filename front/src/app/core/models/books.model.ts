@@ -7,9 +7,9 @@ export interface BookModel {
     isbn: string;
     year: number;
     publisher: Thing;
+    urlImage: string;
 }
 
 interface Thing {
-    id: string;
     name: string;
 }

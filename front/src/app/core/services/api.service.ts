@@ -20,6 +20,10 @@ export class ApiService {
     return this.httpClient.get<Array<BookModel>>(this.urlBook);
   }
 
+  getBooksByCategoryName(categoryName : string): Observable<Array<BookModel>>{
+    return this.httpClient.get<Array<BookModel>>(this.urlBook+`/category/${categoryName}`);
+  }
+
   createBook(data: any): Observable<any>{
     return this.httpClient.post(this.urlBook,data);
   }

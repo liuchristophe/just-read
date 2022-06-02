@@ -6,7 +6,7 @@ import { BookListComponent } from './book-list/book-list.component';
 import { BookDetailsComponent } from './book-details/book-details.component';
 import { BookSliderComponent } from './book-slider/book-slider.component';
 import { BookItemComponent } from './book-item/book-item.component';
-
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 @NgModule({
   declarations: [
@@ -14,11 +14,12 @@ import { BookItemComponent } from './book-item/book-item.component';
     BookListComponent,
     BookDetailsComponent,
     BookSliderComponent,
-    BookItemComponent
+    BookItemComponent,
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    CarouselModule
   ],
   exports: [
     BookListComponent,

@@ -34,5 +34,5 @@ export class BookDetailsComponent implements OnInit {
     let url = `api/books/${id}`;
     return this.http.get(url);
   }
-
+  
 }

@@ -1,4 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import url('https://fonts.googleapis.com/css?family=Lato:400,300,100,700,900');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@1,500&display=swap');
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/**| VARIABLES |**/
+:root {
+  --font-1: "Yeseva one";
+  --font-2: "Lora";
+  --font-3: "Montserrat";
+  --color-grad-1: #6cbeb8;
+  --color-grad-2: #084a4d;
+}
+
+/**| CORRECTIFS |**/
+.owl-stage {
+    padding-top: 25px;
+    padding-bottom: 25px;
+}

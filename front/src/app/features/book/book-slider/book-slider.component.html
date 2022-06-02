@@ -1,13 +1,3 @@
-    <!-- <div class="book-slider-title">
-    <h6>{{title}}</h6>
-</div>
-<div class="book-slider">
-    <div class="book-card" *ngFor="let book of books">
-        <app-book-item [book]="book"></app-book-item>
-    </div>
-</div> -->
-
-<!-- <app-book-item *ngFor="let book of books" [book]="book"></app-book-item> -->
 <h2 class="book-slider-title">{{title}}</h2>
 <owl-carousel-o [options]="customOptions">
     <ng-template carouselSlide *ngFor="let book of books">

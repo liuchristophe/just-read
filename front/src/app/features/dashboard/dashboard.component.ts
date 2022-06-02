@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/internal/Observable';
 import { LibraryModel } from 'src/app/core/models/library.model';
@@ -12,6 +12,10 @@ import { LibraryModel } from 'src/app/core/models/library.model';
 export class DashboardComponent implements OnInit {
 
   @Input() library!: LibraryModel;
+
+  titleId = "library-name"
+  titleEdit   = false;
+  addressEdit = false;
 
   constructor( private route:ActivatedRoute, private http: HttpClient ) { }
 
@@ -30,4 +34,26 @@ export class DashboardComponent implements OnInit {
     return this.http.get(url);
   }
 
+  /** title edit **/
+  toggleTitleEdit() { this.titleEdit = !this.titleEdit; }
+
+  updateTitle() {
+    var name = document.querySelector(this.titleId)?.innerHTML; 
+    if (name && ( name == this.library.name || name?.length <= 3 ) ) {
+      this.library.name = name;
+      /** Todo : faire l'update en base  **/
+    }
+    this.toggleTitleEdit();
+  }
+
+  resetTitle() {
+    var name = document.querySelector(this.titleId)?.innerHTML; 
+    if (name != this.library.name )
+    this.toggleTitleEdit();
+  }
+
+  /** address edit **/
+  toggleAddressEdit () {
+    this.addressEdit = !this.addressEdit;
+  }
 }

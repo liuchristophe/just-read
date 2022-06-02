@@ -7,3 +7,18 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/**| VARIABLES |**/
+:root {
+  --font-1: "Yeseva one";
+  --font-2: "Lora";
+  --font-3: "Montserrat";
+  --color-grad-1: #6cbeb8;
+  --color-grad-2: #084a4d;
+}
+
+/**| CORRECTIFS |**/
+.owl-stage {
+    padding-top: 25px;
+    padding-bottom: 25px;
+}

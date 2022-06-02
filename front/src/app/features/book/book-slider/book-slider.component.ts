@@ -27,7 +27,7 @@ export class BookSliderComponent implements OnInit {
       publisher: {name: ""},
       urlImage: 'https://images-na.ssl-images-amazon.com/images/I/71EuX4ow7LL.jpg',
       title: 'A la recherche du temps perdu',
-      synopsys: '',
+      synopsys: 'Le héros de l’histoire est insouciant, mais il est attiré par le charme et les plaisirs de la haute société. Il réfléchit, au travers de son expérience, reconstruite par sa mémoire',
       author: '',
       year: 2000
     },
@@ -38,7 +38,7 @@ export class BookSliderComponent implements OnInit {
       publisher: {name: ""},
       urlImage: 'https://m.media-amazon.com/images/I/51b3pKNydRL.jpg',
       title: 'A la recherche du temps perdu',
-      synopsys: '',
+      synopsys: 'Le héros de l’histoire est insouciant, mais il est attiré par le charme et les plaisirs de la haute société. Il réfléchit, au travers de son expérience, reconstruite par sa mémoire',
       author: '',
       year: 2000
     },

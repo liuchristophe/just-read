@@ -58,4 +58,9 @@ public class Library {
     public void setStocks(List<StockItemEntity> stocks) {
         this.stocks = stocks;
     }
+
+    public void update(Library src) {
+        if (src.name    != null) this.name    = src.name;
+        if (src.address != null) this.address = src.address;
+    }
 }

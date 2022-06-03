@@ -47,8 +47,9 @@ export class DashboardComponent implements OnInit {
   }
 
   resetTitle() {
-    var name = document.querySelector(this.titleId)?.innerHTML; 
-    if (name != this.library.name )
+    const tag = document.querySelector(this.titleId);
+    var name  = tag?.innerHTML; 
+    if (tag && name != this.library.name)  tag.innerHTML = this.library.name;
     this.toggleTitleEdit();
   }
 

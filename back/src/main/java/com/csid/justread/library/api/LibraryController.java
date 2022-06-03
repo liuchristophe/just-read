@@ -3,6 +3,7 @@ package com.csid.justread.library.api;
 import com.csid.justread.Converter;
 import com.csid.justread.exception.ServiceException;
 import com.csid.justread.library.api.dto.LibraryDto;
+import com.csid.justread.library.api.dto.LibraryUpdateDto;
 import com.csid.justread.library.api.dto.StockItemDto;
 import com.csid.justread.library.service.LibraryService;
 import com.csid.justread.library.service.model.StockItem;
@@ -44,6 +45,17 @@ public class LibraryController {
         );
     }
 
+    @PatchMapping("/{uuid}")
+    public ResponseEntity<LibraryDto> updateLibrary( @PathVariable("uuid") UUID id, @RequestBody LibraryUpdateDto update ) {
+        return ResponseEntity.ok(
+                new Converter().map( this.libraryService.updateLibrary(id, new Converter().map( update, Library.class )), LibraryDto.class )
+        );
+    }
+
+    //endregion
+
+    //region * Stock Management *
+
     @GetMapping("/{libraryId}/stock")
     public ResponseEntity<List<StockItemDto>> getStock(@PathVariable("libraryId") UUID libraryId){
         return ResponseEntity.ok(new Converter().mapAsList(libraryService.getStock(libraryId), StockItemDto.class));
@@ -73,4 +85,6 @@ public class LibraryController {
                         new Converter().map(stockItemDto, StockItem.class)
                 ), StockItemDto.class));
     }
+
+    //endregion
 }

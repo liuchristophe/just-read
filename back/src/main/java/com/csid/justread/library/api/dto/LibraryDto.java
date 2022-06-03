@@ -13,6 +13,8 @@ public class LibraryDto {
 
     private String name;
 
+    private String urlImage;
+
     private AddressDto address;
 
     private List<OrderDto> orders;
@@ -57,5 +59,13 @@ public class LibraryDto {
 
     public void setStocks(List<StockItemEntity> stocks) {
         this.stocks = stocks;
+    }
+
+    public String getUrlImage() {
+        return urlImage;
+    }
+
+    public void setUrlImage(String urlImage) {
+        this.urlImage = urlImage;
     }
 }

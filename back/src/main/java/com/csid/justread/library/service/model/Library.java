@@ -13,6 +13,8 @@ public class Library {
 
     private String name;
 
+    private String description;
+
     private String urlImage;
 
     private Address address;
@@ -67,5 +69,13 @@ public class Library {
 
     public void setUrlImage(String urlImage) {
         this.urlImage = urlImage;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

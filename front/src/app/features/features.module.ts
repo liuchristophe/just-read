@@ -4,10 +4,12 @@ import { FormsModule } from '@angular/forms';
 
 import { FormAjoutLivreComponent } from './form-ajout-livre/form-ajout-livre.component';
 import { BookModule } from './book/book.module';
+import { LibraryPresentationComponent } from './library-presentation/library-presentation.component';
 
 @NgModule({
   declarations: [
-    FormAjoutLivreComponent
+    FormAjoutLivreComponent,
+    LibraryPresentationComponent
   ],
   imports: [
     CommonModule,
@@ -16,6 +18,7 @@ import { BookModule } from './book/book.module';
   ],
   exports:[
     FormAjoutLivreComponent,
+    LibraryPresentationComponent,
     BookModule
   ]
 })

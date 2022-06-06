@@ -1,4 +1,19 @@
 <app-banner></app-banner>
 <app-book-slider [title]="trending1"></app-book-slider>
 <app-book-slider [title]="trending2"></app-book-slider>
-<app-book-slider [title]="trending3" [books]="booksAventure"></app-book-slider>
+
+<!-- Affichage de la présentation de library que si une library est défini -->
+<div *ngIf="libraryProche.name != undefined">
+    <app-library-presentation ></app-library-presentation>
+</div>
+
+<app-book-slider [title]="trending2"></app-book-slider>
+
+<app-book-slider [title]="trending2"></app-book-slider>
+
+
+<!-- Affichage de la catégorie Aventure que si au moins un livre de cette catégorie est présent -->
+<div *ngIf="booksAventure.length > 0">
+    <app-book-slider [title]="trending3" [books]="booksAventure"></app-book-slider>
+</div>
+

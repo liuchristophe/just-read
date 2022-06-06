@@ -21,6 +21,9 @@ public class LibraryEntity {
     @Column()
     private String urlImage;
 
+    @Column()
+    private String description;
+
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private AddressEntity address;
 
@@ -78,5 +81,13 @@ public class LibraryEntity {
 
     public void setUrlImage(String urlImage) {
         this.urlImage = urlImage;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

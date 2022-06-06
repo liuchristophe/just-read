@@ -17,6 +17,8 @@ public class LibraryDto {
 
     private AddressDto address;
 
+    private String description;
+
     private List<OrderDto> orders;
 
     private List<StockItemEntity> stocks;
@@ -67,5 +69,13 @@ public class LibraryDto {
 
     public void setUrlImage(String urlImage) {
         this.urlImage = urlImage;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

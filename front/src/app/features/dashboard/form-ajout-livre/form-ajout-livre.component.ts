@@ -3,7 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { BookModel } from 'src/app/core/models/books.model';
 
-import { ApiService } from '../../core/services/api.service';
+import { ApiService } from '../../../core/services/api.service';
 
 @Component({
   selector: 'app-form-ajout-livre',
@@ -25,7 +25,7 @@ export class FormAjoutLivreComponent implements OnInit {
     this.pending = true;
     this.apiService.createBook(data).subscribe((result) => {
       console.log("livre créé",result);
-      this.router.navigate(['bookList']);
+      this.router.navigate(['liste_livres']);
     },error => {
       this.displayMessage='failed : error'+error.message;
       this.pending=false;
@@ -41,7 +41,7 @@ export class FormAjoutLivreComponent implements OnInit {
     this.httpClient.post('/api/books',formBook)
     .subscribe((result)=>{
       console.log("livre créé",result);
-      this.router.navigate(['bookList']);
+      this.router.navigate(['liste_livres']);
     },error=>{
       this.displayMessage='failed : error'+error.message;
       this.pending=false;

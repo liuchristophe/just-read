@@ -1,0 +1,19 @@
+<h1>{{library.name}}</h1>
+<div>
+    <div id="gauche">    
+        <img alt="library devanture" src={{library.urlImage}}><img>
+        <h2>{{library.address.zipCode}} {{library.address.streetName}}, {{library.address.city}} ({{library.address.country}})</h2>
+        <p>{{library.description}}</p>
+    </div>
+    
+    <div id="droite">
+        <div id="grid-container">
+            <div *ngFor="let stock of library.stocks; index as i">
+                 <app-book-item *ngIf="i<6" class="item" [book]="stock.book"></app-book-item>
+            </div>
+         </div>
+         <p>voir plus</p>
+    </div>
+    
+    
+</div>

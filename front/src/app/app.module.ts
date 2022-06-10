@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -14,7 +15,7 @@ import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -24,8 +25,7 @@ import { SharedModule } from './shared/shared.module';
     FeaturesModule,
     SharedModule,
     HttpClientModule,
-    RouterModule,
-    CarouselModule
+    RouterModule
   ],
   providers: [],
   exports: [

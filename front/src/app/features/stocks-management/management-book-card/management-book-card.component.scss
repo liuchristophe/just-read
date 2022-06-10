@@ -1,0 +1,40 @@
+.card {
+    display: inline-block;
+    width: 200px;
+    margin: 10px 20px;
+    border: 1px black solid;
+}
+
+img {
+    width: 100%;
+    height: 300px;
+}
+
+.title-section {
+    display: block;
+}
+
+.title {
+    display: inline-block;
+    font-size: 18px;
+}
+
+button {
+    display: inline;
+    padding: 0;
+    width: 25px;
+    height: 25px;
+}
+
+mat-icon {
+    display: inline-block;
+    font-size: 15px;
+    margin: 1px;
+    padding: 0;
+    width: 15px;
+    height: 15px;
+}
+
+.material-icons.green{
+    color: green;
+}

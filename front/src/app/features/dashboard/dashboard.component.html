@@ -1,14 +1,16 @@
 <div class="container-fluid">
 
     <div class="headings">
-        <h1 id="library-name" [attr.contenteditable]="this.titleEdit">{{library.name}}</h1>
-        <button [ngClass]="{'hide': this.titleEdit != false}" (click)="toggleTitleEdit()"> modifier </button>
-        <div    [ngClass]="{'hide': this.titleEdit == false}" class="jr-btn-group">
-            <button (click)="updateTitle()"> save   </button>
-            <button (click)="resetTitle ()"> cancel </button>
-        </div>
+        <form #libraryName = "ngForm">
+            <input  [(ngModel)]="library.name" type="text" name="name"  class="h1" [readonly]="!this.titleEdit"/>
+            <button [ngClass]="{'hide': this.titleEdit != false}" (click)="toggleTitleEdit()"> modifier </button>
+            <div    [ngClass]="{'hide': this.titleEdit == false}" class="jr-btn-group">
+                <button [disabled]="!this.titleEdit" (click)="updateTitle()"> save   </button>
+                <button [disabled]="!this.titleEdit" (click)="resetTitle ()"> cancel </button>
+            </div>
+        </form>
     </div>
-    
+
     <h2>Outils</h2>
     <div class="tooltip">
         <a href="#">Gérer les stocks</a><br/>
@@ -21,36 +23,38 @@
     
         <h3 class="section-title">Adresse</h3>
         
-        <div class="jr-editable">
-            <input type="text" class="jr-input" attr.value="{{library.address.streetName}}" [readonly]="!this.addressEdit"/>
-            <div class="jr-label">Rue</div>
-        </div>
-
-        <div class="jr-editable">
-            <input type="text" class="jr-input" attr.value="{{library.address.complementaryField}}" [readonly]="!this.addressEdit"/>
-            <div class="jr-label">Complément d'adresse</div>
-        </div>
-
-        <div class="jr-editable">
-            <input type="text" class="jr-input" attr.value="{{library.address.zipCode}}" [readonly]="!this.addressEdit"/>
-            <div class="jr-label">Code postal</div>
-        </div>
-
-        <div class="jr-editable">
-            <input type="text" class="jr-input" attr.value="{{library.address.city}}" [readonly]="!this.addressEdit"/>
-            <div class="jr-label">Ville</div>
-        </div>
-
-        <div class="jr-editable">
-            <input type="text" class="jr-input" attr.value="{{library.address.country}}" [readonly]="!this.addressEdit"/>
-            <div class="jr-label">Pays</div>
-        </div>
-
-        <button [ngClass]="{'hide': this.addressEdit != false}" (click)="toggleAddressEdit()">modifier</button>
-        <div    [ngClass]="{'hide': this.addressEdit == false}" class="jr-btn-group">
-            <button>save</button>
-            <button>cancel</button>
-        </div>
+        <form #LibraryAddress = "ngForm">
+            <div class="jr-editable">
+                <input  [(ngModel)]="library.address.streetName" type="text" class="jr-input" name="streetName"  [readonly]="!this.addressEdit"/>
+                <div class="jr-label">Rue</div>
+            </div>
+    
+            <div class="jr-editable">
+                <input  [(ngModel)]="library.address.complementaryField" type="text" class="jr-input" name="complementaryField"  [readonly]="!this.addressEdit"/>
+                <div class="jr-label">Complément d'adresse</div>
+            </div>
+    
+            <div class="jr-editable">
+                <input  [(ngModel)]="library.address.zipCode" type="text" class="jr-input" name="zipCode"  [readonly]="!this.addressEdit"/>
+                <div class="jr-label">Code postal</div>
+            </div>
+    
+            <div class="jr-editable">
+                <input  [(ngModel)]="library.address.city" type="text" class="jr-input" name="city"  [readonly]="!this.addressEdit"/>
+                <div class="jr-label">Ville</div>
+            </div>
+    
+            <div class="jr-editable">
+                <input  [(ngModel)]="library.address.country" type="text" class="jr-input" name="country"  [readonly]="!this.addressEdit"/>
+                <div class="jr-label">Pays</div>
+            </div>
+    
+            <button [ngClass]="{'hide': this.addressEdit != false}" (click)="toggleAddressEdit()">modifier</button>
+            <div    [ngClass]="{'hide': this.addressEdit == false}" class="jr-btn-group">
+                <button [disabled]="!this.addressEdit" (click)="updateAddress()">save</button>
+                <button [disabled]="!this.addressEdit" (click)="resetAddress()">cancel</button>
+            </div>
+        </form>
 
     </div>
 

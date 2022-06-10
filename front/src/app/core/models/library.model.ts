@@ -5,11 +5,9 @@ export interface LibraryModel {
     orders: Array<Thing>,
     stocks: Array<Thing>
 }
-
 interface Thing {
     id: string;
 }
-
 interface Address {
     id: string,
     streetName: string,

@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { ApiService } from '../../../core/services/api.service';
 import { BookModel } from '../../../core/models/books.model';
+import { BookDetailsOverlayService } from 'src/app/core/services/book-details-overlay.service';
 
 @Component({
   selector: 'app-book-list',
@@ -19,9 +20,14 @@ export class BookListComponent implements OnInit {
 
   title: string = '';
 
+  detailClicked = false;
+
+  bookSelected ?: BookModel;
+
 
   constructor(private http: HttpClient,
-    private apiService: ApiService) {
+    private apiService: ApiService,
+    private bookDetailsOverlayService: BookDetailsOverlayService) {
     this.init();
     
    }
@@ -39,7 +45,14 @@ export class BookListComponent implements OnInit {
     }, error => {
       alert(`N'arrive pas à récupérer le getAllBooks ...`);
     });
-}
+    this.bookDetailsOverlayService.update$.subscribe(updated=>{
+      this.detailClicked = this.bookDetailsOverlayService.detailClicked;
+    })
+  }
+
+  ngOnDestroy() {
+    this.bookDetailsOverlayService.detailIsClosed();
+  }
 
   onFilterChange(){
     console.log('onFilterChange ' + this.title);
@@ -60,5 +73,10 @@ export class BookListComponent implements OnInit {
       }
     }
     return true;
+  }
+
+  bookIsSelected(book: BookModel) {
+    this.bookSelected = book;
+    this.bookDetailsOverlayService.detailIsClicked(book.id);
   }
 }

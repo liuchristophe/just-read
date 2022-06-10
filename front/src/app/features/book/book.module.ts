@@ -7,6 +7,7 @@ import { BookDetailsComponent } from './book-details/book-details.component';
 import { BookSliderComponent } from './book-slider/book-slider.component';
 import { BookItemComponent } from './book-item/book-item.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 @NgModule({
   declarations: [
@@ -19,13 +20,17 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
   imports: [
     CommonModule,
     FormsModule,
-    CarouselModule
+    CarouselModule,
+    OverlayModule,
   ],
   exports: [
     BookListComponent,
     BookDetailsComponent,
     BookSliderComponent,
     BookItemComponent
+  ],
+  entryComponents: [
+    BookSliderComponent
   ]
 })
 export class BookModule { }

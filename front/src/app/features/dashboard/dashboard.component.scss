@@ -1,0 +1,26 @@
+/*
+.container-fluid {
+    width: 70vw !important;
+    margin: 0 auto;
+    border: solid 1px red;
+}
+input.h2 {
+    overflow: visible;
+    width: 90% !important;
+    font-size: 18pt;
+    border: none;
+    box-shadow: none;
+    font-family: var(--font-3);
+    font-weight: 600;
+
+    &:focus{
+        outline: none !important;
+        &:not(:read-only) {
+            color: green;
+            border: none;
+            box-shadow: none;
+        }
+    }
+
+}
+*/

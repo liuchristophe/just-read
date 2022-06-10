@@ -2,7 +2,7 @@
 
     <div class="headings">
         <form #libraryName = "ngForm">
-            <input  [(ngModel)]="library.name" type="text" name="name"  class="h1" [readonly]="!this.titleEdit"/>
+            <input  [(ngModel)]="library.name" type="text" name="name"  class="h2" [readonly]="!this.titleEdit"/>
             <button [ngClass]="{'hide': this.titleEdit != false}" (click)="toggleTitleEdit()"> modifier </button>
             <div    [ngClass]="{'hide': this.titleEdit == false}" class="jr-btn-group">
                 <button [disabled]="!this.titleEdit" (click)="updateTitle()"> save   </button>

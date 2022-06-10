@@ -11,7 +11,7 @@ const routes: Routes = [
         component: DashboardComponent, 
         children: [
             { path: 'ajout_livre', component: FormAjoutLivreComponent },
-            { path: '**', component: PageNotFoundComponent }
+            // { path: '**', component: PageNotFoundComponent }
         ]
     }
 ];

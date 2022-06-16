@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { BookModel } from '../models/books.model';
-import { LibraryModel } from '../models/library.model';
+import { AddressModel, LibraryModel } from '../models/library.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -36,6 +36,10 @@ export class ApiService {
 
   getAllLibrary$(): Observable<Array<LibraryModel>>{
     return this.httpClient.get<Array<LibraryModel>>(this.urlLibrary);
+  }
+
+  getAdresse$(adresse: string): Observable<Array<any>>{
+    return this.httpClient.get<Array<any>>("https://api-adresse.data.gouv.fr/search/?q="+adresse.replace(" ", "+"))
   }
   
 }

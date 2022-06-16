@@ -38,3 +38,4 @@ export interface StockModel {
     unitPrice: number;
     book: BookModel;
 }
+

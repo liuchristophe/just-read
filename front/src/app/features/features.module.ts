@@ -6,20 +6,23 @@ import { BookModule } from './book/book.module';
 
 import { LibraryPresentationComponent } from './library-presentation/library-presentation.component';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { OverlayLocationModule } from './overlay-location/overlay-location.module';
 
 @NgModule({
   declarations: [
-    LibraryPresentationComponent
+    LibraryPresentationComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
     BookModule,
-    DashboardModule
+    DashboardModule,
+    OverlayLocationModule
   ],
   exports:[
     LibraryPresentationComponent,
-    BookModule
+    BookModule,
+    OverlayLocationModule
   ]
 })
 export class FeaturesModule { }

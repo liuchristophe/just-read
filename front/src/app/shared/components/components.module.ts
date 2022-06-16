@@ -11,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { BannerComponent } from './banner/banner.component';
 import { FeaturesModule } from 'src/app/features/features.module';
+import { FooterComponent } from './footer/footer.component';
 
 
 
@@ -20,7 +21,8 @@ import { FeaturesModule } from 'src/app/features/features.module';
     HeaderComponent,
     HomeComponent,
     PageNotFoundComponent,
-    BannerComponent
+    BannerComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
@@ -37,7 +39,8 @@ import { FeaturesModule } from 'src/app/features/features.module';
     HeaderComponent,
     HomeComponent,
     PageNotFoundComponent,
-    BannerComponent
+    BannerComponent,
+    FooterComponent
   ]
 })
 export class ComponentsModule { }

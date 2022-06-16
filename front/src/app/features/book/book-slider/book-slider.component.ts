@@ -1,18 +1,24 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Injectable, Input, OnInit } from '@angular/core';
 
 import { BookItemModel } from '../../../core/models/book-item.model';
 
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { BookModel } from 'src/app/core/models/books.model';
+import { Overlay } from '@angular/cdk/overlay';
+import { ComponentPortal } from '@angular/cdk/portal';
+import { BookDetailsComponent } from '../book-details/book-details.component';
+import { BookDetailsOverlayService } from 'src/app/core/services/book-details-overlay.service';
 
 @Component({
   selector: 'app-book-slider',
   templateUrl: './book-slider.component.html',
   styleUrls: ['./book-slider.component.scss']
 })
+
 export class BookSliderComponent implements OnInit {
   // title = `test`;
   @Input() title = ''; // decorate the property with @Input()
+  
   @Input() books: Array<BookModel> = [
     {
       id: "",
@@ -190,9 +196,31 @@ export class BookSliderComponent implements OnInit {
     },
     nav: true
   }
+  
+  detailClicked: boolean = false;
 
-  constructor() { }
+  constructor(private truc : BookDetailsOverlayService) { 
+  }
+  
 
+  // open() {
+  //   // Returns an OverlayRef (which is a PortalHost)
+  //   const overlayRef = this.overlay.create();
+
+  //   // Create ComponentPortal that can be attached to a PortalHost
+  //   const filePreviewPortal = new ComponentPortal(BookDetailsComponent);
+
+  //   // Attach ComponentPortal to PortalHost
+  //   overlayRef.attach(filePreviewPortal);
+  // }
+  
+  openDetails(){
+    // this.truc.openOverlay();
+  }
   ngOnInit(): void {
+    this.truc.update$.subscribe(updated => {
+      this.detailClicked = this.truc.detailClicked;
+      console.log(`slider detailCLicked service = ${this.truc.detailClicked} detailClicked slider = ${this.detailClicked}`);
+    })
   }
 }

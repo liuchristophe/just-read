@@ -1,29 +1,71 @@
 <div class="container-fluid">
 
+    <!--| LIBRARY NAME |-->
     <div class="headings">
         <form #libraryName = "ngForm">
             <input  [(ngModel)]="library.name" type="text" name="name"  class="h2" [readonly]="!this.titleEdit"/>
             <button [ngClass]="{'hide': this.titleEdit != false}" (click)="toggleTitleEdit()"> modifier </button>
             <div    [ngClass]="{'hide': this.titleEdit == false}" class="jr-btn-group">
-                <button [disabled]="!this.titleEdit" (click)="updateTitle()"> save   </button>
-                <button [disabled]="!this.titleEdit" (click)="resetTitle ()"> cancel </button>
+                <button [disabled]="!this.titleEdit" (click)="updateOnSubmit()"> save   </button>
+                <button [disabled]="!this.titleEdit" (click)="resetAll()"> cancel </button>
             </div>
         </form>
     </div>
 
+    <!--| TOOLS |-->
     <h2>Outils</h2>
     <div class="tooltip">
         <a href="#">Gérer les stocks</a><br/>
         <a href="#">Ajouter un livre</a><br/>
         <a href="#">Voir les commandes</a><br/>
     </div>
-
-    <h2> Informations </h2>
-    <div class="section">
     
+    <!--| LIBRARY DETAILS |-->
+    <div class="section">
+        <h3 class="section-title">Informations</h3>
+        <div class="container-fluid">
+            <div class="row">
+                
+                <!-- IMAGE -->
+                <div class="col-lg-6"> 
+                    <img [src]="this.library.urlImage" alt="Devanture de la librairie" />
+                    <button [ngClass]="{'hide': this.imageEdit != false}" (click)="toggleImageEdit()"> modifier </button>
+                    <div    [ngClass]="{'hide': this.imageEdit == false}">
+                        <form #libraryImage = "ngForm">
+                            <div class="jr-editable">
+                                <input [(ngModel)]="this.library.urlImage" type="text" class="jr-input" name="urlImage"  [readonly]="!this.imageEdit" />
+                                <div class="jr-label">Image</div>
+                                <div class="jr-btn-group">
+                                    <button [disabled]="!this.imageEdit" (click)="updateOnSubmit()"> save </button>
+                                    <button [disabled]="!this.imageEdit" (click)="resetAll()"> cancel </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- DESCRIPTION -->
+                <div class="col-lg-6">
+                    <form #libraryDescription = "ngForm">
+                        <div class="jr-textarea">
+                            <textarea [(ngModel)]="this.library.description" name="description" id="description" cols="50" rows="5" [readonly]="!this.descriptionEdit">{{this.library.description}}</textarea>
+                        </div>
+                        <button [ngClass]="{'hide': this.descriptionEdit != false}" (click)="toggleDescriptionEdit()"> modifier </button>
+                        <div    [ngClass]="{'hide': this.descriptionEdit == false}" class="jr-btn-group">
+                            <button [disabled]="!this.descriptionEdit" (click)="updateOnSubmit()"> save   </button>
+                            <button [disabled]="!this.descriptionEdit" (click)="resetAll()"> cancel </button>
+                        </div>
+                    </form>
+                </div>
+           
+            </div>
+        </div>
+    </div>
+
+    <!--| LIBRARY ADDRESS |-->
+    <div class="section">
         <h3 class="section-title">Adresse</h3>
-        
-        <form #LibraryAddress = "ngForm">
+        <form #libraryAddress = "ngForm">
             <div class="jr-editable">
                 <input  [(ngModel)]="library.address.streetName" type="text" class="jr-input" name="streetName"  [readonly]="!this.addressEdit"/>
                 <div class="jr-label">Rue</div>
@@ -51,11 +93,10 @@
     
             <button [ngClass]="{'hide': this.addressEdit != false}" (click)="toggleAddressEdit()">modifier</button>
             <div    [ngClass]="{'hide': this.addressEdit == false}" class="jr-btn-group">
-                <button [disabled]="!this.addressEdit" (click)="updateAddress()">save</button>
-                <button [disabled]="!this.addressEdit" (click)="resetAddress()">cancel</button>
+                <button [disabled]="!this.addressEdit" (click)="updateOnSubmit()">save</button>
+                <button [disabled]="!this.addressEdit" (click)="resetAll()">cancel</button>
             </div>
         </form>
-
     </div>
 
 </div>

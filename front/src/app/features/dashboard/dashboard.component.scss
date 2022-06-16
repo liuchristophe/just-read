@@ -23,4 +23,19 @@ input.h2 {
     }
 
 }
+
+:host{
+    display: flex;
+    flex-direction: column;
+    height: 770px;
+}
+
+mat-drawer{
+    width: 350px;
+}
+
+mat-drawer-container {
+    height: 100%;
+} 
+
 */

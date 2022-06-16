@@ -21,6 +21,11 @@ export class HeaderComponent implements OnInit {
   addbook = {'title':'Ajouter un livre', 'link':'/ajoutLivre','selected' : false};
   bookList = {'title':'Liste des livres', 'link':'/bookList', 'selected' : false};
   navigations: Navigation[] = [this.home, this.dashboard, this.addbook, this.bookList];
+/*
+  dashboard = {'title': 'Tableau de bord', 'link': '/dashboard', 'selected': false};
+  bookList = {'title':'Liste des livres', 'link':'/liste_livres', 'selected' : false};
+  navigations: Navigation[] = [this.home, this.dashboard, this.bookList];
+*/
 
   constructor() { }
 

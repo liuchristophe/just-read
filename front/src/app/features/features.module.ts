@@ -1,23 +1,24 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
-import { FormAjoutLivreComponent } from './form-ajout-livre/form-ajout-livre.component';
 import { BookModule } from './book/book.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { LibraryPresentationComponent } from './library-presentation/library-presentation.component';
+import { DashboardModule } from './dashboard/dashboard.module';
+import { FormAjoutLivreComponent } from './dashboard/form-ajout-livre/form-ajout-livre.component';
 
 @NgModule({
   declarations: [
-    FormAjoutLivreComponent,
-    DashboardComponent
+    LibraryPresentationComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
-    BookModule
+    BookModule,
+    // DashboardModule
   ],
   exports:[
-    FormAjoutLivreComponent,
+    LibraryPresentationComponent,
     BookModule
   ]
 })

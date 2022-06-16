@@ -1,18 +1,38 @@
+import { BookModel } from "./books.model";
+
 export interface LibraryModel {
     id: string,
     name: string,
-    address: Address,
-    orders: Array<Thing>,
-    stocks: Array<Thing>
+    address: AddressModel
+    urlImage: string;
+    description: string;
+    stocks: Array<StockModel>;
+    orders: Array<OrderModel>;
 }
-interface Thing {
-    id: string;
-}
-interface Address {
+interface AddressModel{
     id: string,
     streetName: string,
     complementaryField: string,
     zipCode: string,
     city: string,
     country: string
+}
+export interface OrderModel {
+    id: string;
+    date: string;
+    tva: number;
+    utilisateur: string;
+    orderItem: Array<OrderItemModel>;
+}
+export interface OrderItemModel {
+    id: string;
+    price: number;
+    quantity: number;
+    book: BookModel;
+}
+export interface StockModel {
+    id: string;
+    quantity: number;
+    unitPrice: number;
+    book: BookModel;
 }

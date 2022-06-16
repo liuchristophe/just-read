@@ -23,8 +23,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 /** Headers **/
 h1 {
-  font-family: var(--font-1);
-  font-size: 2.8em;
+  font-family: var(--font-1) !important;
+  font-size: 23pt !important/* 2.8em */;
   padding: 10px 0;
   font-weight: 800;
 }
@@ -34,3 +34,5 @@ h1 {
     padding-top: 25px;
     padding-bottom: 25px;
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

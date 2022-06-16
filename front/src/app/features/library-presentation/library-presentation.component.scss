@@ -1,0 +1,29 @@
+#gauche{
+    float: left;
+    width: 40%;
+    height: 550px;
+    padding: 20px;
+}
+#gauche img{
+    width: 100%;
+    height: auto;
+}
+#droite{
+    float: right;
+    padding: 10px;
+    width: 55%;
+    height: 550px;
+}
+#droite p{
+    text-align: right;
+    padding-left: 25px;
+
+}
+#grid-container{
+  display: grid;
+  height: 550px;
+  grid-template-columns: auto auto auto;
+  padding-left: 25px;
+  border-left: 4px solid darkgray; 
+
+}

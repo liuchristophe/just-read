@@ -11,6 +11,8 @@ public class OrderItem {
 
     private Book book;
 
+    private UUID id;
+
     private int quantity;
 
     private float price;
@@ -37,5 +39,13 @@ public class OrderItem {
 
     public void setPrice(float price) {
         this.price = price;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 }

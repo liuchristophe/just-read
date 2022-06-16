@@ -1,6 +1,8 @@
 export interface LibraryUpdateModel {
     name: string|null,
-    address: Address|null
+    address: Address|null, 
+    urlImage: string|null,
+    description: string|null
 }
 interface Address {
     id: string,

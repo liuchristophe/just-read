@@ -16,6 +16,8 @@ export class DashboardComponent implements OnInit {
 
   titleEdit   = false;
   addressEdit = false;
+  descriptionEdit = false;
+  imageEdit = false;
 
   constructor( private route:ActivatedRoute, private http: HttpClient ) { }
 
@@ -27,9 +29,9 @@ export class DashboardComponent implements OnInit {
 
   loadLibrary() {
     const libraryId = this.route.snapshot.paramMap.get('id');
-    this.getLibraryById(libraryId).subscribe( data => this.library = data );
+    this.getLibraryById$(libraryId).subscribe( data => this.library = data );
   }
-  getLibraryById(id: string | null) : Observable<any> {
+  getLibraryById$(id: string | null) : Observable<any> {
     let url = `api/library/${id}`;
     return this.http.get(url);
   }
@@ -42,22 +44,31 @@ export class DashboardComponent implements OnInit {
 
   toggleTitleEdit   () { this.titleEdit   = !this.titleEdit;   }
   toggleAddressEdit () { this.addressEdit = !this.addressEdit; }
-
-  /** TITLE **/
-
-  updateTitle() {
-    let libraryUpdate: LibraryUpdateModel = { name: this.library.name, address: null };
-    this.updateLibrary( this.library.id, libraryUpdate ).subscribe(data => { console.log(data) })
-    this.toggleTitleEdit();
+  toggleImageEdit   () { this.imageEdit   = !this.imageEdit;   }
+  toggleDescriptionEdit () { this.descriptionEdit = !this.descriptionEdit; }
+  resetEdit() { 
+    this.titleEdit   = false;
+    this.addressEdit = false;
+    this.descriptionEdit = false;
+    this.imageEdit = false;
   }
-  resetTitle() {}
 
-  /** ADDRESS **/
+  /** SUBMIT **/
 
-  updateAddress() {
-    let libraryUpdate: LibraryUpdateModel = { name: null, address: this.library.address };
+  updateOnSubmit() {
+    let libraryUpdate: LibraryUpdateModel = { 
+      name: this.library.name,
+      address: this.library.address,
+      urlImage: this.library.urlImage,
+      description: this.library.description 
+    };
     this.updateLibrary( this.library.id, libraryUpdate ).subscribe(data => { console.log(data) })
-    this.toggleAddressEdit();
+    this.resetEdit();
   }
-  resetAddress() {}
+
+  resetAll() {
+    this.loadLibrary();
+    this.resetEdit();
+  }
+
 }

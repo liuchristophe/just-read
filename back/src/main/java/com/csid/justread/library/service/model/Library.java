@@ -10,14 +10,13 @@ import java.util.UUID;
 public class Library {
 
     private UUID id;
-
     private String name;
-
+    private String description;
+    private String urlImage;
     private Address address;
-
     private List<Order> orders;
-
     private List<StockItemEntity> stocks;
+
 
     public UUID getId() {
         return id;
@@ -59,8 +58,27 @@ public class Library {
         this.stocks = stocks;
     }
 
-    public void update(Library src) {
-        if (src.name    != null) this.name    = src.name;
-        if (src.address != null) this.address = src.address;
+    public String getUrlImage() {
+        return urlImage;
     }
+
+    public void setUrlImage(String urlImage) {
+        this.urlImage = urlImage;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void update(Library src) {
+        if (src.getName() != null) this.name = src.name;
+        if (src.getAddress() != null) this.address = src.address;
+        if (src.getUrlImage() != null)  this.urlImage = src.getUrlImage();
+        if (src.getDescription() != null) this.description = src.getDescription();
+    }
+
 }

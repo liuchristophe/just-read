@@ -11,6 +11,13 @@ public class LibraryUpdateDto {
     @JsonProperty("address")
     private AddressDto address;
 
+    @JsonProperty("urlImage")
+    private String urlImage;
+
+    @JsonProperty("description")
+    private String description;
+
+
     //region * Methods *
 
     public String getName() {
@@ -29,6 +36,21 @@ public class LibraryUpdateDto {
         this.address = address;
     }
 
+    public String getUrlImage() {
+        return urlImage;
+    }
+
+    public void setUrlImage(String urlImage) {
+        this.urlImage = urlImage;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     //endregion
 

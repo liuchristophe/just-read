@@ -4,12 +4,10 @@ import { FormsModule } from '@angular/forms';
 
 import { BookModule } from './book/book.module';
 import { LibraryPresentationComponent } from './library-presentation/library-presentation.component';
-import { FormAjoutLivreComponent } from './dashboard/form-ajout-livre/form-ajout-livre.component';
 import { DashboardModule } from './dashboard/dashboard.module';
 
 @NgModule({
   declarations: [
-    FormAjoutLivreComponent,
     LibraryPresentationComponent
   ],
   imports: [
@@ -19,7 +17,6 @@ import { DashboardModule } from './dashboard/dashboard.module';
     DashboardModule
   ],
   exports:[
-    FormAjoutLivreComponent,
     LibraryPresentationComponent,
     BookModule
   ]

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { map } from 'rxjs';
 import { BookItemModel } from 'src/app/core/models/book-item.model';
 import { BookModel } from 'src/app/core/models/books.model';
+import { ApiService } from 'src/app/core/services/api.service';
 
 @Component({
   selector: 'app-stocks-list',
@@ -9,25 +11,35 @@ import { BookModel } from 'src/app/core/models/books.model';
 })
 export class StocksListComponent implements OnInit {
 
-  book1: BookItemModel = {
-    title: `Le plus grand ennemi`, 
-    image: `https://m.media-amazon.com/images/I/51plZGnGurL._SY346_.jpg`,
-    synopsys: 'r',
-    author: 'r',
-    year: 0
-  };
-  book2: BookItemModel = {
-    title: `Vengeance glacée`, 
-    image: `https://m.media-amazon.com/images/I/51Zx+YW+o+L._SY346_.jpg`,
-    synopsys: 'r',
-    author: 'r',
-    year: 0
-  };
-  books = [this.book1, this.book2]
-
-  constructor() { }
+  // books = [this.book1, this.book2];
+  books?: BookItemModel[];
+  
+  constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
+    this.apiService.getAllBooks$()
+    .pipe(map((data: BookModel[]) => {
+      let booksItemsModel: BookItemModel[] = [];
+      data.forEach(book => {
+        let bookItemModel: BookItemModel = {
+          image: book.urlImage,
+          title: book.title,
+          synopsys: book.synopsys,
+          author: book.author,
+          year: book.year
+        };
+        booksItemsModel.push(bookItemModel);
+      })
+      return booksItemsModel;
+    }))
+    .subscribe((data) => {
+      this.books = data;
+    }, error => {
+      alert(`N'arrive pas à récupérer le getAllBooks ...`);
+    });
   }
+
+// id de la librairie de test ci-dessous  
+// 3b3b3d57-6f2d-4dd9-a374-d7e35b761ad0
 
 }

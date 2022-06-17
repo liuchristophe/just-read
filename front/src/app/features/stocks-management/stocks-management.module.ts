@@ -8,13 +8,15 @@ import { StocksManagementComponent } from './stocks-management.component';
 import { StocksListComponent } from './stocks-list/stocks-list.component';
 import { ManagementBookCardComponent } from './management-book-card/management-book-card.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ManagementAddStockComponent } from './management-add-stock/management-add-stock.component';
+import { ManagementDisplayStockComponent } from './management-display-stock/management-display-stock.component';
 
 
 @NgModule({
   declarations: [
     StocksManagementComponent
     , StocksListComponent
-    , ManagementBookCardComponent
+    , ManagementBookCardComponent, ManagementAddStockComponent, ManagementDisplayStockComponent
   ],
   imports: [
     CommonModule

@@ -1,4 +1,4 @@
-<div class="list" *ngFor="let book of books">
+<div class="list" *ngFor="let stock of stocks">
     <!-- <app-management-book-card></app-management-book-card> -->
-    <app-management-book-card [book]="book"></app-management-book-card>
+    <app-management-book-card [stock]="stock" [type]="getCardType()"></app-management-book-card>
 </div>

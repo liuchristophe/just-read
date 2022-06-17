@@ -41,4 +41,12 @@ export class ApiService {
   addStock$(idLibrary : string, stockItem : StockModel): Observable<any>{
     return this.httpClient.post(`${this.urlLibrary}/${idLibrary}/stock/add`,stockItem);
   }
+
+  getStock$(idLibrary: string): Observable<Array<StockModel>>{
+    return this.httpClient.get<Array<StockModel>>(`${this.urlLibrary}/${idLibrary}/stock`);
+  }
+
+  updateStock$(idLibrary: string, idStockItem: string, stockItem: StockModel): Observable<any>{
+    return this.httpClient.patch(`${this.urlLibrary}/${idLibrary}/stock/update/${idStockItem}`, stockItem);
+  }
 }

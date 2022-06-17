@@ -7,6 +7,7 @@ import { StocksManagementRoutingModule } from './stocks-management-routing.modul
 import { StocksManagementComponent } from './stocks-management.component';
 import { StocksListComponent } from './stocks-list/stocks-list.component';
 import { ManagementBookCardComponent } from './management-book-card/management-book-card.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { ManagementBookCardComponent } from './management-book-card/management-b
   imports: [
     CommonModule
     , StocksManagementRoutingModule
-    , MatIconModule
+    , MatIconModule,
+    ReactiveFormsModule
   ],
   exports: [
 

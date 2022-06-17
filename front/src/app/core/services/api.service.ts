@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { BookModel } from '../models/books.model';
-import { LibraryModel } from '../models/library.model';
+import { LibraryModel, StockModel } from '../models/library.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -38,4 +38,7 @@ export class ApiService {
     return this.httpClient.get<Array<LibraryModel>>(this.urlLibrary);
   }
   
+  addStock$(idLibrary : string, stockItem : StockModel): Observable<any>{
+    return this.httpClient.post(`${this.urlLibrary}/${idLibrary}/stock/add`,stockItem);
+  }
 }

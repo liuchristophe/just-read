@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { BookModule } from './book/book.module';
 
@@ -15,11 +15,14 @@ import { DashboardModule } from './dashboard/dashboard.module';
     CommonModule,
     FormsModule,
     BookModule,
-    DashboardModule
+    DashboardModule,
+    ReactiveFormsModule,
+
   ],
   exports:[
     LibraryPresentationComponent,
-    BookModule
+    BookModule,
+    ReactiveFormsModule
   ]
 })
 export class FeaturesModule { }

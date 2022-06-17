@@ -12,26 +12,13 @@ import { ApiService } from 'src/app/core/services/api.service';
 export class StocksListComponent implements OnInit {
 
   // books = [this.book1, this.book2];
-  books?: BookItemModel[];
+  books?: BookModel[];
   
   constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
     this.apiService.getAllBooks$()
-    .pipe(map((data: BookModel[]) => {
-      let booksItemsModel: BookItemModel[] = [];
-      data.forEach(book => {
-        let bookItemModel: BookItemModel = {
-          image: book.urlImage,
-          title: book.title,
-          synopsys: book.synopsys,
-          author: book.author,
-          year: book.year
-        };
-        booksItemsModel.push(bookItemModel);
-      })
-      return booksItemsModel;
-    }))
+    .pipe()
     .subscribe((data) => {
       this.books = data;
     }, error => {

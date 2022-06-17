@@ -32,9 +32,20 @@ export interface OrderItemModel {
     quantity: number;
     book: BookModel;
 }
-export interface StockModel {
-    id: string;
+export class StockModel {
     quantity: number;
     unitPrice: number;
     book: BookModel;
+    id_stock?: string;
+
+    constructor(quantity: number, unitPrice: number, book: BookModel, id_stock?: string) {
+        this.id_stock = id_stock;
+        this.quantity = quantity;
+        this.unitPrice = unitPrice;
+        this.book = book;
+    }
+
+    // constructor() {
+    //     this(null,null,null,null);
+    // }
 }

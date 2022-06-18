@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
@@ -12,10 +12,12 @@ import { AppComponent } from './app.component';
 
 import { FeaturesModule } from './features/features.module';
 import { SharedModule } from './shared/shared.module';
+import { OrderByPipe } from './order-by.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
+    OrderByPipe
   ],
   imports: [
     BrowserModule,
@@ -25,7 +27,8 @@ import { SharedModule } from './shared/shared.module';
     FeaturesModule,
     SharedModule,
     HttpClientModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule
   ],
   providers: [],
   exports: [

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { BookModule } from './book/book.module';
 
@@ -18,11 +18,13 @@ import { OverlayLocationModule } from './overlay-location/overlay-location.modul
     BookModule,
     DashboardModule,
     OverlayLocationModule
+
   ],
   exports:[
     LibraryPresentationComponent,
     BookModule,
     OverlayLocationModule
+    
   ]
 })
 export class FeaturesModule { }

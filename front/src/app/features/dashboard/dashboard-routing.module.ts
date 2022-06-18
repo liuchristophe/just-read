@@ -12,7 +12,7 @@ const routes: Routes = [
         component: DashboardComponent, 
         children: [
             // { path: '', component: DashboardComponent },
-            { path: 'stocks', component: StocksManagementComponent}, 
+            { path: 'stocks', loadChildren: () => import(`../stocks-management/stocks-management.module`).then(m => m.StocksManagementModule) }, 
             { path: '**', component: PageNotFoundComponent }
         ]
     }

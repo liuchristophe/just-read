@@ -4,10 +4,12 @@
         <div class="title">{{getTitle()}}</div>
         <button><mat-icon class="material-icons green" aria-hidden="false">edit</mat-icon></button>
     </div>
-    <label for="">Quantité</label>
-    <input type="number"  min="0" name="quantity" id="quantity">
-    <label for="">Prix</label>
-    <input type="number" step="0.01" min="0" name="price" id="price">
-    <input type="submit" value="Enregistrer">
-    <input type="button" value="Annuler">
+    <form [formGroup]="formData">
+        <label for="">Quantité</label>
+        <input type="number"  min="0" name="quantity" formControlName="quantity" id="quantity" required="required">
+        <label for="">Prix</label>
+        <input type="number" step="0.01" min="0" name="price" formControlName="unitPrice" id="price" required="required">
+        <input type="submit" value="Enregistrer" (click)="submit()">
+        <input type="button" value="Annuler">
+    </form>
 </div>

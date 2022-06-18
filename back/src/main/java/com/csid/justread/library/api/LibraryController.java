@@ -67,7 +67,7 @@ public class LibraryController {
     @PatchMapping("{libraryId}/stock/update/{stockItemId}")
     public ResponseEntity<StockItemDto> updateStockItem(@PathVariable("libraryId") UUID libraryId,
                                 @PathVariable("stockItemId") UUID stockItemId,
-                                @RequestParam StockItemDto stockItemDto){
+                                @RequestBody StockItemDto stockItemDto){
         return ResponseEntity.ok(new Converter()
                 .map(libraryService.updateStockItem(libraryId, stockItemId,
                         new Converter().map(stockItemDto, StockItem.class)

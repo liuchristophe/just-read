@@ -16,6 +16,4 @@
     </ng-template>
 </owl-carousel-o>
 
-<div *ngIf="detailClicked">
-    <app-book-details></app-book-details>
-</div>
+<app-book-details *ngIf="detailClicked"></app-book-details>

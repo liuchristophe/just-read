@@ -11,18 +11,22 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ManagementAddStockComponent } from './management-add-stock/management-add-stock.component';
 import { ManagementDisplayStockComponent } from './management-display-stock/management-display-stock.component';
 
+import {NgPipesModule} from 'ngx-pipes';
 
 @NgModule({
   declarations: [
-    StocksManagementComponent
-    , StocksListComponent
-    , ManagementBookCardComponent, ManagementAddStockComponent, ManagementDisplayStockComponent
+    StocksManagementComponent, 
+    StocksListComponent, 
+    ManagementBookCardComponent, 
+    ManagementAddStockComponent, 
+    ManagementDisplayStockComponent
   ],
   imports: [
     CommonModule
     , StocksManagementRoutingModule
     , MatIconModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgPipesModule
   ],
   exports: [
 

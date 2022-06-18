@@ -58,10 +58,10 @@ export class StocksListComponent implements OnInit {
   getCardType() {
     return ManagementCardModel.UPDATE;
   }
-
   
 
 // id de la librairie de test ci-dessous  
 // 3b3b3d57-6f2d-4dd9-a374-d7e35b761ad0
 
 }
+

@@ -46,7 +46,7 @@ export class ManagementBookCardComponent implements OnInit {
         this.addStock();
       }
       else if (this.type === 2) {
-
+        this.updateStock();
       }
 
     }
@@ -64,7 +64,23 @@ export class ManagementBookCardComponent implements OnInit {
       console.log(this.stockItem);
     }
     else {
-      alert(``);
+      this.messageErreurObjetStock();
+    }
+  }
+
+  updateStock(){
+    console.log('updateStock déclenché')
+    if (this.stock) {
+      this.stockItem = new StockModel(this.formData.value.quantity, this.formData.value.unitPrice, this.stock.book, this.stock.id);
+      console.log(`${JSON.stringify(this.stockItem)}`);
+      if (this.stockItem.id){
+        this.apiService.updateStock$(this.idLibrary, this.stockItem.id, this.stockItem).subscribe();
+      } 
+      else 
+        this.messageErreurStockId()
+    }
+    else {
+      this.messageErreurObjetStock();
     }
   }
 
@@ -86,4 +102,13 @@ export class ManagementBookCardComponent implements OnInit {
   //   };
   // }
 
+  private messageErreurObjetStock() {
+    alert(`Erreur dans le code`);
+    console.debug(`le management book card n'a pas d'information`);
+  }
+
+  private messageErreurStockId() {
+    alert(`Erreur dans le code`);
+    console.debug(`lors de l'update, il y a pas d'id`);
+  }
 }

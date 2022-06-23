@@ -5,16 +5,13 @@ import java.util.UUID;
 
 public class Address {
     private UUID id;
-
     private String streetName;
-
     private String complementaryField;
-
     private String zipCode;
-
     private String city;
-
     private String country;
+    private float longitude;
+    private float latitude;
 
     public UUID getId() {
         return id;
@@ -62,5 +59,21 @@ public class Address {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public float getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(float longitude) {
+        this.longitude = longitude;
+    }
+
+    public float getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(float latitude) {
+        this.latitude = latitude;
     }
 }

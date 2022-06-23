@@ -75,4 +75,9 @@ public class LibraryController {
                         new Converter().map(stockItemDto, StockItem.class)
                 ), StockItemDto.class));
     }
+
+    @GetMapping("rayon")
+    public ResponseEntity<List<LibraryDto>> getLibraryNearby(@RequestParam("rayon") int rayon, @RequestParam float longitude, @RequestParam float latitude){
+        return ResponseEntity.ok(new Converter().mapAsList(libraryService.getLibrariesNearby(rayon, longitude, latitude), LibraryDto.class));
+    }
 }

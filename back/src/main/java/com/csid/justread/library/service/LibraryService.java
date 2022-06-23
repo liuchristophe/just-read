@@ -100,4 +100,7 @@ public class LibraryService {
     }
 
 
+    public List<Library> getLibrariesNearby(int rayon, float longitude, float latitude){
+        return new Converter().mapAsList(libraryDao.getLibrariesNearby((double) rayon, longitude, latitude),Library.class);
+    }
 }

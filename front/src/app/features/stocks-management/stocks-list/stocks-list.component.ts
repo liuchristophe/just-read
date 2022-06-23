@@ -23,7 +23,7 @@ export class StocksListComponent implements OnInit {
   ngOnInit(): void {
     console.log(`stock list appelé`);
     if(this.type){
-      console.log(`stock list a un type`);
+      console.log(`stock list a un type ${this.type.valueOf().toString()}`);
       if(this.type.valueOf() === ManagementCardModel.POST.valueOf() ){
         console.log(`type est ${this.type}`);
         this.apiService.getAllBooks$()
@@ -56,6 +56,11 @@ export class StocksListComponent implements OnInit {
   }
 
   getCardType() {
+    if (this.type) {
+      return this.type;
+    }
+    alert(`n'a pas de type`);
+    // return null;
     return ManagementCardModel.UPDATE;
   }
   

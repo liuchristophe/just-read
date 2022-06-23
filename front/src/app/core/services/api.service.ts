@@ -54,4 +54,8 @@ export class ApiService {
   updateStock$(idLibrary: string, idStockItem: string, stockItem: StockModel): Observable<any>{
     return this.httpClient.patch(`${this.urlLibrary}/${idLibrary}/stock/update/${idStockItem}`, stockItem);
   }
+
+  deleteStock$(idLibrary: string, idStockItem: string):Observable<any>{
+    return this.httpClient.delete(`${this.urlLibrary}/${idLibrary}/stock/remove/${idStockItem}`);
+  }
 }

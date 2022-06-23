@@ -41,11 +41,12 @@ export class ManagementBookCardComponent implements OnInit {
   }
 
   submit() {
+    console.log(this.type);
     if (this.type) {
-      if (this.type === 1) {
+      if (this.type.valueOf() === ManagementCardModel.POST.valueOf()) {
         this.addStock();
       }
-      else if (this.type === 2) {
+      else if (this.type.valueOf() === ManagementCardModel.UPDATE.valueOf()) {
         this.updateStock();
       }
 

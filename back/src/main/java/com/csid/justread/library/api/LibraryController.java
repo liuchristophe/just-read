@@ -1,6 +1,8 @@
 package com.csid.justread.library.api;
 
 import com.csid.justread.Converter;
+import com.csid.justread.book.api.BookController;
+import com.csid.justread.book.api.dto.BookDto;
 import com.csid.justread.exception.ServiceException;
 import com.csid.justread.library.api.dto.LibraryDto;
 import com.csid.justread.library.api.dto.StockItemDto;

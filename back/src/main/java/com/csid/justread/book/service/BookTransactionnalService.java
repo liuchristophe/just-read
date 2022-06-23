@@ -13,6 +13,7 @@ import com.csid.justread.book.service.model.Author;
 import com.csid.justread.book.service.model.Book;
 import com.csid.justread.book.service.model.Category;
 import com.csid.justread.book.service.model.Publisher;
+import com.csid.justread.library.infrastructure.dao.LibraryDao;
 import org.springframework.stereotype.Service;
 
 
@@ -31,11 +32,13 @@ public class BookTransactionnalService {
     private AuthorDao authorDao;
     private CategoryDao categoryDao;
     private PublisherDao publisherDao;
-    public BookTransactionnalService(BookDao bookDao, AuthorDao authorDao, CategoryDao categoryDao, PublisherDao publisherDao) {
+    private LibraryDao libraryDao;
+    public BookTransactionnalService(BookDao bookDao, AuthorDao authorDao, CategoryDao categoryDao, PublisherDao publisherDao, LibraryDao libraryDao) {
         this.bookDao = bookDao;
         this.authorDao = authorDao;
         this.categoryDao = categoryDao;
         this.publisherDao = publisherDao;
+        this.libraryDao=libraryDao;
     }
 
     public Book create(Book book){
@@ -119,5 +122,10 @@ public class BookTransactionnalService {
         return bookEntities.stream()
                 .map( b -> new Converter().map(b, Book.class) )
                 .collect(Collectors.toList());
+    }
+
+    public List<Book> getBooksNotInLibrary(UUID idLibrary){
+        return new Converter().mapAsList(this.bookDao.getBooksNotInLibrary(libraryDao.getById(idLibrary)), Book.class);
+
     }
 }

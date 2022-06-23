@@ -18,6 +18,12 @@ public class LibraryEntity {
     @Column(length = 100, nullable = false)
     private String name;
 
+    @Column()
+    private String urlImage;
+
+    @Column(length = 2500)
+    private String description;
+
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private AddressEntity address;
 
@@ -67,5 +73,21 @@ public class LibraryEntity {
 
     public void setStocks(List<StockItemEntity> stocks) {
         this.stocks = stocks;
+    }
+
+    public String getUrlImage() {
+        return urlImage;
+    }
+
+    public void setUrlImage(String urlImage) {
+        this.urlImage = urlImage;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

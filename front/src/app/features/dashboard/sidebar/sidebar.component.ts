@@ -7,6 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
+  links = [
+    {
+      title: 'Profil de ma librairie',
+      redirection: 'profil'
+    },
+    {
+      title: 'Gestion de stocks',
+      redirection: 'stocks'
+    }
+  ]
+
   constructor() { }
 
   ngOnInit(): void {

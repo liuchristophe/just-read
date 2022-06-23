@@ -16,9 +16,9 @@
     <mat-divider></mat-divider>
 
     <h2 matSubheader>Pages</h2>
-
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="ajout_livre">Ajouter un livre</a>
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="profil">Profil de ma librairie</a>
+    <div class="sub-navigation" *ngFor="let link of links">
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="{{link.redirection}}">{{link.title}}</a>
+    </div>
 
     <mat-divider></mat-divider>
 

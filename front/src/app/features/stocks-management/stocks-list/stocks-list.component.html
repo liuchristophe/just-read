@@ -1,0 +1,5 @@
+<div class="list" *ngFor="let stock of stocks | orderBy: 'stock.book.title'">
+<!-- <div class="list" *ngFor="let stock of stocks | orderBy:'stock.book.title'"> -->
+    <!-- <app-management-book-card></app-management-book-card> -->
+    <app-management-book-card [stock]="stock" [type]="getCardType()"></app-management-book-card>
+</div>

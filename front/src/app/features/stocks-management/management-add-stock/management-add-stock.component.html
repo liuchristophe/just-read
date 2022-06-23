@@ -1,0 +1,16 @@
+<section class="gestion-stock">
+    <h1>Ajout de Livre</h1>
+    <section class="option-stock">
+        <div class="">
+            <a routerLink="/dashboard/stocks">Retour</a>
+        </div>
+        <div class="">
+            <label for="">Disponible en magasin</label>
+            <input type="search" name="search-bar" id="search-bar" placeholder="Titre recherché...">
+            <input type="submit" value="rechercher">
+        </div>
+    </section>
+    <section class="liste-stock">
+        <app-stocks-list [type]="getManagementType()"></app-stocks-list>
+    </section>
+</section>

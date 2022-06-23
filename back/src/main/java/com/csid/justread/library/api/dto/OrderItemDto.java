@@ -11,6 +11,7 @@ public class OrderItemDto {
 
     private float price;
 
+    private UUID id;
 
     public int getQuantity() {
         return quantity;
@@ -34,5 +35,13 @@ public class OrderItemDto {
 
     public void setBook(BookDto book) {
         this.book = book;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 }

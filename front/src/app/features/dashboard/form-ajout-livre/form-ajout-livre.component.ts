@@ -23,7 +23,7 @@ export class FormAjoutLivreComponent implements OnInit {
 
   creationLivre2(data: any) {
     this.pending = true;
-    this.apiService.createBook(data).subscribe((result) => {
+    this.apiService.createBook$(data).subscribe((result) => {
       console.log("livre créé",result);
       this.router.navigate(['liste_livres']);
     },error => {

@@ -4,14 +4,16 @@ import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
 import { PageNotFoundComponent } from 'src/app/shared/components/page-not-found/page-not-found.component';
 import { FormAjoutLivreComponent } from './form-ajout-livre/form-ajout-livre.component';
+import { StocksManagementComponent } from '../stocks-management/stocks-management.component';
 
 const routes: Routes = [
     {   
         path: '', 
         component: DashboardComponent, 
         children: [
-            { path: 'ajout_livre', component: FormAjoutLivreComponent },
-            // { path: '**', component: PageNotFoundComponent }
+            // { path: '', component: DashboardComponent },
+            { path: 'stocks', loadChildren: () => import(`../stocks-management/stocks-management.module`).then(m => m.StocksManagementModule) }, 
+            { path: '**', component: PageNotFoundComponent }
         ]
     }
 ];

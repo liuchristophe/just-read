@@ -75,4 +75,9 @@ public class BookController {
     }
     //endregion
 
+    @GetMapping("/bookNotInLibrary/{libraryId}")
+    public ResponseEntity<List<BookDto>> getBooksNotInLibrary(@PathVariable("libraryId") UUID libraryId){
+
+        return ResponseEntity.ok(new Converter().mapAsList(bookRepository.getBooksNotInLibrary(libraryId), BookDto.class));
+    }
 }

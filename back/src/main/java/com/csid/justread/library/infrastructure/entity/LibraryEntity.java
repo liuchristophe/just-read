@@ -21,7 +21,7 @@ public class LibraryEntity {
     @Column()
     private String urlImage;
 
-    @Column()
+    @Column(length = 2500)
     private String description;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

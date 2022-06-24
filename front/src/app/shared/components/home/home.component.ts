@@ -26,19 +26,19 @@ export class HomeComponent implements OnInit {
   libraryProche : LibraryModel = {} as LibraryModel;
 
   ngOnInit(): void {
-    this.apiService.getBooksByCategoryName("Aventure").subscribe((data) => {
+    this.apiService.getBooksByCategoryName$("Aventure").subscribe((data) => {
       this.booksAventure = data;
     }, error => {
       alert(`N'arrive pas à récupérer le getAllBooksByCategory ...`);
     });
 
-    this.apiService.getBooksByCategoryName("Fantasy").subscribe((data) => {
+    this.apiService.getBooksByCategoryName$("Fantasy").subscribe((data) => {
       this.booksFantasy = data;
     }, error => {
       alert(`N'arrive pas à récupérer le getAllBooksByCategory ...`);
     });
 
-    this.apiService.getAllLibrary().subscribe((data) => {
+    this.apiService.getAllLibrary$().subscribe((data) => {
       if(data.length>0) this.libraryProche = data[0];
     }, error => {
       alert(`N'arrive pas à récupérer le getAllLibrary ...`);

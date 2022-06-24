@@ -1,6 +1,8 @@
 package com.csid.justread.library.api;
 
 import com.csid.justread.Converter;
+import com.csid.justread.book.api.BookController;
+import com.csid.justread.book.api.dto.BookDto;
 import com.csid.justread.exception.ServiceException;
 import com.csid.justread.library.api.dto.LibraryDto;
 import com.csid.justread.library.api.dto.StockItemDto;
@@ -67,10 +69,15 @@ public class LibraryController {
     @PatchMapping("{libraryId}/stock/update/{stockItemId}")
     public ResponseEntity<StockItemDto> updateStockItem(@PathVariable("libraryId") UUID libraryId,
                                 @PathVariable("stockItemId") UUID stockItemId,
-                                @RequestParam StockItemDto stockItemDto){
+                                @RequestBody StockItemDto stockItemDto){
         return ResponseEntity.ok(new Converter()
                 .map(libraryService.updateStockItem(libraryId, stockItemId,
                         new Converter().map(stockItemDto, StockItem.class)
                 ), StockItemDto.class));
+    }
+
+    @GetMapping("rayon")
+    public ResponseEntity<List<LibraryDto>> getLibraryNearby(@RequestParam("rayon") int rayon, @RequestParam float longitude, @RequestParam float latitude){
+        return ResponseEntity.ok(new Converter().mapAsList(libraryService.getLibrariesNearby(rayon, longitude, latitude), LibraryDto.class));
     }
 }

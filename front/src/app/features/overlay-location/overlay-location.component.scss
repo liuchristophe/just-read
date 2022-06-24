@@ -1,0 +1,38 @@
+// form{
+//     background-color: rgba(0, 0, 0, 0.099);
+//     padding: 50px;
+// }
+
+$input-width: 35rem;
+section{
+    background-color: white;
+}
+:host {
+  display: block;
+}
+
+.drop-down-input {
+  width: $input-width;
+}
+.drop-down-input-active {
+  z-index: 100000;
+}
+.drop-down-serch-panel {
+  width: $input-width + 10rem;
+  min-height: 5rem;
+  padding: 1rem;
+  box-sizing: border-box;
+
+  &_controls {
+    display: flex;
+    margin: -1rem -1rem 0 -1rem;
+    padding: 1rem;
+    box-sizing: border-box;
+  }
+}
+.result-item {
+  display: flex;
+  padding: 0.7rem;
+  box-sizing: border-box;
+  align-items: center;
+}

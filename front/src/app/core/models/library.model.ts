@@ -32,9 +32,37 @@ export interface OrderItemModel {
     quantity: number;
     book: BookModel;
 }
-export interface StockModel {
-    id: string;
+
+export class StockModel{
     quantity: number;
     unitPrice: number;
     book: BookModel;
+    id?: string;
+
+    constructor(quantity: number, unitPrice: number, book: BookModel, id_stock?: string) {
+        this.id = id_stock;
+        this.quantity = quantity;
+        this.unitPrice = unitPrice;
+        this.book = book;
+    }
+
+    // constructor() {
+    //     this(null,null,null,null);
+    // }
+
+    public getQuantity(): number {
+        return this.quantity;
+    }
+
+    public getUniPrice(): number {
+        return this.unitPrice;
+    }
+
+    public getBook(): BookModel{
+        return this.book;
+    }
+
+    public getId(): string | undefined {
+        return this.id;
+    }
 }

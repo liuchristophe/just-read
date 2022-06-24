@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
@@ -25,6 +25,7 @@ import { StocksManagementModule } from '../stocks-management/stocks-management.m
       CommonModule,
       DashboardRoutingModule,
       FormsModule,
+      ReactiveFormsModule,
       MatSidenavModule,
       FlexLayoutModule,
       RouterModule,
@@ -33,6 +34,8 @@ import { StocksManagementModule } from '../stocks-management/stocks-management.m
       MatDividerModule,
       StocksManagementModule
     ],
-    exports: []
+    exports: [      
+      ReactiveFormsModule
+    ]
   })
   export class DashboardModule { }

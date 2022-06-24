@@ -2,6 +2,7 @@ package com.csid.justread.library.service;
 
 import com.csid.justread.Converter;
 import com.csid.justread.book.infrastructure.dao.BookDao;
+import com.csid.justread.book.service.model.Book;
 import com.csid.justread.exception.ServiceException;
 import com.csid.justread.library.infrastructure.dao.LibraryDao;
 import com.csid.justread.library.infrastructure.dao.StockItemDao;
@@ -96,5 +97,10 @@ public class LibraryService {
         stockItemEntity.setQuantity(stockItem.getQuantity());
         stockItemEntity.setUnitPrice(stockItem.getUnitPrice());
         return new Converter().map(this.stockItemDao.save(stockItemEntity), StockItem.class);
+    }
+
+
+    public List<Library> getLibrariesNearby(int rayon, float longitude, float latitude){
+        return new Converter().mapAsList(libraryDao.getLibrariesNearby((double) rayon, longitude, latitude),Library.class);
     }
 }

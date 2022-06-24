@@ -11,8 +11,8 @@ const routes: Routes = [
         path: '', 
         component: DashboardComponent, 
         children: [
-            { path: 'ajout_livre', component: FormAjoutLivreComponent },
-            { path: 'stocks', component: StocksManagementComponent},
+            // { path: '', component: DashboardComponent },
+            { path: 'stocks', loadChildren: () => import(`../stocks-management/stocks-management.module`).then(m => m.StocksManagementModule) }, 
             { path: '**', component: PageNotFoundComponent }
         ]
     }

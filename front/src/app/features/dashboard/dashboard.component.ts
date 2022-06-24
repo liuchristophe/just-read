@@ -17,7 +17,6 @@ export class DashboardComponent implements OnInit {
   titleEdit   = false;
   addressEdit = false;
   descriptionEdit = false;
-  imageEdit = false;
 
   constructor( private route:ActivatedRoute, private http: HttpClient ) { }
 
@@ -44,13 +43,11 @@ export class DashboardComponent implements OnInit {
 
   toggleTitleEdit   () { this.titleEdit   = !this.titleEdit;   }
   toggleAddressEdit () { this.addressEdit = !this.addressEdit; }
-  toggleImageEdit   () { this.imageEdit   = !this.imageEdit;   }
   toggleDescriptionEdit () { this.descriptionEdit = !this.descriptionEdit; }
   resetEdit() { 
     this.titleEdit   = false;
     this.addressEdit = false;
     this.descriptionEdit = false;
-    this.imageEdit = false;
   }
 
   /** SUBMIT **/

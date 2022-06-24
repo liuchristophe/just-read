@@ -1,41 +1,194 @@
-/*
-.container-fluid {
-    width: 70vw !important;
-    margin: 0 auto;
-    border: solid 1px red;
+/**| VARIABLES |**/
+.dashboard {
+    --color-text: #40464c;
+    --color-border: #40464c80;
 }
-input.h2 {
-    overflow: visible;
-    width: 90% !important;
-    font-size: 18pt;
-    border: none;
-    box-shadow: none;
-    font-family: var(--font-3);
-    font-weight: 600;
 
-    &:focus{
-        outline: none !important;
-        &:not(:read-only) {
-            color: green;
-            border: none;
-            box-shadow: none;
+/**| COMPONENT CONTAINER |**/
+.dashboard {
+    width: 85%;
+    margin-top: 25px;
+    padding: 0;
+
+    /**| COMMON |**/
+    > * { margin-bottom: 25px !important; }
+    * { 
+        color: var(--color-text);
+        font-family: var(--font-3);
+        transition-duration: 0.7s; 
+    }
+
+    /**| LIBRARY NAME |**/
+    .headings {
+        display: flex;
+        form {
+            width: 100%;
+            display: flex;
+            flex-direction: column-reverse;
+            align-items: start;
+            input.h3 {
+                width : 100%; height: 50px;
+                border: solid 2px transparent;
+                outline: none !important;
+                padding: 0;
+                font-weight: 600;
+                &:not([readonly]) {
+                    /** Todo : && quand on retire le readonly **/
+                    color: var(--color-selected) !important;
+                }
+            }
+            :is(input.h3:hover, input.h3:not([readonly]), .jr-textarea:hover) ~ .jr-btn-group { opacity: 1; }
+            .jr-btn-group { 
+                margin-left: 2px; 
+                position: relative;
+                top: 2px;
+                opacity: 0;
+                transform: scale(0.9);
+                &:hover { opacity: 1; }
+                > .jr-btn { margin-right: 10px; }
+            }
         }
     }
 
+    .jr-toolbox {
+        margin: 0; padding: 0;
+        color: var(--color-text-1);
+        .tool {
+            border : solid 1px;
+            width: 100%;
+            height: 150px;
+            border-radius: 3px;
+            overflow: hidden;
+            &, & * { transition-duration: 0.2s !important; }
+            &:hover { color: var(--color-selected); }
+            a {
+                width: 100%; height: 100%;
+                text-decoration: none;
+                color: inherit !important;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 13pt;
+                font-variant: small-caps;
+                font-weight: 600;
+                letter-spacing: 1px;
+                opacity: .95;
+            }
+        }
+    }
+
+    .jr-info {
+        --h: 320px;
+        height: 100%; // var(--h);
+        overflow: hidden;
+        padding: 0;
+        > * { height: 100%; }
+        .imgdiv {
+            border: solid 1px var(--color-border);
+            width: 100%; height: 100%;
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+            max-width: 100%;
+            display: flex;
+            align-items: center;
+            > img {
+                width: 100%;
+                object-fit: cover;
+            }
+            > .fixed {
+                position: absolute;
+                top: 0; left: 0;
+                width: 100%; // height: 100%;
+                background-color: transparent !important;
+                padding: 10px;
+                border-radius: 3px;
+                padding-bottom: 15px;
+                opacity: 0;
+                transition-duration: 0.7s;
+                filter: blur(3px);
+                cursor: pointer;
+                &:hover {
+                    opacity: 1;
+                    filter: blur(0px);
+                }
+            }
+        }
+        .descdiv {
+            height: 100%;
+            .jr-textarea { 
+                width: 100%; 
+                height : calc(var(--h) - 30px) !important;
+                margin-bottom: 5px;
+                resize: none !important; 
+            }
+        }
+    }
+
+    .jr-address .container-fluid     {
+        transform: translateY(-25px);
+    }
 }
 
-:host{
+/**| OTHER |**/
+h2 {
+    padding-left: 0;
+}
+
+.jr-editable {
     display: flex;
-    flex-direction: column;
-    height: 770px;
+    flex-direction: column-reverse;
+    
+    .jr-input, .jr-textarea {
+        border-color: var(--color-border) !important;
+    }
+    .jr-input {
+        height: 35px;
+        outline: none;
+        padding-left: 10px;
+        padding-right: 10px;
+        border: solid 1px;
+        border-radius: 3px;
+        width: 100%;
+        font-weight: 500;
+        font-size: 10pt;
+        &:not([readonly]):focus {
+            color: var(--color-selected) !important;
+            border-color: var(--color-selected) !important; 
+            & ~ .jr-label {
+                color: var(--color-selected) !important;
+            }
+        }
+    }
+    .jr-label {
+        position: relative;
+        background: white !important;
+        width: fit-content;
+        padding: 6px;
+        padding-bottom: 0;
+        top: 10px;
+        left: 5px;
+        font-weight: 600;
+        font-size: 9pt;
+        letter-spacing: 1px;
+    }
+    .jr-textarea {
+        width: 100%;
+        outline : none !important;
+        padding : 15px;
+        &:not([readonly]) { border-color: var(--color-selected) !important; }
+    }
+}
+.jr-btn {
+    border: none; outline: none !important;
+    background: none !important;
+    color: var(--color-selected) !important;
+    width: fit-content !important;
+    padding: 0;
+    padding-bottom: 3px;
+    border-bottom: solid 1px;
+}
+.jr-btn-group > .jr-btn { 
+    margin-right: 10px; 
 }
 
-mat-drawer{
-    width: 350px;
-}
-
-mat-drawer-container {
-    height: 100%;
-} 
-
-*/

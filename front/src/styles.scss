@@ -15,8 +15,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   --font-3: "Montserrat";
   --color-grad-1: #6cbeb8;
   --color-grad-2: #084a4d;
+  --color-text-1: #3d4f66;
+  --color-selected: #429533;
 }
-
 .hide { display: none; }
 
 /**| COMMON |**/
@@ -27,6 +28,27 @@ h1 {
   font-size: 23pt !important/* 2.8em */;
   padding: 10px 0;
   font-weight: 800;
+}
+
+h2, .book-slider-title {
+  padding: 0;
+  font-size: 17pt;
+  font-weight: 600;
+  margin-bottom: 20px;
+  margin-top: 40px;
+  text-transform: capitalize;
+  font-family: var(--font-3);
+  color: var(--color-text-1);
+  margin-left: 20px;
+  width: fit-content;
+}  
+h2:after {
+  content: "";
+  border: solid 1px var(--color-selected);
+  display: block;
+  width: 100%;
+  border-radius: 1px;
+  opacity: 0.5;
 }
 
 /**| CORRECTIFS |**/

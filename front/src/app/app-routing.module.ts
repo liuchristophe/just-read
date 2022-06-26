@@ -13,7 +13,7 @@ const routes: Routes = [
   {path : 'ajoutLivre', component: FormAjoutLivreComponent},
   {path : 'bookList',component: BookListComponent}, 
   {path : 'book/:id', component: BookDetailsComponent},
-  {path : 'dashboard/:id', component: DashboardComponent},
+  {path : 'dashboard', loadChildren: () => import(`./features/dashboard/dashboard.module`).then(m => m.DashboardModule) },
   {path : '**', component: PageNotFoundComponent}
 /*
   {path:'',redirectTo:'home', pathMatch:'full'},

@@ -20,7 +20,7 @@ export class BookSliderComponent implements OnInit {
   @Input() title = ''; // decorate the property with @Input()
   
   @Input() books: Array<BookModel> = [
-    {
+  new BookModel({
       id: "",
       categories: Array(),
       isbn: "",
@@ -28,10 +28,9 @@ export class BookSliderComponent implements OnInit {
       urlImage: 'https://images-na.ssl-images-amazon.com/images/I/71EuX4ow7LL.jpg',
       title: 'A la recherche du temps perdu',
       synopsys: 'Le héros de l’histoire est insouciant, mais il est attiré par le charme et les plaisirs de la haute société. Il réfléchit, au travers de son expérience, reconstruite par sa mémoire',
-      author: '',
       year: 2000
-    },
-    {
+    }),
+    new BookModel({
       id: "",
       categories: Array(),
       isbn: "",
@@ -39,10 +38,9 @@ export class BookSliderComponent implements OnInit {
       urlImage: 'https://m.media-amazon.com/images/I/51b3pKNydRL.jpg',
       title: 'A la recherche du temps perdu',
       synopsys: 'Le héros de l’histoire est insouciant, mais il est attiré par le charme et les plaisirs de la haute société. Il réfléchit, au travers de son expérience, reconstruite par sa mémoire',
-      author: '',
       year: 2000
-    },
-    {
+    }),
+    new BookModel({
       id: "",
       categories: Array(),
       isbn: "",
@@ -50,10 +48,9 @@ export class BookSliderComponent implements OnInit {
       urlImage: 'https://m.media-amazon.com/images/I/51fUq9GSdlL._SY346_.jpg',
       title: 'A la recherche du temps perdu',
       synopsys: '',
-      author: '',
       year: 2000
-    },
-    {
+    }),
+    new BookModel( {
       id: "",
       categories: Array(),
       isbn: "",
@@ -61,10 +58,9 @@ export class BookSliderComponent implements OnInit {
       urlImage: 'https://m.media-amazon.com/images/I/51Zx+YW+o+L._SY346_.jpg',
       title: 'Vengeance glacée',
       synopsys: '',
-      author: '',
       year: 2000
-    },
-    {
+    }),
+    new BookModel({
       id: "",
       categories: Array(),
       isbn: "",
@@ -72,10 +68,9 @@ export class BookSliderComponent implements OnInit {
       urlImage: 'https://m.media-amazon.com/images/I/51Mc2h+vQhL.jpg',
       title: 'Le dernier rituel',
       synopsys: '',
-      author: '',
       year: 2000
-    },
-    {
+    }),
+    new BookModel({
       id: "",
       categories: Array(),
       isbn: "",
@@ -83,10 +78,9 @@ export class BookSliderComponent implements OnInit {
       urlImage: 'https://m.media-amazon.com/images/I/51plZGnGurL._SY346_.jpg',
       title: 'Le Plus Grand Ennemi',
       synopsys: '',
-      author: '',
       year: 2000
-    },
-    {
+    }),
+    new BookModel( {
       id: "",
       categories: Array(),
       isbn: "",
@@ -94,10 +88,9 @@ export class BookSliderComponent implements OnInit {
       urlImage: 'https://images-na.ssl-images-amazon.com/images/I/71EuX4ow7LL.jpg',
       title: 'A la recherche du temps perdu',
       synopsys: '',
-      author: '',
       year: 2000
-    },
-    {
+    }),
+    new BookModel({
       id: "",
       categories: Array(),
       isbn: "",
@@ -105,10 +98,9 @@ export class BookSliderComponent implements OnInit {
       urlImage: 'https://m.media-amazon.com/images/I/51b3pKNydRL.jpg',
       title: 'A la recherche du temps perdu',
       synopsys: '',
-      author: '',
       year: 2000
-    },
-    {
+    }),
+    new BookModel({
       id: "",
       categories: Array(),
       isbn: "",
@@ -116,10 +108,9 @@ export class BookSliderComponent implements OnInit {
       urlImage: 'https://m.media-amazon.com/images/I/51fUq9GSdlL._SY346_.jpg',
       title: 'A la recherche du temps perdu',
       synopsys: '',
-      author: '',
       year: 2000
-    },
-    {
+    }),
+    new BookModel({
       id: "",
       categories: Array(),
       isbn: "",
@@ -127,10 +118,9 @@ export class BookSliderComponent implements OnInit {
       urlImage: 'https://m.media-amazon.com/images/I/51Zx+YW+o+L._SY346_.jpg',
       title: 'Vengeance glacée',
       synopsys: '',
-      author: '',
       year: 2000
-    },
-    {
+    }),
+    new BookModel({
       id: "",
       categories: Array(),
       isbn: "",
@@ -138,10 +128,9 @@ export class BookSliderComponent implements OnInit {
       urlImage: 'https://m.media-amazon.com/images/I/51Mc2h+vQhL.jpg',
       title: 'Le dernier rituel',
       synopsys: '',
-      author: '',
       year: 2000
-    },
-    {
+    }),
+    new BookModel({
       id: "",
       categories: Array(),
       isbn: "",
@@ -149,9 +138,8 @@ export class BookSliderComponent implements OnInit {
       urlImage: 'https://m.media-amazon.com/images/I/51plZGnGurL._SY346_.jpg',
       title: 'Le Plus Grand Ennemi',
       synopsys: '',
-      author: '',
       year: 2000
-    }
+    })
   ];
 
   customOptions: OwlOptions = {

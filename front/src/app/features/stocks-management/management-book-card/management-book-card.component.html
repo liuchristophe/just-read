@@ -1,5 +1,5 @@
 <div class="card">
-    <img src="{{getImage()}}" alt="{{getTitle()}}">
+    <img *ngIf="bookImage" [src]="bookImage" alt="{{getTitle()}}">
     <div class="title-section">
         <div class="title">{{getTitle()}}</div>
         <button><mat-icon class="material-icons green" aria-hidden="false">edit</mat-icon></button>

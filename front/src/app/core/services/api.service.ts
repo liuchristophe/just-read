@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-
+import { map } from 'rxjs';
+import {BookDto} from '../Dtos/BookDto';
 import { BookModel } from '../models/books.model';
 import { AddressModel } from '../models/library.model';
 import { LibraryModel, StockModel } from '../models/library.model';
@@ -49,6 +50,13 @@ export class ApiService {
 
   getStock$(idLibrary: string): Observable<Array<StockModel>>{
     return this.httpClient.get<Array<StockModel>>(`${this.urlLibrary}/${idLibrary}/stock`);
+  }
+
+
+  getBooksNotInStock$(idLibrary: string): Observable<Array<StockModel>>{
+    return this.httpClient.get<BookDto[]>(`${this.urlBook}/bookNotInLibrary/${idLibrary}`).pipe(map(
+      dtos => dtos.map(dto=>new StockModel({quantity:0,unitPrice:0,book:dto,id:""}))
+    ));
   }
 
   updateStock$(idLibrary: string, idStockItem: string, stockItem: StockModel): Observable<any>{

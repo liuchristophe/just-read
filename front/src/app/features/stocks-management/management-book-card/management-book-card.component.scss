@@ -1,8 +1,35 @@
+
+*:not(.material-icons) {
+    font-family: var(--font-3);
+    color: var(--color-text-default);
+}
 .card {
     display: inline-block;
-    width: 200px;
+    width: 240px;
     margin: 10px 20px;
-    border: 1px black solid;
+    border: 1px #00000070 solid; 
+    padding-bottom: 10px;
+    > *:not(img) {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .jr-input-group {
+        transform: translateY(-10px);
+    }
+    .delete-btn {
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        background: none;
+        transform: scale(1.4);
+        position: relative;
+        left: -3px; top : 3px;
+        opacity: 0.7; 
+        z-index: 3;
+        &, & * { cursor: pointer };
+    }
 }
 
 img {
@@ -12,6 +39,7 @@ img {
 
 .title-section {
     display: block;
+    margin-top: 5px;
 }
 
 .title {
@@ -38,3 +66,8 @@ mat-icon {
 .material-icons.green{
     color: green;
 }
+
+.red{
+    color: red;
+}
+

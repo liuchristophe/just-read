@@ -67,7 +67,7 @@ export class BookListComponent implements OnInit {
       }
     }
     if(this.title){
-      let found = x.title.indexOf(this.title);
+      let found = x.title.toLowerCase().indexOf(this.title);
       if(found ===-1){
         return false;
       }

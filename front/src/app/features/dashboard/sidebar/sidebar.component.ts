@@ -15,6 +15,14 @@ export class SidebarComponent implements OnInit {
     {
       title: 'Gestion de stocks',
       redirection: 'stocks'
+    },
+    {
+      title: 'Proposer un livre',
+      redirection: 'bookProposition'
+    },
+    {
+      title: 'Détail des Livres',
+      redirection: 'details_books'
     }
   ]
 

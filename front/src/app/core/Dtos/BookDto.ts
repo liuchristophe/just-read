@@ -14,7 +14,7 @@ export interface PublisherDto {
 }
 
 export interface stockDto{
-    id: string;
+    id: string | undefined;
     book: BookDto;
     quantity: number;
     unitPrice: number;

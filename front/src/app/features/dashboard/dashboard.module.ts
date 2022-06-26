@@ -15,12 +15,14 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { FormAjoutLivreComponent } from './form-ajout-livre/form-ajout-livre.component';
 import { StocksManagementModule } from '../stocks-management/stocks-management.module';
 import { ProfilComponent } from './profil/profil.component';
+import { BookListComponent } from './book-list/book-list.component';
 
 @NgModule({
     declarations: [
       DashboardComponent,
       SidebarComponent,
       FormAjoutLivreComponent,
+      BookListComponent,
       ProfilComponent
     ],
     imports: [
@@ -37,6 +39,7 @@ import { ProfilComponent } from './profil/profil.component';
       StocksManagementModule
     ],
     exports: [      
+      BookListComponent,
       ReactiveFormsModule
     ]
   })

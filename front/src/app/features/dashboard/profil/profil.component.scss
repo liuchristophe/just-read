@@ -1,9 +1,3 @@
-/**| VARIABLES |**/
-.dashboard {
-    --color-text: #40464c;
-    --color-border: #40464c80;
-}
-
 /**| COMPONENT CONTAINER |**/
 .dashboard {
     width: 85%;
@@ -13,7 +7,7 @@
     /**| COMMON |**/
     > * { margin-bottom: 25px !important; }
     * { 
-        color: var(--color-text);
+        color: var(--color-text-default);
         font-family: var(--font-3);
         transition-duration: 0.7s; 
     }
@@ -135,60 +129,4 @@ h2 {
     padding-left: 0;
 }
 
-.jr-editable {
-    display: flex;
-    flex-direction: column-reverse;
-    
-    .jr-input, .jr-textarea {
-        border-color: var(--color-border) !important;
-    }
-    .jr-input {
-        height: 35px;
-        outline: none;
-        padding-left: 10px;
-        padding-right: 10px;
-        border: solid 1px;
-        border-radius: 3px;
-        width: 100%;
-        font-weight: 500;
-        font-size: 10pt;
-        &:not([readonly]):focus {
-            color: var(--color-selected) !important;
-            border-color: var(--color-selected) !important; 
-            & ~ .jr-label {
-                color: var(--color-selected) !important;
-            }
-        }
-    }
-    .jr-label {
-        position: relative;
-        background: white !important;
-        width: fit-content;
-        padding: 6px;
-        padding-bottom: 0;
-        top: 10px;
-        left: 5px;
-        font-weight: 600;
-        font-size: 9pt;
-        letter-spacing: 1px;
-    }
-    .jr-textarea {
-        width: 100%;
-        outline : none !important;
-        padding : 15px;
-        &:not([readonly]) { border-color: var(--color-selected) !important; }
-    }
-}
-.jr-btn {
-    border: none; outline: none !important;
-    background: none !important;
-    color: var(--color-selected) !important;
-    width: fit-content !important;
-    padding: 0;
-    padding-bottom: 3px;
-    border-bottom: solid 1px;
-}
-.jr-btn-group > .jr-btn { 
-    margin-right: 10px; 
-}
 

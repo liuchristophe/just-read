@@ -1,6 +1,9 @@
 import { BookDto, CategoryDto } from "../Dtos";
 import { AuthorDto, PublisherDto } from "../Dtos/BookDto";
 
+/**
+ * Objet à manipuler dans le code
+ */
 export class BookModel {
     id: string;
     title: string;

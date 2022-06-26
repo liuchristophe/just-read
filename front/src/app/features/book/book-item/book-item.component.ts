@@ -5,6 +5,7 @@ import { BookModel } from 'src/app/core/models/books.model';
 import { ApiService } from 'src/app/core/services/api.service';
 import { BookDetailsOverlayService } from 'src/app/core/services/book-details-overlay.service';
 import { BuyDialogComponent } from '../../buy-dialog/buy-dialog.component';
+import { BookDetailsComponent } from '../book-details/book-details.component';
 
 
 
@@ -32,13 +33,24 @@ export class BookItemComponent implements OnInit {
     this.bookDetailsOverlayService.detailIsClicked(book.id);
   }
 
-  openDialog() {
+  openDialogPurchage() {
     const dialogRef = this.dialog.open(BuyDialogComponent, {
       width: '500px',
-      height: '250px',
+      height: '500px',
       data: { book: this.book },
     });
 
     dialogRef.afterClosed().subscribe();
   }
+
+  openDialogBookDetails(){
+    const dialogRef = this.dialog.open(BookDetailsComponent, {
+      width: '1000px',
+      height: '1000px',
+      data: { book: this.book },
+    });
+
+    dialogRef.afterClosed().subscribe();
+  }
+  
 }

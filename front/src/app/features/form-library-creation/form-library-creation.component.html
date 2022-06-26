@@ -1,0 +1,18 @@
+<form [formGroup]="form">
+    <div class='bold-line'></div>
+    <div class='container'>
+      <div class='window'>
+        <div class='overlay'></div>
+        <div class='content'>
+          <div class='welcome'>Créer ma librairie</div>
+          <div class='input-fields'>
+            <input type='text' name="name"  formControlName="name" id="name" required="required" placeholder='Nom de la librairie' class='input-line full-width'>
+            <input type='text' name="urlImage"formControlName="urlImage" id="urlImage" required="required" placeholder='image de la devanture' class='input-line full-width'>
+            <input type='text' name="address" formControlName="address" id="address" required="required" placeholder='adresse complète de la librairie' class='input-line full-width'>
+            <input type='text' name="description" formControlName="description" id="description" required="required" placeholder='description de la librairie' class='input-line full-width'>
+          </div>
+          <div><button class='ghost-round full-width' (click)="onSubmit()">Valider</button></div>
+        </div>
+      </div>
+    </div>
+  </form>

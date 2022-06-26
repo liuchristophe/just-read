@@ -11,7 +11,7 @@ export interface LibraryModel {
     stocks: Array<StockModel>;
     orders: Array<OrderModel>;
 }
-interface AddressModel{
+export interface AddressModel{
     id: string,
     streetName: string,
     complementaryField: string,

@@ -9,11 +9,14 @@ import { LibraryPresentationComponent } from './library-presentation/library-pre
 import { DashboardModule } from './dashboard/dashboard.module';
 import { BuyDialogComponent } from './buy-dialog/buy-dialog.component';
 import { OverlayLocationModule } from './overlay-location/overlay-location.module';
+import { MatIconModule } from '@angular/material/icon';
+import { FormLibraryCreationComponent } from './form-library-creation/form-library-creation.component';
 
 @NgModule({
   declarations: [
     LibraryPresentationComponent,
-    BuyDialogComponent
+    BuyDialogComponent,
+    FormLibraryCreationComponent
   ],
   imports: [
     CommonModule,
@@ -21,7 +24,8 @@ import { OverlayLocationModule } from './overlay-location/overlay-location.modul
     MatDialogModule,
     BookModule,
     DashboardModule,
-    OverlayLocationModule
+    OverlayLocationModule,
+    MatIconModule
   ],
   exports:[
     LibraryPresentationComponent,

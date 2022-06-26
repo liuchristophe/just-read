@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { BookModel } from '../models/books.model';
-import { LibraryModel } from '../models/library.model';
+import { AddressModel } from '../models/library.model';
+import { LibraryModel, StockModel } from '../models/library.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -37,5 +38,20 @@ export class ApiService {
   getAllLibrary$(): Observable<Array<LibraryModel>>{
     return this.httpClient.get<Array<LibraryModel>>(this.urlLibrary);
   }
+
+  getAdresse$(adresse: string): Observable<Array<any>>{
+    return this.httpClient.get<Array<any>>("https://api-adresse.data.gouv.fr/search/?q="+adresse.replace(" ", "+"))
+  }
   
+  addStock$(idLibrary : string, stockItem : StockModel): Observable<any>{
+    return this.httpClient.post(`${this.urlLibrary}/${idLibrary}/stock/add`,stockItem);
+  }
+
+  getStock$(idLibrary: string): Observable<Array<StockModel>>{
+    return this.httpClient.get<Array<StockModel>>(`${this.urlLibrary}/${idLibrary}/stock`);
+  }
+
+  updateStock$(idLibrary: string, idStockItem: string, stockItem: StockModel): Observable<any>{
+    return this.httpClient.patch(`${this.urlLibrary}/${idLibrary}/stock/update/${idStockItem}`, stockItem);
+  }
 }

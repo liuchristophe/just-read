@@ -1,0 +1,76 @@
+<!-- <button (click)="isOverlayOpen = !isOverlayOpen" type="button" cdkOverlayOrigin #trigger="cdkOverlayOrigin">
+Localisation
+</button>
+<ng-template
+cdkConnectedOverlay
+[cdkConnectedOverlayOrigin]="trigger"
+[cdkConnectedOverlayOpen]="isOverlayOpen"
+[cdkConnectedOverlayPositions]="positions"
+>
+
+<form>
+    <div>
+        <label for="pays">Pays :</label>
+        <input type="text" id="pays" name="pays" required
+        minlength="1" maxlength="20" size="10">
+    </div>
+
+    <div>
+        <label for="ville">Ville :</label>
+        <input type="text" id="ville" name="ville" required
+        minlength="1" maxlength="30" size="10">
+    </div>
+    <div>
+        <label for="adresse">Adresse :</label>
+        <input type="text" id="adresse" name="adresse" required
+                minlength="1" maxlength="30" size="10">
+    </div>
+</form>
+
+</ng-template> -->
+<!-- 
+ -->
+
+<!--  -->
+
+<mat-form-field
+  appearance="fill"
+  class="drop-down-input"
+  [class.drop-down-input-active]="showPanel$ | async"
+  cdkOverlayOrigin
+  #originOverlay="cdkOverlayOrigin"
+>
+  <mat-icon matPrefix>add_location</mat-icon>
+  <mat-label>Localisation</mat-label>
+  <input
+    matInput
+    [formControl]="stateCtrl"
+    ng-model="myVar"
+    name="dropdown-search"
+    placeholder="Start to type..."
+  />
+  <mat-icon matSuffix>arrow_drop_down</mat-icon>
+</mat-form-field>
+
+
+
+
+
+<ng-template 
+  cdkConnectedOverlay
+  cdkConnectedOverlayHasBackdrop
+  [cdkConnectedOverlayScrollStrategy]="scrollStrategy"
+  [cdkConnectedOverlayOrigin]="originOverlay"
+  [cdkConnectedOverlayPositions]="positions"
+  [cdkConnectedOverlayOpen]="(showPanel$ | async)|| false"
+>
+  <section class="drop-down-serch-panel mat-elevation-z1">
+    <mat-divider></mat-divider>
+    <div class="panel-result-section" >
+      <div class="result-item" *ngFor="let state of adressesTest$ | async">
+        <h3 (click)="saveText(state.properties.label)">{{ state.properties.label }}</h3>
+
+      </div>
+    </div>
+  </section>
+</ng-template>

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
@@ -27,6 +27,7 @@ import { ProfilComponent } from './profil/profil.component';
       CommonModule,
       DashboardRoutingModule,
       FormsModule,
+      ReactiveFormsModule,
       MatSidenavModule,
       FlexLayoutModule,
       RouterModule,
@@ -35,6 +36,8 @@ import { ProfilComponent } from './profil/profil.component';
       MatDividerModule,
       StocksManagementModule
     ],
-    exports: []
+    exports: [      
+      ReactiveFormsModule
+    ]
   })
   export class DashboardModule { }

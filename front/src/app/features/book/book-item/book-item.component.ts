@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { BookItemModel } from 'src/app/core/models/book-item.model';
 import { BookModel } from 'src/app/core/models/books.model';
 import { BookDetailsOverlayService } from 'src/app/core/services/book-details-overlay.service';
+import { BuyDialogComponent } from '../../buy-dialog/buy-dialog.component';
 
 
 
@@ -13,7 +15,8 @@ import { BookDetailsOverlayService } from 'src/app/core/services/book-details-ov
 export class BookItemComponent implements OnInit {
   @Input() book!: BookModel;
 
-  constructor(private bookDetailsOverlayService : BookDetailsOverlayService) { }
+  constructor(private bookDetailsOverlayService : BookDetailsOverlayService,
+    public dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
@@ -24,4 +27,13 @@ export class BookItemComponent implements OnInit {
     this.bookDetailsOverlayService.detailIsClicked(book.id);
   }
 
+  openDialog() {
+    const dialogRef = this.dialog.open(BuyDialogComponent, {
+      width: '500px',
+      height: '250px',
+      data: { book: this.book },
+    });
+
+    dialogRef.afterClosed().subscribe();
+  }
 }

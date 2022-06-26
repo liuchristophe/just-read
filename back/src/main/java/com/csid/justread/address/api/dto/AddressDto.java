@@ -10,7 +10,8 @@ public class AddressDto {
     private String zipCode;
     private String city;
     private String country;
-
+    private float longitude;
+    private float latitude;
     //region * Methods *
 
     public UUID getId() {
@@ -61,7 +62,22 @@ public class AddressDto {
         this.country = country;
     }
 
+    public float getLongitude() {
+        return longitude;
+    }
 
-    //endregion
+    public void setLongitude(float longitude) {
+        this.longitude = longitude;
+    }
+
+    public float getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(float latitude) {
+        this.latitude = latitude;
+    }
+
+//endregion
 
 }

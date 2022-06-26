@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ManagementCardModel } from 'src/app/core/models/management-card-type.model';
 
 @Component({
-  selector: 'app-stocks-management',
-  templateUrl: './stocks-management.component.html',
-  styleUrls: ['./stocks-management.component.scss']
+  selector: 'app-management-display-stock',
+  templateUrl: './management-display-stock.component.html',
+  styleUrls: ['./management-display-stock.component.scss']
 })
-export class StocksManagementComponent implements OnInit {
+export class ManagementDisplayStockComponent implements OnInit {
 
   constructor() { }
 

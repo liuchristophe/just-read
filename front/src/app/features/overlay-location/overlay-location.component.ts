@@ -58,7 +58,7 @@ import { ESCAPE } from '@angular/cdk/keycodes';
 import { OverlayReference } from '@angular/cdk/overlay/overlay-reference';
 import { BookDetailsOverlayService } from 'src/app/core/services/book-details-overlay.service';
 import { ApiService } from 'src/app/core/services/api.service';
-
+import { CacheAdresse } from 'src/app/core/services/cacheAdresse';
 export interface State {
   flag: string;
   name: string;
@@ -113,23 +113,34 @@ export class OverlayLocationComponent implements OnInit {
   constructor(
     private focusMonitor: FocusMonitor,
     private scrollStrategies: ScrollStrategyOptions,
-    private apiService : ApiService
+    private apiService : ApiService,
+    private cacheAdresse: CacheAdresse
+
   ) {}
 
   saveText(text: string): void{
     this.stateCtrl.setValue(text);
   }
+
+  saveAdresse(): void{
+
+  }
+
   ngOnInit(): void {
+
+    this.saveText(CacheAdresse.label);
 
     this.adressesTest$ = this.stateCtrl.valueChanges.pipe( startWith(''),
     map((adresse) => {
         this.apiService.getAdresse$(adresse).subscribe((data) => {
           this.adresses = data;
-          console.log(this.adresses)
-    
+          if(this.adresses.features[0] != undefined){
+            CacheAdresse.label = this.adresses.features[0].properties.label;
+            CacheAdresse.latitude = this.adresses.features[0].geometry.coordinates[0];
+            CacheAdresse.longitude = this.adresses.features[0].geometry.coordinates[1];
+          }
         });
-        console.log(this.adresses)
-        return this.adresses==undefined ? undefined : this.adresses.features; 
+        return this.adresses==undefined ? undefined : this.adresses.features;
 
       })
     );
@@ -154,7 +165,7 @@ export class OverlayLocationComponent implements OnInit {
       this.connectedOverlay.backdropClick
     ).pipe(mapTo(false));
     this.showPanel$ = merge(this.isPanelHidden$, this.isPanelVisible$);
-    
+
   }
 }
 

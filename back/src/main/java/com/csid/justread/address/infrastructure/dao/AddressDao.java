@@ -7,4 +7,5 @@ import java.util.UUID;
 
 @Repository
 public interface AddressDao extends JpaRepository<AddressEntity, UUID> {
+
 }

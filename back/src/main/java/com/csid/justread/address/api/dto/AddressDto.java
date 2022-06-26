@@ -1,5 +1,6 @@
 package com.csid.justread.address.api.dto;
 
+import javax.persistence.Column;
 import java.util.UUID;
 
 public class AddressDto {

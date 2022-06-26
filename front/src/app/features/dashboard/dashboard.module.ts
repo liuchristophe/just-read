@@ -14,12 +14,14 @@ import { DashboardComponent } from './dashboard.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { FormAjoutLivreComponent } from './form-ajout-livre/form-ajout-livre.component';
 import { StocksManagementModule } from '../stocks-management/stocks-management.module';
+import { ProfilComponent } from './profil/profil.component';
 
 @NgModule({
     declarations: [
       DashboardComponent,
       SidebarComponent,
-      FormAjoutLivreComponent
+      FormAjoutLivreComponent,
+      ProfilComponent
     ],
     imports: [
       CommonModule,

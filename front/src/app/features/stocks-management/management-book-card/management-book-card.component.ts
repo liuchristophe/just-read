@@ -32,20 +32,33 @@ export class ManagementBookCardComponent implements OnInit {
     });
   }
 
-  getImage() {
-    return this.stock?.book.urlImage;
+  get bookImage(): string | undefined {
+    let res = this.stock?.book.urlImage;
+    if (res){
+    console.log("bookImage for id",res);
+      return res;
+  }else {
+      console.log("bookImage stock: ", this.stock)
+      return 'https://binaries.templates.cdn.office.net/support/templates/fr-fr/lt22301254_quantized.png';
+    }
   }
 
   getTitle() {
-    return this.stock?.book.title;
+    if (this.stock?.book.title) 
+      return this.stock.book.title;
+    else {
+      alert(`title is undefined ...`);
+      return '';
+    } 
   }
 
   submit() {
+    console.log(this.type);
     if (this.type) {
-      if (this.type === 1) {
+      if (this.type.valueOf() === ManagementCardModel.POST.valueOf()) {
         this.addStock();
-      }
-      else if (this.type === 2) {
+      }   
+      else if (this.type.valueOf() === ManagementCardModel.UPDATE.valueOf()) {
         this.updateStock();
       }
 
@@ -56,9 +69,9 @@ export class ManagementBookCardComponent implements OnInit {
   }
 
   addStock(){
-    console.log(`addStock déclanché ...`);
+    console.log(`addStock déclenché ...`);
     if (this.stock) {
-      this.stockItem = new StockModel(this.formData.value.quantity, this.formData.value.unitPrice, this.stock.book);
+      this.stockItem = new StockModel({quantity:this.formData.value.quantity, unitPrice: this.formData.value.unitPrice, book:this.stock.book, id:''});
       console.log(`${JSON.stringify(this.stockItem)}`);
       this.apiService.addStock$(this.idLibrary,this.stockItem).subscribe();
       console.log(this.stockItem);
@@ -71,7 +84,7 @@ export class ManagementBookCardComponent implements OnInit {
   updateStock(){
     console.log('updateStock déclenché')
     if (this.stock) {
-      this.stockItem = new StockModel(this.formData.value.quantity, this.formData.value.unitPrice, this.stock.book, this.stock.id);
+      this.stockItem = new StockModel({quantity: this.formData.value.quantity, unitPrice:this.formData.value.unitPrice, book:this.stock.book, id:''});
       console.log(`${JSON.stringify(this.stockItem)}`);
       if (this.stockItem.id){
         this.apiService.updateStock$(this.idLibrary, this.stockItem.id, this.stockItem).subscribe();

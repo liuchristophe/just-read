@@ -61,7 +61,7 @@ export class BookListComponent implements OnInit {
 
   match(x : BookModel): boolean{
     if(this.author){
-      let found = x.author.indexOf(this.author);
+      let found = x.author?.firstname.indexOf(this.author);//TODO
       if(found ===-1){
         return false;
       }
@@ -79,4 +79,6 @@ export class BookListComponent implements OnInit {
     this.bookSelected = book;
     this.bookDetailsOverlayService.detailIsClicked(book.id);
   }
+
+
 }

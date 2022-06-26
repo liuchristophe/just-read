@@ -21,20 +21,12 @@ export class StocksListComponent implements OnInit {
   constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
-    console.log(`stock list appelé`);
     if(this.type){
-      console.log(`stock list a un type`);
       if(this.type.valueOf() === ManagementCardModel.POST.valueOf() ){
-        console.log(`type est ${this.type}`);
-        this.apiService.getAllBooks$()
-        .pipe(map(x=>{
-          let stockModel: StockModel[] = [];
-          x.forEach(book => {stockModel.push(new StockModel(0, 0, book, undefined))});
-          console.log(`${JSON.stringify(x)}`)
-          return stockModel;
-        }))
+        this.apiService.getBooksNotInStock$(this.idLibrary)
         .subscribe((data) => {
           this.stocks = data;
+          console.log(JSON.stringify(data));
         }, error => {
           alert(`N'arrive pas à récupérer le getAllBooks ...`);
         });
@@ -53,9 +45,15 @@ export class StocksListComponent implements OnInit {
     else {
       console.log(`stock list n'a pas de type`);
     }
+
   }
 
   getCardType() {
+    if (this.type) {
+      return this.type;
+    }
+    alert(`n'a pas de type`);
+    // return null;
     return ManagementCardModel.UPDATE;
   }
   

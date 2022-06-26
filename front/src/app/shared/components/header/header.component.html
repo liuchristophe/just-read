@@ -1,5 +1,6 @@
 <mat-toolbar color="primary">
-    <ul *ngFor="let nav of navigations">
-        <li><a routerLink={{nav.link}} routerLinkActive="active">{{nav.title}}</a></li>
-    </ul>
+    <div class="title">Just-Read <span class="suffixe">v. Alpha</span></div>
+    <div class="content">
+        <span class="item" *ngFor="let nav of navigations"><a routerLink={{nav.link}} routerLinkActive="active">{{nav.title}}</a></span>
+    </div>
 </mat-toolbar>

@@ -1,0 +1,22 @@
+<section class="gestion-stock">
+    <h2>Stocks</h2>
+    <section class="option-stock">
+        <div>
+            <a class="jr-add-btn" routerLink="ajout">+ Ajout Rapide</a>
+        </div>
+        <div class="jr-editable">
+            <div class="row">
+                <div class=col-lg-9>
+                    <input class="jr-input" type="search" name="search-bar" id="search-bar" placeholder="Titre recherché...">
+                </div>
+                <div class=col-lg-3>
+                    <input class="jr-input" type="submit" value="Rechercher">
+                </div>
+            </div>
+            <label>Disponibles en magasin :</label>
+        </div>
+    </section>
+    <section class="liste-stock">
+        <app-stocks-list [type]="getManagementType()"></app-stocks-list>
+    </section>
+</section>

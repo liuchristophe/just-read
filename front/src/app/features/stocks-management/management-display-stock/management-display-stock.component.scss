@@ -1,0 +1,16 @@
+.gestion-stock {
+    .option-stock {
+        height: 150px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        margin-bottom: 20px;;
+    }
+    .jr-add-btn {
+        padding: 20px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        text-decoration: none;
+        &:hover { color: var(--color-selected) !important; }
+    }
+}

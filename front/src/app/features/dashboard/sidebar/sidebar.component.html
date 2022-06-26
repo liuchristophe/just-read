@@ -1,0 +1,27 @@
+<!-- <ul>
+    <li><a routerLink="ajout_livre">Ajouter Livre</a></li>
+     <li><a routerLink="fdqs">Not found</a></li>
+    <li><a routerLink="profil">Profil</a></li>
+</ul> -->
+
+<mat-nav-list>
+    <div class="profile-card">
+        <div class="header">
+            <h2>Jean-Claude Libraire</h2>
+            <h4 class="jr-quote">jcLibraire@gmail.com</h4>
+        </div>
+        <img src="https://www.petitscommerces.fr/wp-content/uploads/2019/05/librairie-philippe-le-libraire-32-rue-des-vinaigriers-75010-paris-bd-editeurs-independants-petitscommerces-fr-petit-commerce-petits-commerces-1.jpg">
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="profile-options">
+        <h2>Menu</h2>
+        <div class="sub-navigation" *ngFor="let link of links">
+            <a mat-list-item routerLinkActive="list-item-active" routerLink="{{link.redirection}}">{{link.title}}</a>
+        </div>
+    </div>
+
+    <mat-divider></mat-divider>
+
+</mat-nav-list>

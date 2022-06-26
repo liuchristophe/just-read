@@ -1,0 +1,118 @@
+
+.book-card-frame {
+
+    /**| Variables |**/
+    --m: 1.45 ;         // multiplier
+    --h-title: 45px;    // title height 
+    // --h: calc( calc(150px + var(--h-title)) * var(--m) ); // height
+    --h: calc( 180px * var(--m) ); // height
+    --w: calc( 140px * var(--m) ); // width
+    --f-size-title: 12pt; // font 
+    --t-d: 0.55s; // transition duration
+    // --c-green: #008800D0;
+    
+    /**| Style |**/
+    display: inline-block;
+    width : var(--w);
+    height: var(--h);
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 0 40px #00000050;
+    border-radius: 3px;
+    cursor: pointer;
+
+    & > * { transition: all var(--t-d) ease-in-out; }
+
+    img {
+        width : 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .book-card-detail {
+        position: absolute;
+        top: var(--h); 
+        left: 0;
+        width: 100%; height: 100%;
+        background-color: white !important;
+
+        & > * {
+            margin-left : 15px;
+            width: calc(var(--w) - 30px) !important;
+            font-family: var(--font-3);
+        }
+        & > *:not(.title) {
+            font-size: calc(var(--f-size-title) - 2pt);
+            transform: translateX(-50px);
+            opacity: 0;
+            transition-duration: 0s !important;
+        }
+
+        .title {
+            width: 100%;
+            height: var(--h-title);
+            font-size: var(--f-size-title);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis; /** todo : corriger **/
+            color: #43484f;
+        }
+        .cover {
+            --t-delay: 0.3s; /** transition delay **/
+            height: calc(65% - var(--h-title));
+            overflow: hidden;
+            color: #43484fdb;
+            margin-bottom: 5px;
+            transition: transform var(--t-d) var(--t-delay), opacity var(--t-d) var(--t-delay) !important;
+            visibility: hidden;
+        }
+        .jr-link {
+            --t-delay: 0.6s; /** transition delay **/
+            color: var(--color-selected);
+            border-bottom: solid 1px;
+            padding-bottom: 2px;
+            min-width: 0;
+            width: fit-content !important;
+            opacity: 0;
+            transition: transform var(--t-d) var(--t-delay), opacity var(--t-d) var(--t-delay) !important;
+        }
+        .jr-add-btn {
+            --t-delay: 0.9s; /** transition delay **/
+            position: absolute;
+            bottom: 16px;
+            opacity : 0;
+            transition: transform var(--t-d) var(--t-delay), opacity var(--t-d) var(--t-delay) !important;
+        }
+
+        &:after {
+            position: absolute;
+            top: 0;
+            right: -10;
+            content:  "";
+            background: #00000004;
+            width: 100%; height: 80%;
+            transform-origin: top right;
+            transform:rotate( -36deg );
+            opacity:  .2;
+            transition: opacity 0.2s;
+            border: solid 1px #00000008;
+        }
+
+    }
+    &:hover .book-card-detail  {
+        top: 0;
+        & > *:not(.title) {
+            visibility: visible;
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+    &:hover img  {
+        top: 0;
+        filter: brightness(0.3);
+    }
+}
+

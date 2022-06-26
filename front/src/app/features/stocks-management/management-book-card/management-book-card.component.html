@@ -1,0 +1,27 @@
+<div class="card" *ngIf="isDisplayed">
+    <img *ngIf="bookImage" [src]="bookImage" alt="{{getTitle()}}">
+    <div class="title-section">
+        <div class="title">{{getTitle()}}</div>
+        <button class="delete-btn" *ngIf="isItPut()" (click)="deleteStock()"><mat-icon class="material-icons red" aria-hidden="false">cancel</mat-icon></button>
+    </div>
+    <form [formGroup]="formData">
+        <div class="jr-input-group">
+            <div class="col-lg-6">
+                <div class="jr-editable">
+                    <input class="jr-input" type="number"  min="0" name="quantity" formControlName="quantity" id="quantity" required="required">
+                    <label class="jr-label">Quantité</label>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="jr-editable">
+                    <input class="jr-input" type="number" step="1" min="0" name="price" formControlName="unitPrice" id="price" required="required">
+                    <label class="jr-label">Prix</label>
+                </div>
+            </div>
+        </div>
+        <div class="jr-btn-group">
+            <input class="jr-btn" type="submit" value="Enregistrer" (click)="submit()">
+            <input class="jr-btn" type="button" value="Annuler">
+        </div>
+    </form>
+</div>

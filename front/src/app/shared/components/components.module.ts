@@ -9,6 +9,9 @@ import { AngularComponent } from './angular/angular.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { BannerComponent } from './banner/banner.component';
+import { FeaturesModule } from 'src/app/features/features.module';
+import { FooterComponent } from './footer/footer.component';
 
 
 
@@ -17,14 +20,17 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     AngularComponent,
     HeaderComponent,
     HomeComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    BannerComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
-    RouterModule
+    RouterModule,
+    FeaturesModule
   ],
   exports: [
     MatToolbarModule,
@@ -32,7 +38,9 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     MatIconModule,
     HeaderComponent,
     HomeComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    BannerComponent,
+    FooterComponent
   ]
 })
 export class ComponentsModule { }

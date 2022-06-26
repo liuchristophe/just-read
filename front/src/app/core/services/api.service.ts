@@ -39,6 +39,10 @@ export class ApiService {
     return this.httpClient.get<Array<LibraryModel>>(this.urlLibrary);
   }
 
+  getAllLibraryNearby$(latitude: number, longitude: number): Observable<Array<LibraryModel>>{
+    return this.httpClient.get<Array<LibraryModel>>(this.urlLibrary+"/rayon?latitude="+latitude+"&longitude="+longitude+"&rayon=30");
+  }
+
   getAdresse$(adresse: string): Observable<Array<any>>{
     return this.httpClient.get<Array<any>>("https://api-adresse.data.gouv.fr/search/?q="+adresse.replace(" ", "+"))
   }

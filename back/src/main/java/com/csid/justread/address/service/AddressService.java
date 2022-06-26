@@ -11,6 +11,6 @@ public class AddressService {
 
     private final AddressDao addressDao;
 
-    public AddressService( AddressDao addressDao ) { this.addressDao = addressDao; }
+    public AddressService(AddressDao addressDao ) { this.addressDao = addressDao; }
 
 }

@@ -34,7 +34,6 @@ public class AddressEntity {
 
     @Column()
     private float latitude;
-
     //region * Methods *
 
     public UUID getId() {

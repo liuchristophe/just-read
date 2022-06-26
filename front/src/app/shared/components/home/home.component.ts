@@ -4,6 +4,7 @@ import { ApiService } from 'src/app/core/services/api.service';
 
 import { BookModel } from 'src/app/core/models/books.model';
 import { LibraryModel } from 'src/app/core/models/library.model';
+import { CacheAdresse } from 'src/app/core/services/cacheAdresse';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,8 @@ import { LibraryModel } from 'src/app/core/models/library.model';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private apiService: ApiService) { }
+  constructor(
+    private apiService: ApiService) { }
 
   trending1 = 'Science fiction';
   trending2 = 'Les plus populaires';
@@ -23,25 +25,40 @@ export class HomeComponent implements OnInit {
   trendingFantasy = 'Fantasy';
   booksFantasy : Array<BookModel> = [];
 
+  libraries : Array<LibraryModel> = []
   libraryProche : LibraryModel = {} as LibraryModel;
 
+  getAllBookFromCategory(categoryName: string): Array<BookModel>{
+    let books: Array<BookModel> = [];
+    this.libraries.forEach(
+      library => library.stocks.forEach(
+        stock => stock.book.categories.forEach(
+          category=> 
+          {
+            if(category.name==categoryName)  books.push(stock.book)
+          }
+        )
+      )
+    );
+    return books;
+  }
+
+
+
   ngOnInit(): void {
-    this.apiService.getBooksByCategoryName$("Aventure").subscribe((data) => {
-      this.booksAventure = data;
-    }, error => {
-      alert(`N'arrive pas à récupérer le getAllBooksByCategory ...`);
-    });
 
-    this.apiService.getBooksByCategoryName$("Fantasy").subscribe((data) => {
-      this.booksFantasy = data;
-    }, error => {
-      alert(`N'arrive pas à récupérer le getAllBooksByCategory ...`);
-    });
+    this.apiService.getAllLibraryNearby$(CacheAdresse.latitude, CacheAdresse.longitude).subscribe((data) => {
 
-    this.apiService.getAllLibrary$().subscribe((data) => {
-      if(data.length>0) this.libraryProche = data[0];
+      if(data.length>0) {
+        this.libraries = data;
+        this.libraryProche = data[0];
+        this.booksAventure=this.getAllBookFromCategory("Aventure")
+        this.booksAventure=this.getAllBookFromCategory("Fantasy")
+      }else{
+        this.libraryProche = {} as LibraryModel
+      }
     }, error => {
-      alert(`N'arrive pas à récupérer le getAllLibrary ...`);
+      alert(`N'arrive pas à récupérer le getAllLibraryNearby ...`);
     });
   }
 

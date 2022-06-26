@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { BookModel } from 'src/app/core/models/books.model';
-
 import { ApiService } from '../../../core/services/api.service';
 
 @Component({

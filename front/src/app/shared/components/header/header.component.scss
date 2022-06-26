@@ -54,7 +54,8 @@
                 padding-left : var(--p);
                 padding-right: var(--p);
                 height: 100%;
-                width: calc( 100% - calc(2 * var(--p) ) );
+                // width: calc( 100% - calc(2 * var(--p) ) );
+                width: fit-content !important;
                 display: flex;
                 align-items: center;
                 position: relative;

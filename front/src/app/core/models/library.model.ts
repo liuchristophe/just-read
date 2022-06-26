@@ -3,23 +3,21 @@ import { BookDto} from "../Dtos";
 import { stockDto } from "../Dtos/BookDto";
 
 export interface LibraryModel {
-    id: string;
-    name: string;
+    id: string,
+    name: string,
+    address: AddressModel
     urlImage: string;
     description: string;
-    address: AddressModel;
     stocks: Array<StockModel>;
     orders: Array<OrderModel>;
-
 }
-
-export interface AddressModel {
-    id: string;
-    streetName: string;
-    complementaryField: string;
-    zipCode: string;
-    city: string;
-    country: string;
+interface AddressModel{
+    id: string,
+    streetName: string,
+    complementaryField: string,
+    zipCode: string,
+    city: string,
+    country: string
 }
 export interface OrderModel {
     id: string;

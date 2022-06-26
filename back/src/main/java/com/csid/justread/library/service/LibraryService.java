@@ -4,6 +4,7 @@ import com.csid.justread.Converter;
 import com.csid.justread.book.infrastructure.dao.BookDao;
 import com.csid.justread.book.service.model.Book;
 import com.csid.justread.exception.ServiceException;
+import com.csid.justread.library.api.dto.LibraryDto;
 import com.csid.justread.library.infrastructure.dao.LibraryDao;
 import com.csid.justread.library.infrastructure.dao.StockItemDao;
 import com.csid.justread.library.infrastructure.entity.StockItemEntity;
@@ -47,6 +48,22 @@ public class LibraryService {
     public Library getLibraryById( UUID id ) {
        return new Converter().map( this.libraryDao.getById( id ), Library.class );
     }
+
+    public Library updateLibrary(UUID id, Library library) {
+        Optional<Library> target = this.libraryDao.findById( id ).map( l -> new Converter().map(l, Library.class) );
+        Library result = null;
+        if ( target.isPresent() ) {
+            target.map( t -> { t.update(library); return t; } );
+            result = new Converter().map( this.libraryDao.save(
+                        new Converter().map(target.get(), LibraryEntity.class)
+            ), Library.class );
+        }
+        return result;
+    }
+
+    //endregion
+
+    //region * Stock Management *
 
     public List<StockItem> getStock(UUID libraryId) {
         LibraryEntity libraryEntity = this.libraryDao.getById(libraryId);
@@ -98,7 +115,6 @@ public class LibraryService {
         stockItemEntity.setUnitPrice(stockItem.getUnitPrice());
         return new Converter().map(this.stockItemDao.save(stockItemEntity), StockItem.class);
     }
-
 
     public List<Library> getLibrariesNearby(int rayon, float longitude, float latitude){
         return new Converter().mapAsList(libraryDao.getLibrariesNearby((double) rayon, longitude, latitude),Library.class);

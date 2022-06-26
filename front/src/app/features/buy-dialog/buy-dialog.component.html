@@ -1,3 +1,6 @@
-<p>Achat rapide</p>
-<p>Félicitation. Vous avez acheter le livre</p>
-<button mat-button (click)="onNoClick()">Continuer la visite</button>
+<mat-icon class="material-icons center" aria-hidden="false">receipt</mat-icon>
+<!-- <p class="dialog-titre center">Achat Direct</p> -->
+<p class="dialog-message"><span class="dialog-message bold">Félicitation!!!!</span></p>
+<p class="dialog-message">Vous venez d'acheter le livre: {{getBookTitle()}}</p>
+<img src="{{getBookImage()}}" alt="{{getBookTitle()}}">
+<button mat-button class="dialog-button" (click)="onNoClick()">Continuer la visite</button>

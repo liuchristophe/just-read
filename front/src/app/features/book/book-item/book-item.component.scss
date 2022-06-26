@@ -9,7 +9,7 @@
     --w: calc( 140px * var(--m) ); // width
     --f-size-title: 12pt; // font 
     --t-d: 0.55s; // transition duration
-    --c-green: #008800D0;
+    // --c-green: #008800D0;
     
     /**| Style |**/
     display: inline-block;
@@ -71,7 +71,7 @@
         }
         .jr-link {
             --t-delay: 0.6s; /** transition delay **/
-            color: var(--c-green);
+            color: var(--color-selected);
             border-bottom: solid 1px;
             padding-bottom: 2px;
             min-width: 0;
@@ -81,14 +81,8 @@
         }
         .jr-add-btn {
             --t-delay: 0.9s; /** transition delay **/
-            border: solid 1px;
-            text-align: center;
-            padding-top: 6px;
-            padding-bottom: 6px;
-            border-radius: 3px;
             position: absolute;
             bottom: 16px;
-            color: var(--c-green);
             opacity : 0;
             transition: transform var(--t-d) var(--t-delay), opacity var(--t-d) var(--t-delay) !important;
         }

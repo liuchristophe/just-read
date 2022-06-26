@@ -9,13 +9,15 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 /**| VARIABLES |**/
-:root {
+body {
   --font-1: "Yeseva one";
   --font-2: "Lora";
   --font-3: "Montserrat";
   --color-grad-1: #6cbeb8;
   --color-grad-2: #084a4d;
   --color-text-1: #3d4f66;
+  --color-text-default: #40464c;
+  --color-border: #40464c80;
   --color-selected: #429533;
 }
 .hide { display: none; }
@@ -51,13 +53,94 @@ h2:after {
   opacity: 0.5;
 }
 
+.jr-quote {
+  text-align: left;
+  font-family: var(--font-2) !important;
+  letter-spacing: 1px !important;
+}
+
+/** buttons **/
+
+.jr-add-btn {
+  border: solid 1px;
+  text-align: center;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  border-radius: 3px;
+  color: var(--color-selected);
+}
+
+.jr-editable {
+  display: flex;
+  flex-direction: column-reverse;
+  
+  .jr-input, .jr-textarea {
+      border-color: var(--color-border) !important;
+  }
+  .jr-input {
+      height: 35px;
+      outline: none;
+      padding-left: 10px;
+      padding-right: 10px;
+      border: solid 1px;
+      border-radius: 3px;
+      width: 100%;
+      font-weight: 500;
+      font-size: 10pt;
+      &:not([readonly]):focus {
+          color: var(--color-selected) !important;
+          border-color: var(--color-selected) !important; 
+          & ~ .jr-label {
+              color: var(--color-selected) !important;
+          }
+      }
+  }
+  .jr-label {
+      position: relative;
+      background: white !important;
+      width: fit-content;
+      padding: 6px;
+      padding-bottom: 0;
+      top: 10px;
+      left: 5px;
+      font-weight: 600;
+      font-size: 9pt;
+      letter-spacing: 1px;
+  }
+  .jr-textarea {
+      width: 100%;
+      outline : none !important;
+      padding : 15px;
+      &:not([readonly]) { border-color: var(--color-selected) !important; }
+  }
+}
+
+.jr-btn {
+  border: none; outline: none !important;
+  background: none !important;
+  color: var(--color-selected) !important;
+  width: fit-content !important;
+  padding: 0;
+  padding-bottom: 3px;
+  border-bottom: solid 1px;
+  cursor: pointer;
+}
+.jr-btn-group > .jr-btn { 
+  margin-right: 10px; 
+}
+.jr-input-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 /**| CORRECTIFS |**/
 .owl-stage {
     padding-top: 25px;
     padding-bottom: 25px;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
+.mat-drawer {
+  width: 300px !important;
+}
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

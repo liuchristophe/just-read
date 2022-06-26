@@ -1,3 +1,5 @@
+<!-- <label for="title">Title</label>
+<input type="text" [(ngModel)]="title" (ngModelChange)="onFilterChange()"> -->
 <div class="list" *ngFor="let stock of stocks | orderBy: 'stock.book.title'">
 <!-- <div class="list" *ngFor="let stock of stocks | orderBy:'stock.book.title'"> -->
     <!-- <app-management-book-card></app-management-book-card> -->

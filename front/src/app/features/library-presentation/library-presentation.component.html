@@ -1,19 +1,24 @@
-<h1>{{library.name}}</h1>
-<div>
-    <div id="gauche">    
-        <img alt="library devanture" src={{library.urlImage}}><img>
-        <h2> {{library.address.streetName}}, {{library.address.city}} ({{library.address.zipCode}})</h2>
-        <p>{{library.description}}</p>
-    </div>
-    
-    <div id="droite">
-        <div id="grid-container">
-            <div *ngFor="let stock of library.stocks; index as i">
-                 <app-book-item *ngIf="i<6" class="item" [book]="stock.book"></app-book-item>
+<div class="library-presentation">
+    <h1 class="library-name">{{library.name}}</h1>
+    <div class="contaier-fluid">
+        <div class="row">
+            <div class="col-lg-6"> <!-- #gauche -->    
+                <div class="img-container">
+                    <img alt="library devanture" src={{library.urlImage}}><img>
+                </div>
+                <h3> {{library.address.streetName}} | {{library.address.city}} | ({{library.address.zipCode}})</h3>
             </div>
-         </div>
-         <p>voir plus</p>
+            <div class="col-lg-6" id="droit"> <!-- droite -->
+                <h2>Description</h2>
+                <p class="dsc">{{library.description}}</p>
+                <h2 class="pt-4">Meilleures ventes</h2>
+                <div id="flex-container">
+                    <div *ngFor="let stock of library.stocks; index as i">
+                        <app-book-item *ngIf="i<6" class="item" [book]="stock.book"></app-book-item>
+                    </div>
+                </div>
+                <p class="jr-btn pt-4">voir plus de contenu</p>
+            </div>
+        </div>
     </div>
-    
-    
 </div>

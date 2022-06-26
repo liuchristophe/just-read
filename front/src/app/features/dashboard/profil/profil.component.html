@@ -6,14 +6,14 @@
             <input  [(ngModel)]="library.name" type="text" name="name"  class="h3" [readonly]="!this.titleEdit"/>
             <button class="jr-btn jr-btn-group" [ngClass]="{'hide': this.titleEdit != false}" (click)="toggleTitleEdit()"> modifier </button>
             <div    [ngClass]="{'hide': this.titleEdit == false}" class="jr-btn-group">
-                <button  class="jr-btn" [disabled]="!this.titleEdit" (click)="updateOnSubmit()"> save   </button>
-                <button  class="jr-btn" [disabled]="!this.titleEdit" (click)="resetAll()"> cancel </button>
+                <button  class="jr-btn" [disabled]="!this.titleEdit" (click)="updateOnSubmit()"> enregistrer   </button>
+                <button  class="jr-btn" [disabled]="!this.titleEdit" (click)="resetAll()"> annuler </button>
             </div>
         </form>
     </div>
 
     <!--| TOOLS |-->
-    <h2>Outils</h2>
+    <!-- <h2>Outils</h2>
     <div class="jr-toolbox container-fluid">
         <div class="row">
             <div class="col-lg-4">
@@ -32,7 +32,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     
     <!--| LIBRARY DETAILS |-->
     <h2>Informations</h2>
@@ -52,10 +52,10 @@
                                         <div class="jr-label">Image Url</div>
                                     </div>
                                 </div>
-                                <div class="col-lg-3">
+                                <div class="col-lg-12">
                                     <div class="jr-btn-group">
-                                        <button  class="jr-btn" (click)="updateOnSubmit()"> save </button>
-                                        <button  class="jr-btn" (click)="resetAll()"> cancel </button>
+                                        <button  class="jr-btn" (click)="updateOnSubmit()"> enregistrer </button>
+                                        <button  class="jr-btn" (click)="resetAll()"> annuler </button>
                                     </div>
                                 </div>
                             </div>
@@ -73,8 +73,8 @@
                         </div>
                         <button  class="jr-btn jr-btn-group" [ngClass]="{'hide': this.descriptionEdit != false}" (click)="toggleDescriptionEdit()"> modifier </button>
                         <div    [ngClass]="{'hide': this.descriptionEdit == false}" class="jr-btn-group">
-                            <button  class="jr-btn" [disabled]="!this.descriptionEdit" (click)="updateOnSubmit()"> save   </button>
-                            <button  class="jr-btn" [disabled]="!this.descriptionEdit" (click)="resetAll()"> cancel </button>
+                            <button  class="jr-btn" [disabled]="!this.descriptionEdit" (click)="updateOnSubmit()"> enregistrer   </button>
+                            <button  class="jr-btn" [disabled]="!this.descriptionEdit" (click)="resetAll()"> annuler </button>
                         </div>
                     </form>
                 </div>
@@ -127,8 +127,8 @@
     
             <button  class="jr-btn jr-btn-group" [ngClass]="{'hide': this.addressEdit != false}" (click)="toggleAddressEdit()">modifier</button>
             <div    [ngClass]="{'hide': this.addressEdit == false}" class="jr-btn-group">
-                <button  class="jr-btn" [disabled]="!this.addressEdit" (click)="updateOnSubmit()">save</button>
-                <button  class="jr-btn" [disabled]="!this.addressEdit" (click)="resetAll()">cancel</button>
+                <button  class="jr-btn" [disabled]="!this.addressEdit" (click)="updateOnSubmit()">enregistrer</button>
+                <button  class="jr-btn" [disabled]="!this.addressEdit" (click)="resetAll()">annuler</button>
             </div>
         </form>
     </div>

@@ -11,13 +11,21 @@ export class BuyDialogComponent implements OnInit {
   book?: BookModel;
 
   constructor(public dialogRef: MatDialogRef<BuyDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: BookModel) { }
+    @Inject(MAT_DIALOG_DATA) public data: { book: BookModel }) { }
 
   ngOnInit(): void {
-    this.book = this.data;
+    this.book = this.data.book;
   }
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  getBookTitle() {
+    return this.book?.title;
+  }
+
+  getBookImage() {
+    return this.book?.urlImage;
   }
 }

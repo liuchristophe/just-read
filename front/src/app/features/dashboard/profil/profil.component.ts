@@ -26,7 +26,8 @@ export class ProfilComponent implements OnInit {
   /**| API |**/
 
   loadLibrary() {
-    const libraryId = this.route.snapshot.paramMap.get('id');
+    // const libraryId = this.route.snapshot.paramMap.get('id');
+    const libraryId= '3b3b3d57-6f2d-4dd9-a374-d7e35b761ad0';
     this.getLibraryById$(libraryId).subscribe( data => this.library = data );
   }
   getLibraryById$(id: string | null) : Observable<any> {

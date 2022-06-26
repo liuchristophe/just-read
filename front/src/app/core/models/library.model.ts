@@ -1,4 +1,6 @@
 import { BookModel } from "./books.model";
+import { BookDto} from "../Dtos";
+import { stockDto } from "../Dtos/BookDto";
 
 export interface LibraryModel {
     id: string,
@@ -9,7 +11,7 @@ export interface LibraryModel {
     stocks: Array<StockModel>;
     orders: Array<OrderModel>;
 }
-interface AddressModel{
+export interface AddressModel{
     id: string,
     streetName: string,
     complementaryField: string,
@@ -37,13 +39,21 @@ export class StockModel{
     book: BookModel;
     id?: string;
 
-    constructor(quantity: number, unitPrice: number, book: BookModel, id_stock?: string) {
-        this.id = id_stock;
-        this.quantity = quantity;
-        this.unitPrice = unitPrice;
-        this.book = book;
+    // constructor(quantity: number, unitPrice: number, book: BookModel, id_stock?: string) {
+    //     this.id = id_stock;
+    //     this.quantity = quantity;
+    //     this.unitPrice = unitPrice;
+    //     this.book = book;
+    // }
+
+    constructor(dto: stockDto){
+        this.book= new BookModel(dto.book);
+        this.quantity= dto.quantity;
+        this.unitPrice = dto.unitPrice;
+        this.id = dto.id;
     }
 
+    //TODO : use a stockDto
     // constructor() {
     //     this(null,null,null,null);
     // }

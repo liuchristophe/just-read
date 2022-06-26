@@ -17,4 +17,9 @@ export class ManagementAddStockComponent implements OnInit {
     console.log(`va retourné un post ${JSON.stringify(ManagementCardModel.POST)}`)
     return ManagementCardModel.POST;
   }
+
+  // onFilterChange(){
+  //   console.log('onFilterChange ' + this.title);
+  //   this.books= this.allBooks.filter(x=>this.match(x));
+  // }
 }

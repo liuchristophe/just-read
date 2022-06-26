@@ -5,10 +5,10 @@ import { Injectable } from "@angular/core";
   })
 export class CacheAdresse{
     
-    static longitude: number = 0;
-    static latitude: number = 0;
+    static longitude: number = 2.4737184047698975;
+    static latitude: number = 48.84798812866211;
 
-    static label: string = "";
+    static label: string = "3 Rue Jean Douat, Fontenay-sous-Bois, France";
 
 
 }

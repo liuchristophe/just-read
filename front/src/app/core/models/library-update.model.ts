@@ -1,3 +1,6 @@
+/**
+ * Interface Library
+ */
 export interface LibraryUpdateModel {
     name: string|null,
     address: Address|null, 
@@ -10,5 +13,7 @@ interface Address {
     complementaryField: string,
     zipCode: string,
     city: string,
-    country: string
+    country: string,
+    // longitude: string,
+    // latitude: string
 }

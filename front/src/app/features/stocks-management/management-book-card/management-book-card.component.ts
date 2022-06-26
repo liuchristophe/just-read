@@ -17,9 +17,13 @@ export class ManagementBookCardComponent implements OnInit {
   @Input() stock?: StockModel;
   @Input() type?: ManagementCardModel;
 
+  isDisplayed: boolean = true;
+
   formData!: FormGroup;
   
   stockItem?: StockModel;
+
+  id : string | undefined;
   
   idLibrary = '3b3b3d57-6f2d-4dd9-a374-d7e35b761ad0';
 
@@ -32,20 +36,31 @@ export class ManagementBookCardComponent implements OnInit {
     });
   }
 
-  getImage() {
-    return this.stock?.book.urlImage;
+  get bookImage(): string | undefined {
+    let res = this.stock?.book.urlImage;
+    if (res){
+      return res;
+  }else {
+      return 'https://binaries.templates.cdn.office.net/support/templates/fr-fr/lt22301254_quantized.png';
+    }
   }
 
   getTitle() {
-    return this.stock?.book.title;
+    if (this.stock?.book.title) 
+      return this.stock.book.title;
+    else {
+      alert(`title is undefined ...`);
+      return '';
+    } 
   }
 
   submit() {
+    console.log(this.type);
     if (this.type) {
-      if (this.type === 1) {
+      if (this.type.valueOf() === ManagementCardModel.POST.valueOf()) {
         this.addStock();
-      }
-      else if (this.type === 2) {
+      }   
+      else if (this.type.valueOf() === ManagementCardModel.UPDATE.valueOf()) {
         this.updateStock();
       }
 
@@ -56,11 +71,11 @@ export class ManagementBookCardComponent implements OnInit {
   }
 
   addStock(){
-    console.log(`addStock déclanché ...`);
+    console.log(`addStock déclenché ...`);
     if (this.stock) {
-      this.stockItem = new StockModel(this.formData.value.quantity, this.formData.value.unitPrice, this.stock.book);
+      this.stockItem = new StockModel({quantity:this.formData.value.quantity, unitPrice: this.formData.value.unitPrice, book:this.stock.book, id:''});
       console.log(`${JSON.stringify(this.stockItem)}`);
-      this.apiService.addStock$(this.idLibrary,this.stockItem).subscribe();
+      this.apiService.addStock$(this.idLibrary,this.stockItem).subscribe(() => {this.isDisplayed=false});
       console.log(this.stockItem);
     }
     else {
@@ -69,12 +84,13 @@ export class ManagementBookCardComponent implements OnInit {
   }
 
   updateStock(){
-    console.log('updateStock déclenché')
-    if (this.stock) {
-      this.stockItem = new StockModel(this.formData.value.quantity, this.formData.value.unitPrice, this.stock.book, this.stock.id);
+    console.log('updateStock déclenché');
+    console.log(JSON.stringify(this.stock));
+    if (this.stock) {     
+      this.stockItem = new StockModel({quantity: this.formData.value.quantity, unitPrice:this.formData.value.unitPrice, book:this.stock.book, id: this.stock.id});
       console.log(`${JSON.stringify(this.stockItem)}`);
-      if (this.stockItem.id){
-        this.apiService.updateStock$(this.idLibrary, this.stockItem.id, this.stockItem).subscribe();
+      if (this.stock.id){
+        this.apiService.updateStock$(this.idLibrary, this.stock.id, this.stockItem).subscribe();
       } 
       else 
         this.messageErreurStockId()
@@ -82,6 +98,18 @@ export class ManagementBookCardComponent implements OnInit {
     else {
       this.messageErreurObjetStock();
     }
+  }
+
+  deleteStock(){
+    // si le stock 
+    if (this.stock) {
+      let stockId = this.stock.id;
+      if (stockId) {
+        this.apiService.deleteStock$(this.idLibrary, stockId).pipe().subscribe(() => {this.isDisplayed=false});
+        console.log("la supression a été effectuée")
+      }
+    }
+
   }
 
   // addStock( idLibrary : string, stockItem : StockModel ){
@@ -111,4 +139,13 @@ export class ManagementBookCardComponent implements OnInit {
     alert(`Erreur dans le code`);
     console.debug(`lors de l'update, il y a pas d'id`);
   }
+
+  isItPut(): boolean {
+    if (this.type) {
+      return this.type.valueOf() === ManagementCardModel.UPDATE.valueOf();
+    }
+    return false;
+  }
+
+ 
 }

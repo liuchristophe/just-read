@@ -1,13 +1,19 @@
 <section class="gestion-stock">
-    <h1>Stocks</h1>
+    <h2>Stocks</h2>
     <section class="option-stock">
-        <div class="">
-            <a routerLink="ajout">Ajout rapide</a>
+        <div>
+            <a class="jr-add-btn" routerLink="ajout">+ Ajout Rapide</a>
         </div>
-        <div class="">
-            <label for="">Disponible en magasin</label>
-            <input type="search" name="search-bar" id="search-bar" placeholder="Titre recherché...">
-            <input type="submit" value="rechercher">
+        <div class="jr-editable">
+            <div class="row">
+                <div class=col-lg-9>
+                    <input class="jr-input" type="search" name="search-bar" id="search-bar" placeholder="Titre recherché...">
+                </div>
+                <div class=col-lg-3>
+                    <input class="jr-input" type="submit" value="Rechercher">
+                </div>
+            </div>
+            <label>Disponibles en magasin :</label>
         </div>
     </section>
     <section class="liste-stock">

@@ -6,7 +6,7 @@
                 <div class="img-container">
                     <img alt="library devanture" src={{library.urlImage}}><img>
                 </div>
-                <h3> {{library.address.streetName}} | {{library.address.city}} | ({{library.address.zipCode}})</h3>
+                <h3> {{library.address.streetName}} | {{library.address.city}} | {{library.address.zipCode}}</h3>
             </div>
             <div class="col-lg-6" id="droit"> <!-- droite -->
                 <h2>Description</h2>
@@ -14,10 +14,10 @@
                 <h2 class="pt-4">Meilleures ventes</h2>
                 <div id="flex-container">
                     <div *ngFor="let stock of library.stocks; index as i">
-                        <app-book-item *ngIf="i<6" class="item" [book]="stock.book"></app-book-item>
+                        <app-book-item *ngIf="i<3" class="item" [book]="stock.book"></app-book-item>
                     </div>
                 </div>
-                <p class="jr-btn pt-4">voir plus de contenu</p>
+                <p class="jr-btn pt-4">voir plus de livres</p>
             </div>
         </div>
     </div>

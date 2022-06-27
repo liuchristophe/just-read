@@ -133,11 +133,11 @@ export class OverlayLocationComponent implements OnInit {
   }
   ngOnInit(): void {
 
-    if(localStorage.getItem("label") == ""){
+    if(localStorage.getItem("label") == null){
       localStorage.setItem("label", "3 Rue Jean Douat, Fontenay-sous-Bois, France");
       localStorage.setItem("latitude", ""+48.84798812866211);
       localStorage.setItem("longitude",  ""+2.4737184047698975);
-
+      window.location.reload();
     }
     this.stateCtrl.setValue(localStorage.getItem("label"));
 
@@ -148,8 +148,8 @@ export class OverlayLocationComponent implements OnInit {
           if(this.adresses.features[0] != undefined){
 
             localStorage.setItem("label", this.adresses.features[0].properties.label);
-            localStorage.setItem("latitude", this.adresses.features[0].geometry.coordinates[0]);
-            localStorage.setItem("longitude", this.adresses.features[0].geometry.coordinates[1]);
+            localStorage.setItem("latitude", this.adresses.features[0].geometry.coordinates[1]);
+            localStorage.setItem("longitude", this.adresses.features[0].geometry.coordinates[0]);
             // CacheAdresse.label = this.adresses.features[0].properties.label;
             // CacheAdresse.latitude = this.adresses.features[0].geometry.coordinates[0];
             // CacheAdresse.longitude = this.adresses.features[0].geometry.coordinates[1];

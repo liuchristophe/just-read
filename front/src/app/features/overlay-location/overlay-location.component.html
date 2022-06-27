@@ -67,10 +67,13 @@ cdkConnectedOverlay
   <section class="drop-down-serch-panel mat-elevation-z1">
     <mat-divider></mat-divider>
     <div class="panel-result-section" >
-      <div class="result-item" *ngFor="let state of adressesTest$ | async">
-        <h3 (click)="saveText(state.properties.label)">{{ state.properties.label }}</h3>
+      <div class="result-item" *ngFor="let adresse of adressesTest$ | async">
+        <h3 (click)="saveText(adresse.properties.label, adresse.geometry.coordinates[0],
+                   adresse.geometry.coordinates[1])">{{ adresse.properties.label }}</h3>
 
       </div>
     </div>
   </section>
 </ng-template>
+
+<button (click)="actu()">Click</button>

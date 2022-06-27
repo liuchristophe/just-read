@@ -1,6 +1,16 @@
-<mat-icon class="material-icons center" aria-hidden="false">receipt</mat-icon>
-<!-- <p class="dialog-titre center">Achat Direct</p> -->
-<p class="dialog-message"><span class="dialog-message bold">Félicitation!!!!</span></p>
-<p class="dialog-message">Vous venez d'acheter le livre: {{getBookTitle()}}</p>
-<img src="{{getBookImage()}}" alt="{{getBookTitle()}}">
-<button mat-button class="dialog-button" (click)="onNoClick()">Continuer la visite</button>
+<div class="container">
+
+    <div class="headings">
+        <mat-icon class="material-icons center" aria-hidden="false">receipt_long</mat-icon>
+        <!-- <p class="dialog-titre center">Achat Direct</p> -->
+        <h1 class="dialog-message">Achat effectué</h1>
+    </div>
+    <div class="pt-2">
+        <p class="jr-quote mb-1">Vous venez d'acheter le livre: {{getBookTitle()}}</p>
+    </div>
+    <div class="contaier-fluid img-container">
+        <img src="{{getBookImage()}}" alt="{{getBookTitle()}}">
+    </div>
+    <button class="jr-btn pt-1" (click)="onNoClick()">Continuer la visite</button>
+
+</div>

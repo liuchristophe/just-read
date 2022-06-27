@@ -36,3 +36,18 @@ section{
   box-sizing: border-box;
   align-items: center;
 }
+
+.btn-2 {
+  --p: 5px;
+  border: none;
+  background: none;
+  color: white !important;
+  border: solid 1px;
+  border-radius: 3px;
+  padding-top: var(--p);
+  padding-bottom: var(--p);
+  font-family: var(--font-3);
+  margin-left: 10px;
+  position: relative;
+  bottom: 0;
+}

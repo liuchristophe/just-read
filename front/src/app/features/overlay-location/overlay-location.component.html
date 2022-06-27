@@ -68,12 +68,12 @@ cdkConnectedOverlay
     <mat-divider></mat-divider>
     <div class="panel-result-section" >
       <div class="result-item" *ngFor="let adresse of adressesTest$ | async">
-        <h3 (click)="saveText(adresse.properties.label, adresse.geometry.coordinates[0],
-                   adresse.geometry.coordinates[1])">{{ adresse.properties.label }}</h3>
+        <h3 (click)="saveText(adresse.properties.label, adresse.geometry.coordinates[1],
+                   adresse.geometry.coordinates[0])">{{ adresse.properties.label }}</h3>
 
       </div>
     </div>
   </section>
 </ng-template>
 
-<button (click)="actu()">Click</button>
+<button class="btn-2" (click)="actu()">Localisez moi !</button>

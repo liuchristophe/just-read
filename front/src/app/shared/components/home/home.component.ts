@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit {
     this.libraries.forEach(
       library => library.stocks.forEach(
         stock => stock.book.categories.forEach(
-          category=> 
+          category=>
           {
             if(category.name==categoryName)  books.push(stock.book)
           }
@@ -49,11 +49,11 @@ export class HomeComponent implements OnInit {
     let books: Array<BookModel> = [];
     this.libraries.forEach(
       library => library.stocks.forEach(
-        stock => 
+        stock =>
         {
           if(stock.book.title.toLowerCase().includes(themeName.toLowerCase())){
             books.push(stock.book);
-          }  
+          }
         }
       )
     );

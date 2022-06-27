@@ -1,3 +1,4 @@
+/*
 .dialog-titre {
     display: block;
     font-size: 54px;
@@ -30,4 +31,38 @@
 
 img {
     height: 200px;
+}
+*/
+
+
+.container {
+    padding: 0; margin: 0; overflow: hidden;
+    .headings {
+        width: 100%;
+        height: 60px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        * {
+            margin: 0 ; padding: 0;
+            color : var(--color-text-default);
+            &:not(.material-icons) { font-family: var(--font-3) };
+        }
+        .material-icons {
+            font-size: 35pt;
+            height: 100%;
+            width: auto;
+            padding-right: 5px;
+            margin-right: 20px;
+            padding-top: 6px;
+        }
+        h1 { 
+            font-family: var(--font-3) !important; 
+            font-weight: 600;
+        }
+    }
+    .jr-quote {
+        font-size: 12pt;
+    }
+    img { height: 310px; }
 }

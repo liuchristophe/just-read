@@ -62,7 +62,7 @@ export class ApiService {
   }
 
   getAllLibraryNearby$(latitude: number, longitude: number): Observable<Array<LibraryModel>>{
-    return this.httpClient.get<Array<LibraryModel>>(this.urlLibrary+"/rayon?latitude="+latitude+"&longitude="+longitude+"&rayon=30");
+    return this.httpClient.get<Array<LibraryModel>>(this.urlLibrary+"/rayon?latitude="+latitude+"&longitude="+longitude+"&rayon=5");
   }
 
   

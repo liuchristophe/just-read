@@ -22,6 +22,9 @@ export class HomeComponent implements OnInit {
   trendingAventure = 'Aventure';
   booksAventure : Array<BookModel> = [];
 
+  trendingThemeHarryPotter = 'Harry Potter';
+  booksThemeHarryPotter : Array<BookModel> = [];
+
   trendingFantasy = 'Fantasy';
   booksFantasy : Array<BookModel> = [];
 
@@ -42,6 +45,20 @@ export class HomeComponent implements OnInit {
     );
     return books;
   }
+  getAllBookFromTheme(themeName: string): Array<BookModel>{
+    let books: Array<BookModel> = [];
+    this.libraries.forEach(
+      library => library.stocks.forEach(
+        stock => 
+        {
+          if(stock.book.title.toLowerCase().includes(themeName.toLowerCase())){
+            books.push(stock.book);
+          }  
+        }
+      )
+    );
+    return books;
+  }
 
 
 
@@ -54,6 +71,7 @@ export class HomeComponent implements OnInit {
         this.libraryProche = data[0];
         this.booksAventure=this.getAllBookFromCategory("Aventure")
         this.booksAventure=this.getAllBookFromCategory("Fantasy")
+        this.booksThemeHarryPotter=this.getAllBookFromTheme("Harry Potter")
       }else{
         this.libraryProche = {} as LibraryModel
       }

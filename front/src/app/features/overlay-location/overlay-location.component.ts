@@ -54,12 +54,8 @@ import {
   ScrollStrategy,
 } from '@angular/cdk/overlay';
 import { FormControl } from '@angular/forms';
-import { MatSlideToggleChange } from '@angular/material/slide-toggle';
-import { ESCAPE } from '@angular/cdk/keycodes';
 import { OverlayReference } from '@angular/cdk/overlay/overlay-reference';
-import { BookDetailsOverlayService } from 'src/app/core/services/book-details-overlay.service';
 import { ApiService } from 'src/app/core/services/api.service';
-import { CacheAdresse } from 'src/app/core/services/cacheAdresse';
 export interface State {
   flag: string;
   name: string;
@@ -137,7 +133,7 @@ export class OverlayLocationComponent implements OnInit {
       localStorage.setItem("label", "3 Rue Jean Douat, Fontenay-sous-Bois, France");
       localStorage.setItem("latitude", ""+48.84798812866211);
       localStorage.setItem("longitude",  ""+2.4737184047698975);
-
+      
     }
     this.stateCtrl.setValue(localStorage.getItem("label"));
 

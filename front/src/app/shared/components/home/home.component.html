@@ -29,4 +29,9 @@
         <app-book-slider [title]="trendingFantasy" [books]="booksFantasy"></app-book-slider>
     </div>
 
+     <!-- Affichage de la catégorie Fantasy que si au moins un livre de cette catégorie est présent -->
+     <div *ngIf="booksThemeHarryPotter.length > 0">
+        <app-book-slider [title]="trendingThemeHarryPotter" [books]="booksThemeHarryPotter"></app-book-slider>
+    </div>
+
 </ng-template>

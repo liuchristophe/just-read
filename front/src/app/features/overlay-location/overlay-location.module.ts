@@ -15,7 +15,6 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { OverlayLocationComponent } from './overlay-location.component';
-import { CacheAdresse } from 'src/app/core/services/cacheAdresse';
 
 @NgModule({
 declarations: [OverlayLocationComponent],

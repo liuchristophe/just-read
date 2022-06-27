@@ -34,6 +34,7 @@ import {
   ChangeDetectionStrategy,
   ViewChild,
   ElementRef,
+  SimpleChanges,
 } from '@angular/core';
 import { Observable, merge, iif, EMPTY } from 'rxjs';
 import {
@@ -114,30 +115,44 @@ export class OverlayLocationComponent implements OnInit {
     private focusMonitor: FocusMonitor,
     private scrollStrategies: ScrollStrategyOptions,
     private apiService : ApiService,
-    private cacheAdresse: CacheAdresse
-
   ) {}
 
-  saveText(text: string): void{
+  saveText(text: string, latitude: string, longitude: string): void{
     this.stateCtrl.setValue(text);
+    localStorage.setItem("label", text);
+    localStorage.setItem("latitude", latitude);
+    localStorage.setItem("longitude", longitude);
   }
 
   saveAdresse(): void{
 
   }
 
+  actu(): void{
+    window.location.reload();
+  }
   ngOnInit(): void {
 
-    this.saveText(CacheAdresse.label);
+    if(localStorage.getItem("label") == ""){
+      localStorage.setItem("label", "3 Rue Jean Douat, Fontenay-sous-Bois, France");
+      localStorage.setItem("latitude", ""+48.84798812866211);
+      localStorage.setItem("longitude",  ""+2.4737184047698975);
+
+    }
+    this.stateCtrl.setValue(localStorage.getItem("label"));
 
     this.adressesTest$ = this.stateCtrl.valueChanges.pipe( startWith(''),
     map((adresse) => {
         this.apiService.getAdresse$(adresse).subscribe((data) => {
           this.adresses = data;
           if(this.adresses.features[0] != undefined){
-            CacheAdresse.label = this.adresses.features[0].properties.label;
-            CacheAdresse.latitude = this.adresses.features[0].geometry.coordinates[0];
-            CacheAdresse.longitude = this.adresses.features[0].geometry.coordinates[1];
+
+            localStorage.setItem("label", this.adresses.features[0].properties.label);
+            localStorage.setItem("latitude", this.adresses.features[0].geometry.coordinates[0]);
+            localStorage.setItem("longitude", this.adresses.features[0].geometry.coordinates[1]);
+            // CacheAdresse.label = this.adresses.features[0].properties.label;
+            // CacheAdresse.latitude = this.adresses.features[0].geometry.coordinates[0];
+            // CacheAdresse.longitude = this.adresses.features[0].geometry.coordinates[1];
           }
         });
         return this.adresses==undefined ? undefined : this.adresses.features;

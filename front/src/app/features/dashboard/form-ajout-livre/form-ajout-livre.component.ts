@@ -24,7 +24,7 @@ export class FormAjoutLivreComponent implements OnInit {
     this.pending = true;
     this.apiService.createBook$(data).subscribe((result) => {
       console.log("livre créé",result);
-      this.router.navigate(['liste_livres']);
+      this.router.navigate(['dashboard/details_books']);
     },error => {
       this.displayMessage='failed : error'+error.message;
       this.pending=false;
@@ -40,7 +40,7 @@ export class FormAjoutLivreComponent implements OnInit {
     this.httpClient.post('/api/books',formBook)
     .subscribe((result)=>{
       console.log("livre créé",result);
-      this.router.navigate(['liste_livres']);
+      this.router.navigate(['dashboard/details_books']);
     },error=>{
       this.displayMessage='failed : error'+error.message;
       this.pending=false;

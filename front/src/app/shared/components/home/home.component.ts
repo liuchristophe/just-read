@@ -70,7 +70,7 @@ export class HomeComponent implements OnInit {
         this.libraries = data;
         this.libraryProche = data[0];
         this.booksAventure=this.getAllBookFromCategory("Aventure")
-        this.booksAventure=this.getAllBookFromCategory("Fantasy")
+        this.booksFantasy=this.getAllBookFromCategory("Fantasy")
         this.booksThemeHarryPotter=this.getAllBookFromTheme("Harry Potter")
       }else{
         this.libraryProche = {} as LibraryModel

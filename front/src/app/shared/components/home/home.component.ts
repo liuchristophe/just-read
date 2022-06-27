@@ -47,7 +47,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.apiService.getAllLibraryNearby$(CacheAdresse.latitude, CacheAdresse.longitude).subscribe((data) => {
+    this.apiService.getAllLibraryNearby$(parseFloat(localStorage.getItem("latitude") as string), parseFloat(localStorage.getItem("longitude") as string)).subscribe((data) => {
 
       if(data.length>0) {
         this.libraries = data;

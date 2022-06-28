@@ -28,6 +28,12 @@ export class HomeComponent implements OnInit {
   trendingFantasy = 'Fantasy';
   booksFantasy : Array<BookModel> = [];
 
+  trending2022 = 'En 2022';
+  books2022 : Array<BookModel> = [];
+
+  trendingPolicier = 'Policier';
+  booksPolicier : Array<BookModel> = [];
+
   libraries : Array<LibraryModel> = []
   libraryProche : LibraryModel = {} as LibraryModel;
 
@@ -60,6 +66,21 @@ export class HomeComponent implements OnInit {
     return books;
   }
 
+  getAllBookByYear(year: number): Array<BookModel>{
+    let books: Array<BookModel> = [];
+    this.libraries.forEach(
+      library => library.stocks.forEach(
+        stock =>
+        {
+          if(stock.book.year==year){
+            books.push(stock.book);
+          }
+        }
+      )
+    );
+    return books;
+  }
+
 
 
   ngOnInit(): void {
@@ -69,9 +90,12 @@ export class HomeComponent implements OnInit {
       if(data.length>0) {
         this.libraries = data;
         this.libraryProche = data[0];
-        this.booksAventure=this.getAllBookFromCategory("Aventure")
-        this.booksFantasy=this.getAllBookFromCategory("Fantasy")
-        this.booksThemeHarryPotter=this.getAllBookFromTheme("Harry Potter")
+        this.booksAventure=this.getAllBookFromCategory("Aventure");
+        this.booksFantasy=this.getAllBookFromCategory("Fantasy");
+        this.booksPolicier = this.getAllBookFromCategory("Policier")
+        this.booksThemeHarryPotter=this.getAllBookFromTheme("Harry Potter");
+        this.books2022=this.getAllBookByYear(2022);
+
       }else{
         this.libraryProche = {} as LibraryModel
       }

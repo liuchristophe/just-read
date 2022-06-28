@@ -1,27 +1,24 @@
 <app-banner></app-banner>
 
+
 <div *ngIf="libraryProche.name==undefined; else listeLivre">
     <h1>Aucune librairie proche désolé</h1>
     <!-- <h2>{{this.cacheAdresse.label}}</h2> -->
 </div>
 
 <ng-template #listeLivre>
-    <app-book-slider [title]="trending1"></app-book-slider>
-    <app-book-slider [title]="trending2"></app-book-slider>
+    <!-- Affichage de la catégorie Fantasy que si au moins un livre de cette catégorie est présent -->
+    <div *ngIf="booksThemeHarryPotter.length > 0">
+        <app-book-slider [title]="trendingThemeHarryPotter" [books]="booksThemeHarryPotter"></app-book-slider>
+    </div>
+    <!-- Affichage de la catégorie Aventure que si au moins un livre de cette catégorie est présent -->
+    <div *ngIf="books2022.length > 0">
+        <app-book-slider [title]="trending2022" [books]="books2022"></app-book-slider>
+    </div>
 
     <!-- Affichage de la présentation de library que si une library est défini -->
     <div *ngIf="libraryProche.name != undefined">
         <app-library-presentation [library]="libraryProche"></app-library-presentation>
-    </div>
-
-    <app-book-slider [title]="trending2"></app-book-slider>
-
-    <app-book-slider [title]="trending2"></app-book-slider>
-
-
-    <!-- Affichage de la catégorie Aventure que si au moins un livre de cette catégorie est présent -->
-    <div *ngIf="booksAventure.length > 0">
-        <app-book-slider [title]="trendingAventure" [books]="booksAventure"></app-book-slider>
     </div>
 
     <!-- Affichage de la catégorie Fantasy que si au moins un livre de cette catégorie est présent -->
@@ -29,9 +26,14 @@
         <app-book-slider [title]="trendingFantasy" [books]="booksFantasy"></app-book-slider>
     </div>
 
-     <!-- Affichage de la catégorie Fantasy que si au moins un livre de cette catégorie est présent -->
-     <div *ngIf="booksThemeHarryPotter.length > 0">
-        <app-book-slider [title]="trendingThemeHarryPotter" [books]="booksThemeHarryPotter"></app-book-slider>
+        <!-- Affichage de la catégorie Fantasy que si au moins un livre de cette catégorie est présent -->
+        <div *ngIf="booksPolicier.length > 0">
+            <app-book-slider [title]="trendingPolicier" [books]="booksPolicier"></app-book-slider>
+        </div>
+
+    <!-- Affichage de la catégorie Aventure que si au moins un livre de cette catégorie est présent -->
+    <div *ngIf="booksAventure.length > 0">
+        <app-book-slider [title]="trendingAventure" [books]="booksAventure"></app-book-slider>
     </div>
 
 </ng-template>

@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/internal/Observable';
 import { LibraryModel } from 'src/app/core/models/library.model';
 import { LibraryUpdateModel } from 'src/app/core/models/library-update.model';
+import { AdminService } from 'src/app/core/services/admin.service';
 
 @Component({
   selector: 'app-profil',
@@ -16,20 +17,37 @@ export class ProfilComponent implements OnInit {
   titleEdit   = false;
   addressEdit = false;
   descriptionEdit = false;
+  
 
-  constructor( private route:ActivatedRoute, private http: HttpClient ) { }
+  constructor( private route:ActivatedRoute, private http: HttpClient, private adminService: AdminService ) { }
 
   ngOnInit(): void {
+    // this.adminService.update$.subscribe()
     this.loadLibrary();
   }
 
   /**| API |**/
 
-  loadLibrary() {
+  async loadLibrary() {
+    // const libraryTest_id = '3b3b3d57-6f2d-4dd9-a374-d7e35b761ad0';
     // const libraryId = this.route.snapshot.paramMap.get('id');
-    const libraryId= '3b3b3d57-6f2d-4dd9-a374-d7e35b761ad0';
+    let libraryId= '3b3b3d57-6f2d-4dd9-a374-d7e35b761ad0';
+    
+    // console.log('attend');
+    // await this.getLibraryId()
+    //   .then(data => {libraryId = data})
+    //   .catch(error => {alert('probleme lors du récupération id')});
+    // console.log(`retour: ${libraryId}`);
+
+    // if(libraryId != libraryTest_id){
+    // this.getLibraryById$(libraryId).subscribe( data => this.library = data );
+    // }
+    // else{
+    //   this.getLibraryById$(libraryTest_id).subscribe( data => this.library = data );
+    // }
     this.getLibraryById$(libraryId).subscribe( data => this.library = data );
   }
+
   getLibraryById$(id: string | null) : Observable<any> {
     let url = `api/library/${id}`;
     return this.http.get(url);
@@ -68,4 +86,18 @@ export class ProfilComponent implements OnInit {
     this.resetEdit();
   }
 
+  async getLibraryId(): Promise<string> {
+    console.log(`dans la methode getLibraryId`)
+    return new Promise((resolve, reject) => {
+      this.adminService.update$.subscribe(() => {
+        console.log(`id = ${this.adminService.library_id}`);
+        resolve(this.adminService.library_id);
+        return;
+      }, error => {
+        console.log(`erreur`);
+        reject(new Error('erreur inconnue'));
+        return;
+      })
+    })
+  }
 }

@@ -4,6 +4,7 @@ import { BookItemModel } from 'src/app/core/models/book-item.model';
 import { BookModel } from 'src/app/core/models/books.model';
 import { StockModel } from 'src/app/core/models/library.model';
 import { ManagementCardModel } from 'src/app/core/models/management-card-type.model';
+import { AdminService } from 'src/app/core/services/admin.service';
 import { ApiService } from 'src/app/core/services/api.service';
 
 @Component({
@@ -15,12 +16,17 @@ export class StocksListComponent implements OnInit {
 
   // books = [this.book1, this.book2];
   stocks?: StockModel[];
-  idLibrary = '3b3b3d57-6f2d-4dd9-a374-d7e35b761ad0';
+  private idLibrary : string = '3b3b3d57-6f2d-4dd9-a374-d7e35b761ad0';
+  // idLibrary = '3b3b3d57-6f2d-4dd9-a374-d7e35b761ad0';
   @Input() type ?: ManagementCardModel;
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, private adminService: AdminService) { }
 
   ngOnInit(): void {
+    this.adminService.update$.subscribe(() => {
+      if (this.adminService.library_id)
+        this.idLibrary = this.adminService.library_id;
+    });    
     if(this.type){
       if(this.type.valueOf() === ManagementCardModel.POST.valueOf() ){
         this.apiService.getBooksNotInStock$(this.idLibrary)
@@ -57,6 +63,20 @@ export class StocksListComponent implements OnInit {
     return ManagementCardModel.UPDATE;
   }
   
+  async getLibraryId(): Promise<string> {
+    console.log(`dans la methode getLibraryId`)
+    return new Promise((resolve, reject) => {
+      this.adminService.update$.subscribe(() => {
+        console.log(`id = ${this.adminService.library_id}`);
+        resolve(this.adminService.library_id);
+        return;
+      }, error => {
+        console.log(`erreur`);
+        reject(new Error('erreur inconnue'));
+        return;
+      })
+    })
+  }
 // id de la librairie de test ci-dessous  
 // 3b3b3d57-6f2d-4dd9-a374-d7e35b761ad0
 

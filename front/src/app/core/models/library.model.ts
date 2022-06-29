@@ -17,7 +17,9 @@ export interface AddressModel{
     complementaryField: string,
     zipCode: string,
     city: string,
-    country: string
+    country: string,
+    latitude: number,
+    longitude: number
 }
 export interface OrderModel {
     id: string;

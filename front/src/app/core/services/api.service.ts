@@ -109,4 +109,12 @@ export class ApiService {
   deleteStock$(idLibrary: string, idStockItem: string):Observable<any>{
     return this.httpClient.delete(`${this.urlLibrary}/${idLibrary}/stock/remove/${idStockItem}`);
   }
+
+  createLibrary$(libraryToCreate: LibraryModel): Observable<any>{
+    return this.httpClient.post(`${this.urlLibrary}`, libraryToCreate);
+  }
+
+  getLibraryById$(library_id: string): Observable<any>{
+    return this.httpClient.get(`${this.urlLibrary}/${library_id}`);
+  }
 }

@@ -2,5 +2,7 @@
     <div class="title">Just-Read <span class="suffixe">v. Alpha</span></div>
     <div class="content">
         <span class="item" *ngFor="let nav of navigations"><a routerLink={{nav.link}} routerLinkActive="active">{{nav.title}}</a></span>
+        <!-- <span class="item" id="adminPan"><a routerLink="" (click)="openAdminPanelDialog()">Admin Panel</a></span> -->
+        <span class="item" id="adminPan"><button (click)="openAdminPanelDialog()">Admin Panel</button></span>
     </div>
 </mat-toolbar>

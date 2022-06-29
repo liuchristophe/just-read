@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { AdminPanelDialogComponent } from 'src/app/features/admin-panel-dialog/admin-panel-dialog.component';
 
 interface Navigation {
   title: string,
@@ -21,9 +23,16 @@ export class HeaderComponent implements OnInit {
   dashboard = {'title': 'Tableau de bord', 'link': '/dashboard/', 'selected': false};
   navigations: Navigation[] = [this.home, this.dashboard, this.creationLibrary];
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
+  }
+
+  openAdminPanelDialog() {
+    const dialogRef = this.dialog.open(AdminPanelDialogComponent, {
+      width: '500px',
+      height: '500px'
+    });
   }
 
 }

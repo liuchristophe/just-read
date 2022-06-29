@@ -29,15 +29,22 @@ export class FormLibraryCreationComponent implements OnInit {
   }
 
   //Extraire l'attitude et longitude de l'api
-  async createAddressInformations(address : string) : Promise<AddressModel> {
+  async createAddressInformations(address : string) : Promise<any> {
     return new Promise((resolve, reject) => {
       this.apiService
         .getAdresse$(address)
         .pipe()
         .subscribe(result => {
           if (result) {
-            console.log('récup le premier result');
-            if (result.length >= 1) resolve(result[0]);
+            let data: any = result;
+            console.log(`récup le premier result`);
+            if (data.features.length >= 1)  {
+              console.log(`true`);
+              resolve(data.features[0]);
+            }
+            else {
+              console.log(`false `);
+            }
             return;
           }
           console.log('noooo error');
@@ -49,19 +56,72 @@ export class FormLibraryCreationComponent implements OnInit {
 
   async onSubmit(){
     // console.log(JSON.stringify(this.createAddressInformations(this.form.get('address')?.value)));
+    await this.createLibraryModel();
+    if (this.libraryToCreate) {
+      this.apiService.createLibrary$(this.libraryToCreate).subscribe(() => {
+        alert(`BRAVOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO`);
+      }, error => {
+        alert(`Echoué ...`);
+      });
+    }    
+    // console.log('ou suis jeeeeee!!!!!');
+  }
+
+  async createAddressModel() {
     console.log(JSON.stringify(this.form.get('address')?.value));
     if (this.form.get('address')?.value) {
       console.log('coucou 1');
       let adress;
       await this.createAddressInformations(this.form.get('address')?.value)
-        .then(address => {console.log("coucou 2, "+JSON.stringify(address))})
-        .catch(error => console.log('rip ...'));
+        .then(data => {
+          console.log(`promise return: `+JSON.stringify(data));
+          let address = data;
+          this.address = {
+            'id': '',
+            'streetName': address.properties.label,
+            'complementaryField': '',
+            'zipCode': address.properties.postcode,
+            'city': address.properties.city,
+            'country': address.properties.country,
+            'latitude': address.geometry.coordinates[1],
+            'longitude': address.geometry.coordinates[0]
+          };
+          console.log(JSON.stringify(this.address));
+  
+        })
+        .catch(error => { 
+          alert(`erreur lors de l'attribution de l'adresse ...`)
+          console.log('rip ...');
+        });
+
+
+      console.log(`ici c le post librairie`);
+        
     }
     else {
       console.log('ah c toi le coupable');
     }
-    console.log('ou suis je');
   }
 
+  async createLibraryModel(){
+    await this.createAddressModel();
+    let address = this.address;
+    if (address) {
+      let library = {
+        'id' : '',
+        'name': this.form.get('name')?.value,
+        'address': address,
+        'urlImage': this.form.get('urlImage')?.value,
+        'description': this.form.get('description')?.value,
+        'stocks': [],
+        'orders': []
+      };
+      this.libraryToCreate = library;
+      console.log(this.libraryToCreate);
+    }
+    else {
+      console.log(`y'a rien`);
+    }
+  }
   
 }

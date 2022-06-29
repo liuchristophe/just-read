@@ -1,0 +1,5 @@
+<p>Panel d'administrateur</p>
+<label>Id de la Librairie:</label>
+<input type="text" name="library_id" id="library_id" #library_id>
+<input type="submit" value="Valider" (click)="submit(library_id.value)">
+<p *ngIf="emessage">{{emessage}}</p>

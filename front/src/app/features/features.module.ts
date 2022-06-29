@@ -11,12 +11,14 @@ import { BuyDialogComponent } from './buy-dialog/buy-dialog.component';
 import { OverlayLocationModule } from './overlay-location/overlay-location.module';
 import { MatIconModule } from '@angular/material/icon';
 import { FormLibraryCreationComponent } from './form-library-creation/form-library-creation.component';
+import { AdminPanelDialogComponent } from './admin-panel-dialog/admin-panel-dialog.component';
 
 @NgModule({
   declarations: [
     LibraryPresentationComponent,
     BuyDialogComponent,
-    FormLibraryCreationComponent
+    FormLibraryCreationComponent,
+    AdminPanelDialogComponent
   ],
   imports: [
     CommonModule,
